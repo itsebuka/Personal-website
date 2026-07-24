@@ -1,19 +1,6 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, FileText, Download, Cpu, Terminal, Cloud, Shield } from "lucide-react";
-import CustomCursor from "@/components/CustomCursor";
-
-interface DocAttachment {
-  filename: string;
-  originalName: string;
-  label: string;
-  downloadUrl: string;
-  uploadedAt: string;
-}
+import { ArrowLeft, Cpu, Terminal, Cloud, Shield } from "lucide-react";
+import ServiceDocs from "@/components/ServiceDocs";
 
 interface ServiceData {
   title: string;
@@ -59,163 +46,88 @@ const services: ServiceData[] = [
   },
 ];
 
-const FILE_ICONS: Record<string, string> = {
-  pdf: "📄", doc: "📝", docx: "📝", md: "📋", markdown: "📋",
-  txt: "📃", png: "🖼️", jpg: "🖼️", jpeg: "🖼️", mp4: "🎬", zip: "📦",
-};
-const getFileIcon = (filename: string) => {
-  const ext = filename.split(".").pop()?.toLowerCase() || "";
-  return FILE_ICONS[ext] || "📎";
-};
+export function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
 
-export default function ServiceDetailPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const [documents, setDocuments] = useState<DocAttachment[]>([]);
-  const [loadingDocs, setLoadingDocs] = useState(true);
-
+export default function ServiceDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const service = services.find((s) => s.slug === slug);
-
-  useEffect(() => {
-    const loadDocs = async () => {
-      try {
-        const res = await fetch(`http://localhost:5000/api/services/${slug}/documents`);
-        if (res.ok) {
-          const data = await res.json();
-          setDocuments(data);
-        }
-      } catch {
-        // silently fail — no docs shown
-      } finally {
-        setLoadingDocs(false);
-      }
-    };
-    if (slug) loadDocs();
-  }, [slug]);
 
   if (!service) {
     return (
-      <main className="min-h-screen bg-black text-white flex items-center justify-center">
-        <CustomCursor />
-        <div className="flex flex-col items-center gap-4">
-          <span className="font-display text-4xl font-black text-white/10">404</span>
-          <p className="font-mono text-sm text-white/40">Service node not found.</p>
-          <Link href="/#services" className="mt-4 px-6 py-2.5 border border-sky-blue/30 text-sky-blue font-display text-xs tracking-widest uppercase rounded hover:bg-sky-blue/10 transition-all duration-300 cursor-none">
-            Back to Services
-          </Link>
-        </div>
-      </main>
+      <div className="h-full flex flex-col items-center justify-center gap-6 px-6 text-center">
+        <span className="font-serif text-7xl font-bold text-zinc-800">404</span>
+        <p className="font-sans text-sm text-zinc-500">Service not found.</p>
+        <Link
+          href="/services"
+          className="font-sans text-sm text-zinc-400 border border-[#333] px-5 py-2 rounded hover:text-white hover:border-[#555] transition-colors duration-200"
+        >
+          Back to Services
+        </Link>
+      </div>
     );
   }
 
   const IconComp = service.icon;
 
   return (
-    <main className="min-h-screen bg-black text-white relative overflow-x-hidden">
-      <CustomCursor />
-
-      {/* Background grid */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(135, 206, 235, 0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(135, 206, 235, 0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: "30px 30px",
-        }}
-      />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-blue/3 rounded-full blur-[180px] pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto px-6 py-20 relative z-10">
-
-        {/* Back nav */}
-        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }} className="mb-10">
+    <div className="h-full scroll-area">
+      <div className="max-w-4xl mx-auto px-6 py-10">
+        
+        {/* Back navigation */}
+        <div className="mb-8">
           <Link
-            href="/#services"
-            className="inline-flex items-center gap-2 font-display text-xs tracking-widest text-white/50 hover:text-sky-blue uppercase transition-colors duration-300 cursor-none"
+            href="/services"
+            className="inline-flex items-center gap-2 font-sans text-xs text-zinc-500 hover:text-white uppercase tracking-widest transition-colors duration-200"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Services
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex flex-col gap-10">
+        <div className="flex flex-col gap-6">
 
-          {/* Header */}
-          <div className="border border-sky-blue/15 bg-[#0a0a0a] rounded-lg p-8 flex flex-col md:flex-row gap-6 items-start">
-            <div className="p-5 rounded-lg border border-sky-blue/20 bg-sky-blue/5 text-sky-blue shrink-0">
-              <IconComp className="w-10 h-10" />
+          {/* ── Header card ──────────────────────────────────────── */}
+          <div className="bg-[#111111] border border-[#222222] rounded-lg p-6 flex flex-col md:flex-row gap-6 items-start">
+            <div className="shrink-0 w-16 h-16 rounded-lg border border-[#2a2a2a] bg-[#1a1a1a] flex items-center justify-center">
+              <IconComp className="w-8 h-8 text-zinc-400" />
             </div>
             <div className="flex flex-col gap-3 flex-1">
-              <span className="font-display text-[9px] tracking-[0.25em] text-sky-blue uppercase border border-sky-blue/20 px-2 py-1 rounded bg-sky-blue/5 w-fit">
+              <span className="font-sans text-[10px] tracking-widest text-zinc-500 uppercase border border-[#2a2a2a] px-2.5 py-1 rounded bg-[#1a1a1a] w-fit">
                 {service.tagline}
               </span>
-              <h1 className="font-display text-3xl md:text-4xl font-extrabold text-white tracking-tight uppercase">
+              <h1 className="font-serif text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight">
                 {service.title}
               </h1>
-              <p className="font-sans text-sm text-white/60 leading-relaxed max-w-2xl">
+              <p className="font-sans text-sm text-zinc-400 leading-relaxed">
                 {service.description}
               </p>
             </div>
           </div>
 
-          {/* Features */}
-          <div className="border border-sky-blue/10 bg-[#0a0a0a] rounded-lg p-6">
-            <h2 className="font-display text-[10px] tracking-[0.25em] text-sky-blue uppercase mb-5">
+          {/* ── Features ─────────────────────────────────────────── */}
+          <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
+            <h2 className="font-sans text-[10px] tracking-widest text-zinc-500 uppercase mb-4">
               Capabilities &amp; Features
             </h2>
             <ul className="flex flex-col gap-3">
               {service.features.map((feat) => (
-                <li key={feat} className="flex items-start gap-3 font-sans text-sm text-white/70">
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-sky-blue shadow-[0_0_6px_#87ceeb] shrink-0" />
+                <li key={feat} className="flex items-start gap-3 font-sans text-sm text-zinc-400">
+                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-zinc-600 shrink-0" />
                   {feat}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Documents */}
-          <div className="border border-sky-blue/10 bg-[#0a0a0a] rounded-lg p-6">
-            <h2 className="font-display text-[10px] tracking-[0.25em] text-sky-blue uppercase mb-4 flex items-center gap-2">
-              <FileText className="w-4 h-4" />
-              Documents &amp; Resources
-            </h2>
+          {/* ── Documents ────────────────────────────────────────── */}
+          <ServiceDocs slug={service.slug} />
 
-            {loadingDocs ? (
-              <div className="py-8 text-center text-xs font-mono text-white/30">Querying resource registry...</div>
-            ) : documents.length === 0 ? (
-              <div className="py-8 text-center border border-dashed border-white/5 rounded text-xs font-mono text-white/25">
-                No documents attached to this service yet.
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {documents.map((doc) => (
-                  <a
-                    key={doc.filename}
-                    href={`http://localhost:5000${doc.downloadUrl}`}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 bg-black border border-white/5 rounded hover:border-sky-blue/30 hover:bg-sky-blue/3 transition-all duration-300 group cursor-none"
-                  >
-                    <span className="text-2xl">{getFileIcon(doc.filename)}</span>
-                    <div className="flex flex-col min-w-0 flex-1">
-                      <span className="font-display text-xs font-semibold text-white truncate group-hover:text-sky-blue transition-colors duration-200">
-                        {doc.label}
-                      </span>
-                      <span className="font-mono text-[9px] text-white/30 mt-0.5 truncate">
-                        {doc.originalName}
-                      </span>
-                    </div>
-                    <Download className="w-4 h-4 text-white/20 group-hover:text-sky-blue shrink-0 transition-colors duration-200" />
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-
-        </motion.div>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
