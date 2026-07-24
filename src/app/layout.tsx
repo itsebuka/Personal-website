@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Ebuka Eleogu | Hardware Systems & RF",
+  title: "Ebuka's Portfolio",
   description:
     "Portfolio of Ebuka Eleogu. Specialized in multilayer PCB design, RF signal intelligence, embedded C++ firmware, and defense systems prototyping.",
   keywords: [
