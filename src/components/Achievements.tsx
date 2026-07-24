@@ -85,20 +85,11 @@ const achievementsList: Milestone[] = [
   },
   {
     id: "ACH-008",
-    title: "Junior Chess Silver Medal",
-    issuer: "Secondary School",
-    date: "2021",
-    description:
-      "Won the silver medal in the Junior Chess Championship (JSS1-JSS3) during the 2021 interhouse competition.",
-    icon: Medal,
-  },
-  {
-    id: "ACH-009",
-    title: "Senior Chess Gold Medal",
+    title: "Chess Championship Medallist",
     issuer: "Secondary School",
     date: "Past",
     description:
-      "Won the gold medal in the Senior Chess Championship (SS1-SS3) in my secondary school.",
+      "Won the Silver medal in the Junior Chess Championship and the Gold medal in the Senior Chess Championship during interhouse competitions.",
     icon: Medal,
   },
 ];
