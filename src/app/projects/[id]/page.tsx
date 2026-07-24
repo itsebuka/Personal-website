@@ -1,6 +1,3 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -30,8 +27,14 @@ const KIND_ICON = {
   external: ExternalLink,
 };
 
-export default function ProjectDetailPage() {
-  const { id } = useParams<{ id: string }>();
+export function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
+export default function ProjectDetailPage({ params }: { params: { id: string } }) {
+  const { id } = params;
   const project = projects.find((p) => p.id === id);
   const IconComp = project?.icon;
 
