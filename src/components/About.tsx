@@ -14,12 +14,26 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
 
           {/* Bio Text */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4">
             <p className="font-sans text-sm text-zinc-300 leading-relaxed">
-              I intend to build autonomous security systems that fuse RF intelligence with computer vision on custom hardware. I intend to also design PCBs and model their enclosures in Fusion 360, write the sensor fusion software, and integrate it into a single platform. My work targets critical infrastructure protection, perimeter defence, and asymmetric warfare applications in under-resourced environments. Studying Electrical and Electronics at Pan-Atlantic University and supporting grid operations as an intern. Nigerian-made. Defence-focused. Prototype-obsessed.
+              I am an Electrical and Electronics student at Pan-Atlantic University, currently supporting grid operations as an intern. 
+              <span className="block mt-1 font-semibold text-white">Nigerian-made. Defence-focused. Prototype-obsessed.</span>
             </p>
-            <p className="font-sans text-sm text-zinc-500 leading-relaxed">
-              The spectrum is a battlefield most people cannott see. I intend to build systems that see it, control it, and act on it by fusing sensors, signals, and hardware into platforms that work.
+            
+            <ul className="list-disc list-outside ml-5 font-sans text-sm text-zinc-400 space-y-2 mt-1">
+              <li>
+                <strong className="text-zinc-200">Autonomous Security:</strong> Building systems that fuse RF intelligence with computer vision on custom hardware.
+              </li>
+              <li>
+                <strong className="text-zinc-200">End-to-End Design:</strong> Designing PCBs, modeling enclosures in Fusion 360, and writing sensor fusion software.
+              </li>
+              <li>
+                <strong className="text-zinc-200">Strategic Targets:</strong> Focusing on critical infrastructure protection, perimeter defence, and asymmetric warfare in under-resourced environments.
+              </li>
+            </ul>
+
+            <p className="font-sans text-sm text-zinc-500 leading-relaxed italic border-l-2 border-[#222] pl-4 mt-2">
+              "The spectrum is a battlefield most people cannot see. I intend to build systems that see it, control it, and act on it by fusing sensors, signals, and hardware into platforms that work."
             </p>
           </div>
 
