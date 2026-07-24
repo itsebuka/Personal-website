@@ -153,7 +153,7 @@ export default function Contact() {
               <Github className="w-4 h-4" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
