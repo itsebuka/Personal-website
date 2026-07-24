@@ -1,4 +1,4 @@
-import { Award, Terminal, CheckCircle2 } from "lucide-react";
+import { Award, Trophy, Music, Globe, Shield, GraduationCap, Brain, CheckCircle2 } from "lucide-react";
 import type { ElementType } from "react";
 
 interface Milestone {
@@ -21,22 +21,58 @@ const achievementsList: Milestone[] = [
     icon: Award,
   },
   {
-    id: "CERT-003",
-    title: "4 bit Comparator PCB",
-    issuer: "Pan-Atlantic University",
-    date: "2026",
+    id: "ACH-001",
+    title: "Highest Goal Scorer",
+    issuer: "Helmbridge Football Club",
+    date: "Consecutive",
     description:
-      "I designed a 4-bit comparator PCB using Kicad 10.0.0, which was then fabricated from scratch using veroboards in my school lab.",
-    icon: Terminal,
+      "Highest goal scorer for two consecutive years. Scored 120+ goals across a short 5-year stay at Helmbridge.",
+    icon: Trophy,
   },
   {
-    id: "CERT-004",
-    title: "Voltage Stability Prediction ML model",
-    issuer: "Pan Atlantic University",
-    date: "2026",
+    id: "ACH-002",
+    title: "School Pianist (Part Time)",
+    issuer: "Maryland Comprehensive",
+    date: "Past",
     description:
-      "I successfully created a voltage stability prediction model using Python and machine learning",
-    icon: Award,
+      "Served as the part-time school pianist during my time at Maryland Comprehensive Secondary School.",
+    icon: Music,
+  },
+  {
+    id: "ACH-003",
+    title: "3rd Best in Geography",
+    issuer: "Maryland Comprehensive",
+    date: "Past",
+    description:
+      "Ranked 3rd best student in Geography studies across my entire secondary school.",
+    icon: Globe,
+  },
+  {
+    id: "ACH-004",
+    title: "Best Goalkeeper",
+    issuer: "Maryland Comprehensive",
+    date: "3 Years",
+    description:
+      "Won a total of 9 golden glove awards across 9 terms. Recorded the most cleansheets and most saves ever made in MCSS history.",
+    icon: Shield,
+  },
+  {
+    id: "ACH-005",
+    title: "Best Graduating Student",
+    issuer: "Primary School",
+    date: "2016-2017",
+    description:
+      "Awarded Best Graduating Student in my primary school set.",
+    icon: GraduationCap,
+  },
+  {
+    id: "ACH-006",
+    title: "Quiz Competition Runner-Up",
+    issuer: "Pan-Atlantic University",
+    date: "Recent",
+    description:
+      '2nd place runner-up in the "A little about everything" quiz competition held at Pan-Atlantic University.',
+    icon: Brain,
   },
 ];
 
@@ -55,8 +91,8 @@ export default function Achievements() {
           </h2>
         </div>
 
-        {/* 3-column card grid */}
-        <div className="grid grid-cols-3 gap-4">
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {achievementsList.map((item) => {
             const IconComp = item.icon;
             return (
