@@ -74,7 +74,7 @@ export default function Skills() {
         {/* Section heading */}
         <div className="text-center mb-7">
           <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
-            Technical Arsenal
+            My Areas of Specialty
           </h2>
         </div>
 
