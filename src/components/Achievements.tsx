@@ -1,4 +1,4 @@
-import { Award, Trophy, Music, Globe, Shield, GraduationCap, Brain, CheckCircle2 } from "lucide-react";
+import { Award, Trophy, Music, Globe, Shield, GraduationCap, Brain, CheckCircle2, Medal } from "lucide-react";
 import type { ElementType } from "react";
 
 interface Milestone {
@@ -73,6 +73,33 @@ const achievementsList: Milestone[] = [
     description:
       '2nd place runner-up in the "A little about everything" quiz competition held at Pan-Atlantic University.',
     icon: Brain,
+  },
+  {
+    id: "ACH-007",
+    title: "100m Race Bronze Medal",
+    issuer: "Secondary School",
+    date: "2021",
+    description:
+      "Won the bronze medal in the 100m sprint during secondary school.",
+    icon: Medal,
+  },
+  {
+    id: "ACH-008",
+    title: "Junior Chess Silver Medal",
+    issuer: "Secondary School",
+    date: "2021",
+    description:
+      "Won the silver medal in the Junior Chess Championship (JSS1-JSS3) during the 2021 interhouse competition.",
+    icon: Medal,
+  },
+  {
+    id: "ACH-009",
+    title: "Senior Chess Gold Medal",
+    issuer: "Secondary School",
+    date: "Past",
+    description:
+      "Won the gold medal in the Senior Chess Championship (SS1-SS3) in my secondary school.",
+    icon: Medal,
   },
 ];
 
