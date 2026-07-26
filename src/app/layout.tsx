@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import FilmGrain from "@/components/FilmGrain";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} font-sans h-full overflow-hidden bg-[#0a0a0a] text-white antialiased`}
       >
+        <FilmGrain />
         <div className="flex flex-col h-full">
           <Navbar />
           <main className="flex-1 min-h-0">

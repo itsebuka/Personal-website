@@ -1,10 +1,13 @@
+"use client";
+
 import { Cpu, Radio, Terminal, Shield } from "lucide-react";
-import type { ElementType } from "react";
+import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 
 interface SkillCategory {
   title: string;
   description: string;
-  icon: ElementType;
+  icon: LucideIcon;
   skills: string[];
 }
 
@@ -63,6 +66,19 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
 export default function Skills() {
   return (
     <section
@@ -79,11 +95,17 @@ export default function Skills() {
         </div>
 
         {/* 2×2 Card Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        >
           {skillCategories.map((category) => {
             const IconComp = category.icon;
             return (
-              <div
+              <motion.div
+                variants={itemVariants}
                 key={category.title}
                 className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
               >
@@ -113,10 +135,10 @@ export default function Skills() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

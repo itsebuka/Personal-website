@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Send, CheckCircle2, Github, Linkedin, Twitter, Mail } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -102,24 +103,26 @@ export default function Contact() {
           </div>
 
           {/* Submit button */}
-          <button
-            type="submit"
-            id="contact-submit"
-            disabled={isSubmitting}
-            className="bg-white text-black font-sans font-semibold text-sm py-3 px-6 rounded flex items-center justify-center gap-2 hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none"
-          >
-            {isSubmitting ? (
-              <>
-                <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                Sending...
-              </>
-            ) : (
-              <>
-                <Send className="w-4 h-4" />
-                Send Message
-              </>
-            )}
-          </button>
+          <MagneticButton className="w-full">
+            <button
+              type="submit"
+              id="contact-submit"
+              disabled={isSubmitting}
+              className="bg-white text-black w-full font-sans font-semibold text-sm py-3 px-6 rounded flex items-center justify-center gap-2 hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  Send Message
+                </>
+              )}
+            </button>
+          </MagneticButton>
 
           {/* Success overlay */}
           {isSuccess && (

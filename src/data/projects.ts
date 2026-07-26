@@ -1,5 +1,5 @@
 import { Cpu, Database, Network } from "lucide-react";
-import type { ElementType } from "react";
+import type { LucideIcon } from "lucide-react";
 
 export interface ProjectFile {
   label: string;
@@ -22,7 +22,7 @@ export interface StaticProject {
   tech: string[];
   links: ProjectLink[];
   files: ProjectFile[];
-  icon: ElementType;
+  icon: LucideIcon;
 }
 
 export const projects: StaticProject[] = [

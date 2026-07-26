@@ -1,5 +1,8 @@
+"use client";
+
 import { Award, Trophy, Music, Globe, Shield, GraduationCap, Brain, CheckCircle2, Medal } from "lucide-react";
-import type { ElementType } from "react";
+import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
 
 interface Milestone {
   id: string;
@@ -7,7 +10,7 @@ interface Milestone {
   issuer: string;
   date: string;
   description: string;
-  icon: ElementType;
+  icon: LucideIcon;
 }
 
 const achievementsList: Milestone[] = [
@@ -94,6 +97,19 @@ const achievementsList: Milestone[] = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
 export default function Achievements() {
   return (
     <section
@@ -110,11 +126,17 @@ export default function Achievements() {
         </div>
 
         {/* Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
           {achievementsList.map((item) => {
             const IconComp = item.icon;
             return (
-              <div
+              <motion.div
+                variants={itemVariants}
                 key={item.id}
                 className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-4 hover:border-[#333333] transition-colors duration-200"
               >
@@ -153,10 +175,10 @@ export default function Achievements() {
                     Verified
                   </span>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

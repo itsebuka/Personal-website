@@ -2,8 +2,22 @@
 
 import { useRouter } from "next/navigation";
 import { ExternalLink, Github, FileText } from "lucide-react";
+import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import type { StaticProject } from "@/data/projects";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
 
 export default function Projects() {
   const router = useRouter();
@@ -18,12 +32,17 @@ export default function Projects() {
         {/* Section heading */}
         <div className="text-center mb-7">
           <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
-            Things I've Built
+            Things I&apos;ve Built
           </h2>
         </div>
 
         {/* 3-column card grid */}
-        <div className="grid grid-cols-3 gap-4">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
           {projects.map((project: StaticProject, index: number) => {
             const IconComp = project.icon;
             const techList = project.tech || [];
@@ -31,7 +50,8 @@ export default function Projects() {
             const liveLink = project.links.find((l) => l.kind === "demo")?.url;
 
             return (
-              <div
+              <motion.div
+                variants={itemVariants}
                 key={project.title}
                 onClick={() => router.push(`/projects/${project.id}`)}
                 className="bg-[#111111] border border-[#222222] rounded-lg overflow-hidden flex flex-col cursor-pointer hover:border-[#333333] transition-colors duration-200 group"
@@ -105,10 +125,10 @@ export default function Projects() {
                     )}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Cpu, Terminal, Cloud, Shield } from "lucide-react";
+import { ArrowLeft, Cpu, Terminal, Cloud, Shield, type LucideIcon } from "lucide-react";
 import ServiceDocs from "@/components/ServiceDocs";
 
 interface ServiceData {
@@ -7,7 +7,7 @@ interface ServiceData {
   tagline: string;
   description: string;
   features: string[];
-  icon: React.ElementType;
+  icon: LucideIcon;
   slug: string;
 }
 
