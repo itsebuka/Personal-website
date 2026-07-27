@@ -6,6 +6,9 @@ import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 import WireframeBackground from "./WireframeBackground";
 
+// ── Replace YOUR_FORM_ID with your Formspree form ID after signing up at formspree.io
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
 const roles = [
   "Electronics",
   "PCB Design",
@@ -20,10 +23,11 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  // Contact form state
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  // Contact form state — message only
+  const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   // Typewriter effect
   useEffect(() => {
@@ -52,21 +56,29 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, roleIndex, typingSpeed]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!message.trim()) return;
     setIsSubmitting(true);
-    setTimeout(() => {
+    setIsError(false);
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ message }),
+      });
+      if (res.ok) {
+        setIsSuccess(true);
+        setMessage("");
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        setIsError(true);
+      }
+    } catch {
+      setIsError(true);
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 1800);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   return (
@@ -179,60 +191,26 @@ export default function Home() {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative">
-
-            {/* Name field */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="contact-name" className="font-sans text-xs text-zinc-400">
-                Your Name
-              </label>
-              <input
-                type="text"
-                id="contact-name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                placeholder="Enter your name"
-                autoComplete="off"
-                className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150"
-              />
-            </div>
-
-            {/* Email field */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="contact-email" className="font-sans text-xs text-zinc-400">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="contact-email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="Enter your email"
-                autoComplete="off"
-                className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150"
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 relative">
 
             {/* Message field */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="contact-message" className="font-sans text-xs text-zinc-400">
-                Message
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={4}
-                placeholder="Type your message..."
-                className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
-              />
-            </div>
+            <textarea
+              id="contact-message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+              rows={5}
+              placeholder="Type your message..."
+              className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
+            />
+
+            {/* Error notice */}
+            {isError && (
+              <p className="font-sans text-xs text-red-400">
+                Something went wrong — please try again or email me directly.
+              </p>
+            )}
 
             {/* Submit button */}
             <MagneticButton className="w-full">
