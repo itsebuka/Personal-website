@@ -1,6 +1,6 @@
 "use client";
 
-import { Cpu, Radio, Cpu as CpuAlt, BrainCircuit, CircuitBoard, Zap } from "lucide-react";
+import { Cpu, Radio, BrainCircuit, CircuitBoard, Zap, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
@@ -53,6 +53,14 @@ const specialties: Specialty[] = [
     tags: ["Impedance Matched Differential Pairs", "BOM Optimisation & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
     icon: Radio,
   },
+  {
+    title: "Front End Development",
+    tagline: "React / Next.js | TypeScript | UI Engineering",
+    description:
+      "Building fast, polished, and accessible web interfaces with React and Next.js. I work across the full front-end stack — component architecture, animation with Framer Motion, 3D scenes with Three.js, responsive layouts, and deployment pipelines.",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "HTML & CSS"],
+    icon: Globe,
+  },
 ];
 
 const containerVariants = {
@@ -78,7 +86,7 @@ export default function Skills() {
         {/* Section heading */}
         <div className="text-center mb-7">
           <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
-            My Areas of Specialty
+            My Skills
           </h2>
           <p className="font-sans text-sm text-zinc-500 mt-2">
             The disciplines I design, build, and think in.
