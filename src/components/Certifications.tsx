@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download, ExternalLink, X, FileText, Layers } from "lucide-react";
+import { Download, ExternalLink, X, FileText, Layers, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CertificateFile {
@@ -14,9 +14,10 @@ interface Certificate {
   title: string;
   issuer: string;
   year: string;
+  status: "completed" | "in-progress";
   files: CertificateFile[];
   description: string;
-  brand: "pau" | "autodesk" | "nvidia";
+  brand: "pau" | "autodesk" | "nvidia" | "udemy";
 }
 
 function BridgiaLogo({ className = "w-16 h-6" }: { className?: string }) {
@@ -52,12 +53,24 @@ function NvidiaLogo({ className = "w-5 h-5" }: { className?: string }) {
   );
 }
 
+function UdemyLogo({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="5" width="90" height="90" rx="18" fill="#FFFFFF" />
+      <path d="M50 16 L72 28 L64 32 L50 24 L36 32 L28 28 Z" fill="#A435F0" />
+      <path d="M38 36 H48 V55 C48 57.5 52 57.5 52 55 V36 H62 V56 C62 64 38 64 38 56 V36 Z" fill="#1C1D1F" />
+      <text x="50" y="80" textAnchor="middle" fill="#1C1D1F" fontFamily="system-ui, sans-serif" fontWeight="800" fontSize="15">udemy</text>
+    </svg>
+  );
+}
+
 const certificates: Certificate[] = [
   {
     id: "CERT-IRP-2023-2025",
     title: "Industry Readiness Program (3-Year Consecutive Graduate)",
     issuer: "Pan-Atlantic University / Bridgia",
     year: "2023 – 2025",
+    status: "completed",
     files: [
       { year: "2023 Certificate", filename: "2023 IRP Certificate.pdf" },
       { year: "2024 Certificate", filename: "2024 IRP Certificate.pdf" },
@@ -72,6 +85,7 @@ const certificates: Certificate[] = [
     title: "Autodesk Fusion 360 Certification",
     issuer: "Autodesk",
     year: "2024",
+    status: "completed",
     files: [{ year: "2024 Certificate", filename: "Autodesk Fusion Certificate.pdf" }],
     brand: "autodesk",
     description:
@@ -82,10 +96,33 @@ const certificates: Certificate[] = [
     title: "NVIDIA RAG Certification",
     issuer: "NVIDIA",
     year: "2024",
+    status: "completed",
     files: [{ year: "2024 Certificate", filename: "NVIDIA RAG Certification.pdf" }],
     brand: "nvidia",
     description:
       "Certified by NVIDIA in Retrieval-Augmented Generation (RAG) — covering embedding pipelines, vector databases, and production-grade LLM integration.",
+  },
+  {
+    id: "CERT-UDEMY-PCB",
+    title: "Crash Course Electronics and PCB Design",
+    issuer: "Udemy · Andre LaMothe",
+    year: "2026",
+    status: "in-progress",
+    files: [],
+    brand: "udemy",
+    description:
+      "Comprehensive engineering coursework covering analog and digital electronics, schematic capture, component specification, and multilayer PCB layout.",
+  },
+  {
+    id: "CERT-UDEMY-MCU",
+    title: "Mastering Microcontroller & Embedded Driver Development",
+    issuer: "Udemy · FastBit Embedded Brain Academy",
+    year: "2026",
+    status: "in-progress",
+    files: [],
+    brand: "udemy",
+    description:
+      "In-depth bare-metal firmware development for ARM Cortex-M microcontrollers. Writing peripheral drivers (GPIO, I2C, SPI, USART, NVIC, Timers) from scratch in C.",
   },
 ];
 
@@ -108,6 +145,8 @@ export default function Certifications() {
         return <AutodeskLogo className="w-6 h-6" />;
       case "nvidia":
         return <NvidiaLogo className="w-6 h-6 text-[#76b900]" />;
+      case "udemy":
+        return <UdemyLogo className="w-6 h-6" />;
       case "pau":
       default:
         return <BridgiaLogo className="h-6 w-auto" />;
@@ -153,9 +192,17 @@ export default function Certifications() {
               <div className="flex flex-col gap-1.5 flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="font-sans text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">
-                      {cert.title}
-                    </h3>
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-sans text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">
+                        {cert.title}
+                      </h3>
+                      {cert.status === "in-progress" && (
+                        <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                          <Clock className="w-2.5 h-2.5" />
+                          In Progress
+                        </span>
+                      )}
+                    </div>
                     <p className="font-sans text-xs text-zinc-500 mt-0.5">
                       {cert.issuer} · {cert.year}
                     </p>
@@ -176,8 +223,14 @@ export default function Certifications() {
                     View Certificate Details
                   </span>
                   <span className="flex items-center gap-1 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                    <Layers className="w-3.5 h-3.5" />
-                    {cert.files.length === 1 ? "1 Document" : `${cert.files.length} Documents (2023–2025)`}
+                    {cert.status === "in-progress" ? (
+                      <span className="text-[#c073f8]">Course Coursework Active</span>
+                    ) : (
+                      <>
+                        <Layers className="w-3.5 h-3.5" />
+                        {cert.files.length === 1 ? "1 Document" : `${cert.files.length} Documents (2023–2025)`}
+                      </>
+                    )}
                   </span>
                 </div>
               </div>
@@ -210,9 +263,16 @@ export default function Certifications() {
                   {renderLogo(selectedCert.brand)}
                 </div>
                 <div>
-                  <span className="font-sans text-[9px] text-zinc-500 uppercase tracking-widest">
-                    {selectedCert.id}
-                  </span>
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="font-sans text-[9px] text-zinc-500 uppercase tracking-widest">
+                      {selectedCert.id}
+                    </span>
+                    {selectedCert.status === "in-progress" && (
+                      <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full">
+                        In Progress
+                      </span>
+                    )}
+                  </div>
                   <h3 className="font-sans text-base font-bold text-white leading-snug">
                     {selectedCert.title}
                   </h3>
@@ -233,35 +293,47 @@ export default function Certifications() {
               {/* Actions List */}
               <div className="flex flex-col gap-2.5 pt-2 border-t border-[#222222]">
                 <h4 className="font-sans text-xs uppercase tracking-wider text-zinc-500 mb-1">
-                  Attached Documents ({selectedCert.files.length})
+                  {selectedCert.status === "in-progress" ? "Certification Status" : `Attached Documents (${selectedCert.files.length})`}
                 </h4>
-                {selectedCert.files.map((file) => (
-                  <div key={file.filename} className="flex items-center justify-between p-3 bg-[#181818] border border-[#2a2a2a] rounded-lg">
-                    <span className="font-sans text-xs font-medium text-white flex items-center gap-2">
-                      <FileText className="w-3.5 h-3.5 text-zinc-400" />
-                      {file.year}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={`/files/certificates/${file.filename}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white text-black font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-zinc-200 transition-colors"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        Open PDF
-                      </a>
-                      <a
-                        href={`/files/certificates/${file.filename}`}
-                        download
-                        className="bg-[#222222] text-white border border-[#333333] font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-[#333333] transition-colors"
-                      >
-                        <Download className="w-3 h-3" />
-                        Download
-                      </a>
+                {selectedCert.status === "in-progress" ? (
+                  <div className="p-4 bg-[#181818] border border-[#2a2a2a] rounded-lg flex flex-col gap-2">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-[#c073f8]">
+                      <Clock className="w-4 h-4" />
+                      Currently Enrolled &amp; Completing Modules
                     </div>
+                    <p className="font-sans text-xs text-zinc-400 leading-relaxed">
+                      Coursework is actively underway. Verified certificate PDF will be published and available for download upon course completion.
+                    </p>
                   </div>
-                ))}
+                ) : (
+                  selectedCert.files.map((file) => (
+                    <div key={file.filename} className="flex items-center justify-between p-3 bg-[#181818] border border-[#2a2a2a] rounded-lg">
+                      <span className="font-sans text-xs font-medium text-white flex items-center gap-2">
+                        <FileText className="w-3.5 h-3.5 text-zinc-400" />
+                        {file.year}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        <a
+                          href={`/files/certificates/${file.filename}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-white text-black font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-zinc-200 transition-colors"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          Open PDF
+                        </a>
+                        <a
+                          href={`/files/certificates/${file.filename}`}
+                          download
+                          className="bg-[#222222] text-white border border-[#333333] font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-[#333333] transition-colors"
+                        >
+                          <Download className="w-3 h-3" />
+                          Download
+                        </a>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
             </motion.div>
           </div>
