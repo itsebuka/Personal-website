@@ -8,7 +8,7 @@ export default function About() {
 
         {/* Section heading */}
         <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-8 sm:mb-10 text-center tracking-tight">
-          The Man Behind This Page
+          About Me
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
