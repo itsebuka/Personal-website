@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Github, Linkedin, Twitter, FileText } from "lucide-react";
+import { Github, Linkedin, Twitter, FileText, Send, CheckCircle2, Mail } from "lucide-react";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 import WireframeBackground from "./WireframeBackground";
@@ -14,17 +14,21 @@ const roles = [
   "Embedded Systems (intended)",
 ];
 
-export default function Hero() {
+export default function Home() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  // Typewriter effect — same logic, visual only
+  // Contact form state
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // Typewriter effect
   useEffect(() => {
     let timer: NodeJS.Timeout;
     const currentFullRole = roles[roleIndex];
-
     const handleType = () => {
       if (!isDeleting) {
         setDisplayText(currentFullRole.substring(0, displayText.length + 1));
@@ -44,93 +48,249 @@ export default function Hero() {
       }
       timer = setTimeout(handleType, typingSpeed);
     };
-
     timer = setTimeout(handleType, typingSpeed);
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, roleIndex, typingSpeed]);
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setIsSuccess(false), 5000);
+    }, 1800);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
-    <section
-      id="home"
-      className="h-full flex flex-col items-center justify-center px-6 text-center relative overflow-hidden"
-    >
-      <WireframeBackground />
-      {/* Avatar circle */}
-      <div className="w-20 h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-8 select-none">
-        <span className="font-serif text-xl font-bold text-white">EE</span>
-      </div>
+    <div className="h-full scroll-area">
+      {/* ── Hero Section ──────────────────────────────────── */}
+      <section
+        id="home"
+        className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden py-16"
+      >
+        <WireframeBackground />
 
-      {/* Main heading */}
-      <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight leading-none">
-        Ebuka&apos;s Portfolio
-      </h1>
+        {/* Avatar circle */}
+        <div className="w-20 h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-8 select-none z-10">
+          <span className="font-serif text-xl font-bold text-white">EE</span>
+        </div>
 
-      {/* Typewriter subtitle */}
-      <p className="font-sans text-base text-zinc-400 min-h-[26px] mb-10 flex items-center gap-1.5">
-        <span>{displayText}</span>
-        <span className="inline-block w-px h-4 bg-zinc-500 animate-pulse" />
-      </p>
+        {/* Main heading */}
+        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight leading-none z-10">
+          Ebuka&apos;s Portfolio
+        </h1>
 
-      {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mb-10 z-10">
-        <MagneticButton>
-          <Link
-            href="/projects"
-            id="hero-cta"
-            className="bg-white text-black font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 block"
-          >
-            Explore my projects
-          </Link>
-        </MagneticButton>
-        <MagneticButton>
-          <a
-            href="/Ebuka_Eleogu_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-transparent text-white border border-[#333] font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-[#111] hover:border-[#555] transition-colors duration-150 flex items-center gap-2"
-          >
-            <FileText className="w-4 h-4" />
-            Download CV
-          </a>
-        </MagneticButton>
-      </div>
+        {/* Typewriter subtitle */}
+        <p className="font-sans text-base text-zinc-400 min-h-[26px] mb-10 flex items-center gap-1.5 z-10">
+          <span>{displayText}</span>
+          <span className="inline-block w-px h-4 bg-zinc-500 animate-pulse" />
+        </p>
 
-      {/* Social icons */}
-      <div className="flex items-center gap-3 z-10">
-        <MagneticButton>
-          <a
-            href="https://github.com/itsebuka"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
-          >
-            <Github className="w-4 h-4" />
-          </a>
-        </MagneticButton>
-        <MagneticButton>
-          <a
-            href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn Profile"
-            className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
-          >
-            <Linkedin className="w-4 h-4" />
-          </a>
-        </MagneticButton>
-        <MagneticButton>
-          <a
-            href="https://x.com/eleoguuu"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Twitter / X Profile"
-            className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
-          >
-            <Twitter className="w-4 h-4" />
-          </a>
-        </MagneticButton>
-      </div>
-    </section>
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-10 z-10">
+          <MagneticButton>
+            <Link
+              href="/projects"
+              id="hero-cta"
+              className="bg-white text-black font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 block"
+            >
+              Explore my projects
+            </Link>
+          </MagneticButton>
+          <MagneticButton>
+            <a
+              href="/Ebuka_Eleogu_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-transparent text-white border border-[#333] font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-[#111] hover:border-[#555] transition-colors duration-150 flex items-center gap-2"
+            >
+              <FileText className="w-4 h-4" />
+              Download CV
+            </a>
+          </MagneticButton>
+        </div>
+
+        {/* Social icons */}
+        <div className="flex items-center gap-3 z-10">
+          <MagneticButton>
+            <a
+              href="https://github.com/itsebuka"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+          </MagneticButton>
+          <MagneticButton>
+            <a
+              href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
+            >
+              <Linkedin className="w-4 h-4" />
+            </a>
+          </MagneticButton>
+          <MagneticButton>
+            <a
+              href="https://x.com/eleoguuu"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter / X Profile"
+              className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
+            >
+              <Twitter className="w-4 h-4" />
+            </a>
+          </MagneticButton>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10 opacity-40">
+          <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-widest">Scroll</span>
+          <span className="w-px h-6 bg-zinc-700 animate-pulse" />
+        </div>
+      </section>
+
+      {/* ── Contact Section ───────────────────────────────── */}
+      <section
+        id="contact"
+        className="flex flex-col items-center justify-center px-6 py-20 border-t border-[#1a1a1a]"
+      >
+        <div className="w-full max-w-lg">
+          {/* Section header */}
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-4xl font-bold text-white mb-2 tracking-tight">
+              Get In Touch
+            </h2>
+            <p className="font-sans text-sm text-zinc-500">
+              Have a project or question? I&apos;ll get back to you.
+            </p>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 relative">
+
+            {/* Name field */}
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="contact-name" className="font-sans text-xs text-zinc-400">
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Enter your name"
+                autoComplete="off"
+                className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150"
+              />
+            </div>
+
+            {/* Email field */}
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="contact-email" className="font-sans text-xs text-zinc-400">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Enter your email"
+                autoComplete="off"
+                className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150"
+              />
+            </div>
+
+            {/* Message field */}
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="contact-message" className="font-sans text-xs text-zinc-400">
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={4}
+                placeholder="Type your message..."
+                className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
+              />
+            </div>
+
+            {/* Submit button */}
+            <MagneticButton className="w-full">
+              <button
+                type="submit"
+                id="contact-submit"
+                disabled={isSubmitting}
+                className="bg-white text-black w-full font-sans font-semibold text-sm py-3 px-6 rounded flex items-center justify-center gap-2 hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none"
+              >
+                {isSubmitting ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </MagneticButton>
+
+            {/* Success overlay */}
+            {isSuccess && (
+              <div className="absolute inset-0 bg-[#0a0a0a]/95 rounded flex flex-col items-center justify-center gap-3 text-center p-6">
+                <CheckCircle2 className="w-10 h-10 text-white" />
+                <h4 className="font-sans font-semibold text-white">Message sent!</h4>
+                <p className="font-sans text-sm text-zinc-400">
+                  Thanks for reaching out. I&apos;ll get back to you soon.
+                </p>
+              </div>
+            )}
+          </form>
+
+          {/* Contact info strip */}
+          <div className="flex items-center justify-between mt-6 pt-5 border-t border-[#1a1a1a]">
+            <a
+              href="mailto:eleogujoseph007@gmail.com"
+              className="flex items-center gap-2 font-sans text-xs text-zinc-500 hover:text-white transition-colors duration-150"
+            >
+              <Mail className="w-4 h-4" />
+              eleogujoseph007@gmail.com
+            </a>
+            <div className="flex items-center gap-3">
+              <a href="https://github.com/itsebuka" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-zinc-600 hover:text-white transition-colors duration-150">
+                <Github className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-zinc-600 hover:text-white transition-colors duration-150">
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a href="https://x.com/eleoguuu" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-zinc-600 hover:text-white transition-colors duration-150">
+                <Twitter className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

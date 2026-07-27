@@ -1,11 +1,12 @@
-import Contact from "@/components/Contact";
+import Certifications from "@/components/Certifications";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | Ebuka Eleogu",
-  description: "Get in touch with Ebuka Eleogu for projects, collaborations, or enquiries.",
+  title: "Certifications | Ebuka Eleogu",
+  description:
+    "Professional certifications earned by Ebuka Eleogu — Industry Readiness Program, Autodesk Fusion 360, and NVIDIA RAG Certification.",
 };
 
-export default function ContactPage() {
-  return <Contact />;
+export default function CertificationsPage() {
+  return <Certifications />;
 }
