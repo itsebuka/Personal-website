@@ -45,6 +45,7 @@ interface Role {
   company: string;
   title: string;
   logo: string;
+  websiteUrl?: string;
   bullets: string[];
   skillsApplied: string[];
   active?: boolean;
@@ -165,6 +166,7 @@ const professionalLog: Role[] = [
     company: "Ikeja Electric Distribution Company",
     title: "Junior Electrical Engineering Intern",
     logo: "/images/logos/ikeja-electric.png",
+    websiteUrl: "https://www.ikejaelectric.com/",
     type: "internship",
     bullets: [
       "Performing quality assurance on meter installations and ensuring compliance with safety standards",
@@ -191,6 +193,7 @@ const professionalLog: Role[] = [
     company: "Pan-Atlantic University",
     title: "BSc in Electrical and Electronics Engineering",
     logo: "/images/logos/pau.png",
+    websiteUrl: "https://pau.edu.ng/",
     type: "university",
     reports: academicReports,
     bullets: [
@@ -214,6 +217,7 @@ const professionalLog: Role[] = [
     company: "Maryland Comprehensive Secondary School",
     title: "Science Student",
     logo: "/images/logos/mcss.png",
+    websiteUrl: "https://mcssmaryland.org/",
     type: "secondary",
     secondaryDocs: secondaryDocs,
     bullets: [
@@ -230,6 +234,7 @@ const professionalLog: Role[] = [
     company: "Holly Garden School",
     title: "Primary Education & Best Graduating Student",
     logo: "/images/logos/holly-garden.png",
+    websiteUrl: "https://www.hollygardenschool.com/",
     type: "primary",
     bullets: [
       "Awarded Best Graduating Student of the Class of 2017",
@@ -313,9 +318,22 @@ export default function Experience() {
                   <h3 className="font-sans text-sm font-bold text-white leading-snug group-hover:text-zinc-200 transition-colors">
                     {role.title}
                   </h3>
-                  <p className="font-sans text-xs text-zinc-500 mt-0.5">
-                    @ {role.company}
-                  </p>
+                  {role.websiteUrl ? (
+                    <a
+                      href={role.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="font-sans text-xs text-zinc-500 hover:text-white transition-colors inline-flex items-center gap-1 mt-0.5 group/link"
+                    >
+                      @ {role.company}
+                      <ExternalLink className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                    </a>
+                  ) : (
+                    <p className="font-sans text-xs text-zinc-500 mt-0.5">
+                      @ {role.company}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -395,9 +413,21 @@ export default function Experience() {
                   <h3 className="font-sans text-base sm:text-xl font-bold text-white leading-snug">
                     {selectedRole.title}
                   </h3>
-                  <p className="font-sans text-xs text-zinc-400">
-                    @ {selectedRole.company}
-                  </p>
+                  {selectedRole.websiteUrl ? (
+                    <a
+                      href={selectedRole.websiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-sans text-xs text-zinc-400 hover:text-white transition-colors inline-flex items-center gap-1.5 mt-0.5 group/m-link"
+                    >
+                      @ {selectedRole.company}
+                      <ExternalLink className="w-3.5 h-3.5 text-zinc-500 group-hover/m-link:text-white transition-colors" />
+                    </a>
+                  ) : (
+                    <p className="font-sans text-xs text-zinc-400">
+                      @ {selectedRole.company}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -449,7 +479,7 @@ export default function Experience() {
                       </button>
                     ))}
                     <span className="px-3 py-2 text-[10px] text-zinc-600 italic whitespace-nowrap">
-                      Upcoming: 300L S2 – 500L S2 (In Progress)
+                      Upcoming: 400L S1 – 500L S2 (In Progress)
                     </span>
                   </div>
 
