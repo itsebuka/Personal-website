@@ -260,7 +260,7 @@ export default function Experience() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               className={`bg-[#111111] border border-[#333333] rounded-xl w-full p-5 sm:p-6 relative flex flex-col gap-6 shadow-2xl my-auto ${
-                selectedRole.type === "university" ? "max-w-4xl" : "max-w-xl"
+                selectedRole.type === "university" ? "max-w-5xl lg:max-w-6xl" : "max-w-xl"
               }`}
             >
               {/* Close button */}
@@ -404,16 +404,16 @@ export default function Experience() {
                             className="font-sans text-[11px] text-zinc-400 hover:text-white flex items-center gap-1.5 bg-[#222] px-2.5 py-1 rounded transition-colors"
                           >
                             {isZoomed ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-                            {isZoomed ? "Close Full View" : "Full View / Zoom"}
+                            {isZoomed ? "Standard View" : "Enlarge View / Zoom"}
                           </button>
                         </div>
 
-                        <div className={`overflow-auto transition-all ${isZoomed ? "max-h-[75vh]" : "max-h-[380px]"}`}>
+                        <div className={`overflow-auto transition-all ${isZoomed ? "max-h-[85vh]" : "max-h-[550px]"}`}>
                           <Image
                             src={selectedReport.imageSrc}
                             alt={`${selectedReport.session} Academic Report`}
-                            width={1100}
-                            height={900}
+                            width={1200}
+                            height={1000}
                             className="w-full h-auto object-contain cursor-pointer"
                             onClick={() => setIsZoomed(!isZoomed)}
                           />
