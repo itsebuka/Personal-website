@@ -58,7 +58,7 @@ export const projects: StaticProject[] = [
     ],
     tech: ["KiCad", "Digital Logic", "PCB Design", "Schematic Capture", "Magnitude Comparator"],
     links: [
-      { label: "GitHub Repository", url: "https://github.com/itsebuka", kind: "github" },
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/Magnitude-Comparator", kind: "github" },
     ],
     files: [
       { label: "KiCad Schematic", filename: "Comparator project.kicad_sch", type: "other" },
@@ -80,7 +80,7 @@ export const projects: StaticProject[] = [
     ],
     tech: ["Python", "Machine Learning", "Scikit-learn", "Pandas", "NumPy", "Smart Grid", "Data Analytics"],
     links: [
-      { label: "GitHub Repository", url: "https://github.com/itsebuka", kind: "github" },
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/Voltage-stabilizer-model", kind: "github" },
     ],
     files: [
       { label: "Project Report (PDF)",          filename: "Voltage Stability Model Report Amended.pdf",  type: "pdf" },

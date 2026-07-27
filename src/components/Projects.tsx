@@ -46,15 +46,23 @@ export default function Projects() {
           {projects.map((project: StaticProject, index: number) => {
             const IconComp = project.icon;
             const techList = project.tech || [];
-            const repoLink = project.links.find((l) => l.kind === "github")?.url || "#";
-            const liveLink = project.links.find((l) => l.kind === "demo")?.url;
+            const repoLink = project.links.find((l) => l.kind === "github")?.url || "";
+            const isSpecificRepo = repoLink && repoLink !== "https://github.com/itsebuka";
+
+            const handleCardClick = () => {
+              if (isSpecificRepo) {
+                window.open(repoLink, "_blank", "noopener,noreferrer");
+              } else {
+                router.push(`/projects/${project.id}`);
+              }
+            };
 
             return (
               <motion.div
                 variants={itemVariants}
                 key={project.title}
-                onClick={() => router.push(`/projects/${project.id}`)}
-                className="bg-[#111111] border border-[#222222] rounded-lg overflow-hidden flex flex-col cursor-pointer hover:border-[#333333] transition-colors duration-200 group"
+                onClick={handleCardClick}
+                className="bg-[#111111] border border-[#222222] rounded-lg overflow-hidden flex flex-col cursor-pointer hover:border-[#444444] transition-colors duration-200 group"
               >
                 {/* Card visual header */}
                 <div className="h-24 bg-[#0d0d0d] border-b border-[#1e1e1e] flex items-center justify-center relative">
@@ -95,34 +103,29 @@ export default function Projects() {
 
                   {/* Action links footer */}
                   <div className="flex items-center gap-3 pt-3 border-t border-[#1e1e1e] mt-auto">
+                    {isSpecificRepo ? (
+                      <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-400 group-hover:text-white transition-colors">
+                        <Github className="w-3.5 h-3.5" />
+                        GitHub Repository
+                        <ExternalLink className="w-3 h-3 text-zinc-600" />
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
+                        <FileText className="w-3.5 h-3.5" />
+                        View Project Details
+                      </span>
+                    )}
+
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        if (repoLink !== "#") window.open(repoLink, "_blank", "noopener,noreferrer");
+                        router.push(`/projects/${project.id}`);
                       }}
-                      className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 hover:text-white transition-colors"
+                      className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 hover:text-white transition-colors ml-auto"
                     >
-                      <Github className="w-3.5 h-3.5" />
-                      Source
-                    </button>
-
-                    <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
                       <FileText className="w-3.5 h-3.5" />
-                      View Details
-                    </span>
-
-                    {liveLink && (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(liveLink, "_blank", "noopener,noreferrer");
-                        }}
-                        className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 hover:text-white transition-colors ml-auto"
-                      >
-                        Launch
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </button>
-                    )}
+                      Details
+                    </button>
                   </div>
                 </div>
               </motion.div>
