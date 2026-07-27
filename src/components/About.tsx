@@ -72,12 +72,12 @@ export default function About() {
                     Who I Am &amp; Philosophical Mindset
                   </h3>
                   <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-wider">
-                    Lagos, Nigeria · Independent Operator
+                    Lagos, Nigeria · Focused &amp; Purpose-Driven
                   </span>
                 </div>
               </div>
               <p className="font-sans text-xs text-zinc-400 leading-relaxed">
-                I operate as a focused lone wolf — smart, highly ambitious, and driven by an unshakeable sense of purpose rather than popularity. 
+                Introverted and quiet by nature, I am smart, highly ambitious, and driven by an unshakeable sense of purpose.
               </p>
               <div className="p-3.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg flex flex-col gap-1.5 mt-auto">
                 <span className="font-sans text-[10px] uppercase tracking-wider text-zinc-500 font-semibold flex items-center gap-1.5">
@@ -166,7 +166,7 @@ export default function About() {
                 </div>
               </div>
               <p className="font-sans text-xs text-zinc-400 leading-relaxed">
-                Driven by a principle-first learning habit — seeking deep, foundational comprehension of physics and mechanics before physical execution.
+                Driven by a principle-first learning habit: I seek deep, foundational comprehension of physics and mechanics before physical execution.
               </p>
               <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
                 {[

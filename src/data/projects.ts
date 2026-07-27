@@ -36,14 +36,14 @@ export const projects: StaticProject[] = [
   {
     id: "robotic-arm",
     title: "3DOF Robotic Arm",
-    tagline: "Mechanical Design & Build — SIWES Hardware Project",
+    tagline: "Mechanical Design & Build (SIWES Hardware Project)",
     description:
       "Designed and built a 3-Degree-of-Freedom robotic arm from scratch during a SIWES program. Covered mechanical frame design, joint fabrication, drilling, servo motor integration, and hardware troubleshooting.",
     summary: [
-      "This project involved designing and physically fabricating a 3-Degree-of-Freedom (3DOF) robotic arm entirely from scratch during my SIWES hardware internship. The scope spanned every stage of physical prototype development — from raw material cutting, drilling, and machining to joint assembly and servo integration.",
+      "This project involved designing and physically fabricating a 3-Degree-of-Freedom (3DOF) robotic arm entirely from scratch during my SIWES hardware internship. The scope spanned every stage of physical prototype development: from raw material cutting, drilling, and machining to joint assembly and servo integration.",
       "The arm was designed to achieve three independent axes of motion, with each joint driven by high-torque servo motors. The frame was assembled using custom-drilled metal and acrylic brackets, wired to a central microcontroller for movement control.",
       "While the physical prototype encountered real-world engineering constraints such as joint flex under load and servo torque budgeting, the build process provided immense practical experience in mechanical fabrication, joint alignment, and hardware debugging under real workplace conditions.",
-      "Below is the complete video archive documenting the build process — including joint testing, drilling and machining, team collaboration, and real-time hardware troubleshooting.",
+      "Below is the complete video archive documenting the build process, including joint testing, drilling and machining, team collaboration, and real-time hardware troubleshooting.",
     ],
     tech: ["Arduino", "Servo Motors", "Mechanical Design", "Machining & Drilling", "Hardware Prototyping", "Embedded Wiring"],
     links: [
@@ -98,12 +98,12 @@ export const projects: StaticProject[] = [
     id: "voltage-comparator",
     title: "4-bit Magnitude Comparator",
     tagline: "KiCad Schematic & PCB Design",
-    description: "Designed a 4-bit magnitude comparator circuit using KiCad — schematic capture and PCB layout from scratch. The circuit compares two 4-bit binary numbers and outputs whether one is greater than, less than, or equal to the other.",
+    description: "Designed a 4-bit magnitude comparator circuit using KiCad for schematic capture and PCB layout from scratch. The circuit compares two 4-bit binary numbers and outputs whether one is greater than, less than, or equal to the other.",
     summary: [
       "A 4-bit magnitude comparator is a digital logic circuit that compares two 4-bit binary inputs (A and B) and produces three outputs indicating whether A > B, A < B, or A = B. This project involved designing the full circuit from the gate level up using KiCad.",
       "The schematic was captured using standard logic gate components, building up the comparison logic bit by bit from the LSB to the MSB. Cascading comparator stages were used to propagate the comparison result across all four bits.",
       "After completing the schematic, the design was moved into KiCad's PCB editor for layout. Component placement and trace routing were completed with attention to keeping signal paths clean and the board compact.",
-      "The KiCad project files — schematic, PCB layout, and project configuration — are available for download below.",
+      "The KiCad project files (schematic, PCB layout, and project configuration) are available for download below.",
     ],
     tech: ["KiCad", "Digital Logic", "PCB Design", "Schematic Capture", "Magnitude Comparator"],
     links: [
@@ -124,7 +124,7 @@ export const projects: StaticProject[] = [
     summary: [
       "This project developed a machine learning-based predictive model in Python to forecast voltage stability conditions within a simulated smart grid environment.",
       "The dataset consisted of simulated smart grid telemetry: bus voltage magnitudes, reactive power injection levels, active load demands, and generator output parameters. Feature engineering extracted meaningful predictors including voltage deviation from nominal and rate-of-change of reactive power.",
-      "A classification model was trained to distinguish stable from unstable operating conditions, with a regression component added to estimate the margin-to-instability — giving grid operators a quantitative early-warning metric.",
+      "A classification model was trained to distinguish stable from unstable operating conditions, with a regression component added to estimate the margin-to-instability to give grid operators a quantitative early-warning metric.",
       "Model performance was evaluated using cross-validation, achieving strong classification accuracy on held-out test data.",
     ],
     tech: ["Python", "Machine Learning", "Scikit-learn", "Pandas", "NumPy", "Smart Grid", "Data Analytics"],
@@ -133,8 +133,8 @@ export const projects: StaticProject[] = [
     ],
     files: [
       { label: "Project Report (PDF)",          filename: "Voltage Stability Model Report Amended.pdf",  type: "pdf" },
-      { label: "Project Report (Word — Final)", filename: "Voltage Stability Model Report Amended.docx", type: "doc" },
-      { label: "Project Report (Word — Draft)", filename: "Voltage Stability Model Report.docx",         type: "doc" },
+      { label: "Project Report (Word - Final)", filename: "Voltage Stability Model Report Amended.docx", type: "doc" },
+      { label: "Project Report (Word - Draft)", filename: "Voltage Stability Model Report.docx",         type: "doc" },
       { label: "Jupyter Notebook (Model v3.0)", filename: "Voltage_Stability_Prediction_model_3_0.ipynb", type: "other" },
     ],
     icon: Database,
