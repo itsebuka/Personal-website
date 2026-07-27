@@ -199,7 +199,7 @@ const professionalLog: Role[] = [
     bullets: [
       "Department of Electrical and Electronics Engineering (School of Science and Technology)",
       "5-Year Bachelor of Engineering (B.Eng) Degree Program",
-      "Click to view all 100L – 300L semester academic reports, GPAs, and download full transcript",
+      "Click to view all 100L to 300L semester academic reports, GPAs, and download full transcript",
     ],
     skillsApplied: [
       "Circuit Analysis",

@@ -57,7 +57,7 @@ const specialties: Specialty[] = [
     title: "Front End Development",
     tagline: "React / Next.js | TypeScript | UI Engineering",
     description:
-      "Building fast, polished, and accessible web interfaces with React and Next.js. I work across the full front-end stack — component architecture, animation with Framer Motion, 3D scenes with Three.js, responsive layouts, and deployment pipelines.",
+      "Building fast, polished, and accessible web interfaces with React and Next.js. I work across the full front-end stack including component architecture, animation with Framer Motion, 3D scenes with Three.js, responsive layouts, and deployment pipelines.",
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "HTML & CSS"],
     icon: Globe,
   },
