@@ -43,7 +43,7 @@ const certificates: Certificate[] = [
     title: "Industry Readiness Program Certificate",
     issuer: "Pan-Atlantic University",
     year: "2023",
-    filename: "IRP_Certificate_2023.pdf",
+    filename: "2023 IRP Certificate.pdf",
     brand: "pau",
     description:
       "Awarded on completion of the Industry Readiness Program — a structured professional development programme equipping students with workplace-ready competencies.",
@@ -53,7 +53,7 @@ const certificates: Certificate[] = [
     title: "Industry Readiness Program Certificate",
     issuer: "Pan-Atlantic University",
     year: "2024",
-    filename: "IRP_Certificate_2024.pdf",
+    filename: "2024 IRP Certificate.pdf",
     brand: "pau",
     description:
       "Second consecutive award from the Industry Readiness Program, reinforcing professional and technical development skills across engineering disciplines.",
@@ -63,7 +63,7 @@ const certificates: Certificate[] = [
     title: "Industry Readiness Program Certificate",
     issuer: "Pan-Atlantic University",
     year: "2025",
-    filename: "IRP_Certificate_2025.pdf",
+    filename: "2025 IRP Certificate.pdf",
     brand: "pau",
     description:
       "Third consecutive Industry Readiness Program completion, demonstrating sustained professional growth and academic commitment.",
@@ -73,7 +73,7 @@ const certificates: Certificate[] = [
     title: "Autodesk Fusion 360 Certification",
     issuer: "Autodesk",
     year: "2024",
-    filename: "Autodesk_Fusion_360_2024.pdf",
+    filename: "Autodesk Fusion Certificate.pdf",
     brand: "autodesk",
     description:
       "Certified in Autodesk Fusion 360, covering 3D mechanical design, CAD modelling, enclosure tolerancing, and product simulation workflows.",
@@ -83,7 +83,7 @@ const certificates: Certificate[] = [
     title: "NVIDIA RAG Certification",
     issuer: "NVIDIA",
     year: "2024",
-    filename: "NVIDIA_RAG_2024.pdf",
+    filename: "NVIDIA RAG Certification.pdf",
     brand: "nvidia",
     description:
       "Certified by NVIDIA in Retrieval-Augmented Generation (RAG) — covering embedding pipelines, vector databases, and production-grade LLM integration.",
