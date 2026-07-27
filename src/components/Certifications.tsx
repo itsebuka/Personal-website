@@ -1,15 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Award, Download, ExternalLink, GraduationCap, X, FileText, CheckCircle2 } from "lucide-react";
+import { Download, ExternalLink, X, FileText, Layers } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+interface CertificateFile {
+  year: string;
+  filename: string;
+}
 
 interface Certificate {
   id: string;
   title: string;
   issuer: string;
   year: string;
-  filename: string;
+  files: CertificateFile[];
   description: string;
   brand: "pau" | "autodesk" | "nvidia";
 }
@@ -17,11 +22,9 @@ interface Certificate {
 function BridgiaLogo({ className = "w-16 h-6" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Bridgia Text */}
       <text x="2" y="29" fill="#0066FF" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="27" letterSpacing="-0.8">
         Bridgia
       </text>
-      {/* 3 Colored Vertical Bars */}
       <rect x="108" y="10" width="5.5" height="22" rx="2.75" fill="#0066FF" />
       <rect x="117" y="10" width="5.5" height="22" rx="2.75" fill="#FFC107" />
       <rect x="126" y="10" width="5.5" height="22" rx="2.75" fill="#28A745" />
@@ -32,19 +35,10 @@ function BridgiaLogo({ className = "w-16 h-6" }: { className?: string }) {
 function AutodeskLogo({ className = "w-6 h-6" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Bottom dark brown background block */}
       <rect x="15" y="25" width="80" height="70" rx="8" fill="#682A09" />
-      
-      {/* Top-left isometric fold */}
       <path d="M5 20 L25 5 L90 5 L90 68 L25 68 L5 72 Z" fill="#FF8D36" />
-      
-      {/* Main vibrant orange front square */}
       <rect x="18" y="5" width="72" height="63" rx="4" fill="#FF6600" />
-      
-      {/* White F */}
       <path d="M44 16 H66 V24 H53 V31 H63 V38 H53 V52 H44 Z" fill="#FFFFFF" />
-      
-      {/* White 360 */}
       <text x="56" y="86" textAnchor="middle" fill="#FFFFFF" fontFamily="system-ui, sans-serif" fontWeight="800" fontSize="21">360</text>
     </svg>
   );
@@ -60,41 +54,25 @@ function NvidiaLogo({ className = "w-5 h-5" }: { className?: string }) {
 
 const certificates: Certificate[] = [
   {
-    id: "CERT-IRP-2023",
-    title: "Industry Readiness Program Certificate",
-    issuer: "Pan-Atlantic University",
-    year: "2023",
-    filename: "2023 IRP Certificate.pdf",
+    id: "CERT-IRP-2023-2025",
+    title: "Industry Readiness Program (3-Year Consecutive Graduate)",
+    issuer: "Pan-Atlantic University / Bridgia",
+    year: "2023 – 2025",
+    files: [
+      { year: "2023 Certificate", filename: "2023 IRP Certificate.pdf" },
+      { year: "2024 Certificate", filename: "2024 IRP Certificate.pdf" },
+      { year: "2025 Certificate", filename: "2025 IRP Certificate.pdf" },
+    ],
     brand: "pau",
     description:
-      "Awarded on completion of the Industry Readiness Program — a structured professional development programme equipping students with workplace-ready competencies.",
-  },
-  {
-    id: "CERT-IRP-2024",
-    title: "Industry Readiness Program Certificate",
-    issuer: "Pan-Atlantic University",
-    year: "2024",
-    filename: "2024 IRP Certificate.pdf",
-    brand: "pau",
-    description:
-      "Second consecutive award from the Industry Readiness Program, reinforcing professional and technical development skills across engineering disciplines.",
-  },
-  {
-    id: "CERT-IRP-2025",
-    title: "Industry Readiness Program Certificate",
-    issuer: "Pan-Atlantic University",
-    year: "2025",
-    filename: "2025 IRP Certificate.pdf",
-    brand: "pau",
-    description:
-      "Third consecutive Industry Readiness Program completion, demonstrating sustained professional growth and academic commitment.",
+      "Successfully completed the Industry Readiness Program across three consecutive years (2023, 2024, and 2025). A structured professional development programme equipping students with workplace-ready competencies, technical excellence, and industry leadership skills.",
   },
   {
     id: "CERT-FUSION-2024",
     title: "Autodesk Fusion 360 Certification",
     issuer: "Autodesk",
     year: "2024",
-    filename: "Autodesk Fusion Certificate.pdf",
+    files: [{ year: "2024 Certificate", filename: "Autodesk Fusion Certificate.pdf" }],
     brand: "autodesk",
     description:
       "Certified in Autodesk Fusion 360, covering 3D mechanical design, CAD modelling, enclosure tolerancing, and product simulation workflows.",
@@ -104,7 +82,7 @@ const certificates: Certificate[] = [
     title: "NVIDIA RAG Certification",
     issuer: "NVIDIA",
     year: "2024",
-    filename: "NVIDIA RAG Certification.pdf",
+    files: [{ year: "2024 Certificate", filename: "NVIDIA RAG Certification.pdf" }],
     brand: "nvidia",
     description:
       "Certified by NVIDIA in Retrieval-Augmented Generation (RAG) — covering embedding pipelines, vector databases, and production-grade LLM integration.",
@@ -197,16 +175,10 @@ export default function Certifications() {
                     <FileText className="w-3.5 h-3.5" />
                     View Certificate Details
                   </span>
-                  <a
-                    href={`/files/certificates/${cert.filename}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="flex items-center gap-1 font-sans text-xs text-zinc-500 hover:text-white transition-colors"
-                  >
-                    <Download className="w-3.5 h-3.5" />
-                    Download
-                  </a>
+                  <span className="flex items-center gap-1 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
+                    <Layers className="w-3.5 h-3.5" />
+                    {cert.files.length === 1 ? "1 Document" : `${cert.files.length} Documents (2023–2025)`}
+                  </span>
                 </div>
               </div>
             </motion.div>
@@ -258,25 +230,38 @@ export default function Certifications() {
                 </p>
               </div>
 
-              {/* Actions */}
-              <div className="flex items-center gap-3 pt-2">
-                <a
-                  href={`/files/certificates/${selectedCert.filename}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-white text-black font-sans font-semibold text-xs py-2.5 px-4 rounded-lg text-center flex items-center justify-center gap-2 hover:bg-zinc-200 transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Open Document (PDF)
-                </a>
-                <a
-                  href={`/files/certificates/${selectedCert.filename}`}
-                  download
-                  className="flex-1 bg-[#1a1a1a] text-white border border-[#333333] font-sans font-semibold text-xs py-2.5 px-4 rounded-lg text-center flex items-center justify-center gap-2 hover:bg-[#252525] transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  Direct Download
-                </a>
+              {/* Actions List */}
+              <div className="flex flex-col gap-2.5 pt-2 border-t border-[#222222]">
+                <h4 className="font-sans text-xs uppercase tracking-wider text-zinc-500 mb-1">
+                  Attached Documents ({selectedCert.files.length})
+                </h4>
+                {selectedCert.files.map((file) => (
+                  <div key={file.filename} className="flex items-center justify-between p-3 bg-[#181818] border border-[#2a2a2a] rounded-lg">
+                    <span className="font-sans text-xs font-medium text-white flex items-center gap-2">
+                      <FileText className="w-3.5 h-3.5 text-zinc-400" />
+                      {file.year}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`/files/certificates/${file.filename}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white text-black font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-zinc-200 transition-colors"
+                      >
+                        <ExternalLink className="w-3 h-3" />
+                        Open PDF
+                      </a>
+                      <a
+                        href={`/files/certificates/${file.filename}`}
+                        download
+                        className="bg-[#222222] text-white border border-[#333333] font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-[#333333] transition-colors"
+                      >
+                        <Download className="w-3 h-3" />
+                        Download
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>
