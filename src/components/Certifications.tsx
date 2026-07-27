@@ -14,9 +14,19 @@ interface Certificate {
   brand: "pau" | "autodesk" | "nvidia";
 }
 
-// Brand SVG Logos
-function PauLogo({ className = "w-5 h-5" }: { className?: string }) {
-  return <GraduationCap className={className} />;
+function BridgiaLogo({ className = "w-16 h-6" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Bridgia Text */}
+      <text x="2" y="29" fill="#0066FF" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="800" fontSize="27" letterSpacing="-0.8">
+        Bridgia
+      </text>
+      {/* 3 Colored Vertical Bars */}
+      <rect x="108" y="10" width="5.5" height="22" rx="2.75" fill="#0066FF" />
+      <rect x="117" y="10" width="5.5" height="22" rx="2.75" fill="#FFC107" />
+      <rect x="126" y="10" width="5.5" height="22" rx="2.75" fill="#28A745" />
+    </svg>
+  );
 }
 
 function AutodeskLogo({ className = "w-6 h-6" }: { className?: string }) {
@@ -122,7 +132,7 @@ export default function Certifications() {
         return <NvidiaLogo className="w-6 h-6 text-[#76b900]" />;
       case "pau":
       default:
-        return <PauLogo className="w-6 h-6 text-zinc-300" />;
+        return <BridgiaLogo className="h-6 w-auto" />;
     }
   };
 
