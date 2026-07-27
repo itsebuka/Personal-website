@@ -1,68 +1,57 @@
 "use client";
 
-import { Cpu, Radio, Terminal, Shield } from "lucide-react";
+import { Cpu, Radio, Cpu as CpuAlt, BrainCircuit, CircuitBoard, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
-interface SkillCategory {
+interface Specialty {
   title: string;
+  tagline: string;
   description: string;
+  tags: string[];
   icon: LucideIcon;
-  skills: string[];
 }
 
-const skillCategories: SkillCategory[] = [
+const specialties: Specialty[] = [
   {
     title: "Hardware Design & CAD",
-    description: "Multilayer PCB routing, mechanical CAD layout, and enclosure modeling",
+    tagline: "Multilayer PCB | Fusion 360 Enclosures",
+    description:
+      "Designing high-performance multilayer PCBs in KiCad and modeling rugged hardware enclosures in Fusion 360. I cover everything from schematic capture and impedance matching to enclosure tolerancing, DFM rules, and thermal management.",
+    tags: ["KiCad", "Fusion 360", "Altium Designer", "Multilayer Signal Integrity", "Enclosure Tolerances", "DFM"],
     icon: Cpu,
-    skills: [
-      "KiCad",
-      "Fusion 360",
-      "Altium Designer",
-      "Multilayer Signal Integrity",
-      "Enclosure Tolerances",
-      "DFM (Design for Manufacture)",
-    ],
   },
   {
     title: "Power Systems & Diagnostics",
-    description: "Smart grid telemetry, meter QA, network diagnostics, and fault analysis",
-    icon: Radio,
-    skills: [
-      "Power Systems",
-      "Fault Analysis",
-      "Power Quality Assessment",
-      "Network Troubleshooting",
-      "Field Testing",
-      "Safety Compliance",
-    ],
+    tagline: "Smart Grid Telemetry | Fault Analysis",
+    description:
+      "Smart grid telemetry, power meter QA, network diagnostics, and fault analysis. I perform power quality assessments, field testing, and safety compliance checks across electrical infrastructure.",
+    tags: ["Power Systems", "Fault Analysis", "Power Quality Assessment", "Network Troubleshooting", "Field Testing", "Safety Compliance"],
+    icon: Zap,
   },
   {
     title: "Embedded Code & Microcontrollers",
-    description: "Low-latency firmware, communication protocols, and hardware integration",
-    icon: Terminal,
-    skills: [
-      "C++",
-      "Python",
-      "Microcontrollers (Arduino/ESP32)",
-      "Bare Metal Firmware",
-      "I2C/SPI/UART",
-      "Soldering & Breadboarding",
-    ],
+    tagline: "C/C++ | Low-Latency Firmware | Sensor Interfaces",
+    description:
+      "Programming low-latency sensor interfaces and hardware drivers (SPI, I2C, UART) for Arduino and ESP32 platforms. I write bare-metal firmware, configure hardware interrupts and timers, and optimise for low-power sleep modes.",
+    tags: ["C++", "Python", "Arduino / ESP32", "Bare Metal Firmware", "I2C / SPI / UART", "Soldering & Breadboarding"],
+    icon: CircuitBoard,
   },
   {
-    title: "ML & Smart Systems",
-    description: "Data analytics, machine learning predictive models, and sensor processing",
-    icon: Shield,
-    skills: [
-      "Machine Learning",
-      "Data Analytics (Python)",
-      "Voltage Stability Prediction",
-      "Signal Processing",
-      "OpenCV",
-      "Predictive Modeling",
-    ],
+    title: "Agentic RAG & LLM Engineering",
+    tagline: "Predictive Models | Signal Processing | AI Agents",
+    description:
+      "Building agentic pipelines with Retrieval-Augmented Generation, fine-tuning and prompting large language models, and developing machine-learning predictive models for signal processing and smart-grid stability forecasting.",
+    tags: ["Machine Learning", "RAG Pipelines", "LLM Engineering", "Data Analytics (Python)", "Signal Processing", "OpenCV", "Predictive Modeling"],
+    icon: BrainCircuit,
+  },
+  {
+    title: "PCB Design & Prototyping",
+    tagline: "Schematic Capture | Impedance Matching | DFM",
+    description:
+      "End-to-end PCB design from schematic capture through to manufactured board. I integrate impedance-matched differential pairs, analogue/digital routing rules, BOM optimisation, and strict Design-For-Manufacture requirements to produce clean, manufacturable layouts.",
+    tags: ["Impedance Matched Differential Pairs", "BOM Optimisation & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
+    icon: Radio,
   },
 ];
 
@@ -83,30 +72,32 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="h-full flex flex-col items-center justify-center px-6 py-6"
+      className="h-full flex flex-col items-center justify-center px-6 py-6 scroll-area"
     >
       <div className="w-full max-w-5xl">
-
         {/* Section heading */}
         <div className="text-center mb-7">
           <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
             My Areas of Specialty
           </h2>
+          <p className="font-sans text-sm text-zinc-500 mt-2">
+            The disciplines I design, build, and think in.
+          </p>
         </div>
 
-        {/* 2×2 Card Grid */}
-        <motion.div 
+        {/* Card Grid */}
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {skillCategories.map((category) => {
-            const IconComp = category.icon;
+          {specialties.map((item) => {
+            const IconComp = item.icon;
             return (
               <motion.div
                 variants={itemVariants}
-                key={category.title}
+                key={item.title}
                 className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
               >
                 {/* Icon + Header */}
@@ -114,24 +105,29 @@ export default function Skills() {
                   <div className="p-2 border border-[#2a2a2a] rounded bg-[#1a1a1a] shrink-0">
                     <IconComp className="w-5 h-5 text-zinc-300" />
                   </div>
-                  <div>
-                    <h3 className="font-sans text-sm font-semibold text-white leading-snug">
-                      {category.title}
-                    </h3>
-                    <p className="font-sans text-[10px] text-zinc-500 mt-0.5 leading-snug">
-                      {category.description}
+                  <div className="min-w-0">
+                    <p className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase leading-none mb-1">
+                      {item.tagline}
                     </p>
+                    <h3 className="font-sans text-sm font-semibold text-white leading-snug">
+                      {item.title}
+                    </h3>
                   </div>
                 </div>
 
+                {/* Description */}
+                <p className="font-sans text-xs text-zinc-400 leading-relaxed">
+                  {item.description}
+                </p>
+
                 {/* Skill tag badges */}
                 <div className="flex flex-wrap gap-1.5 mt-auto">
-                  {category.skills.map((skill) => (
+                  {item.tags.map((tag) => (
                     <span
-                      key={skill}
+                      key={tag}
                       className="font-sans text-[10px] text-zinc-400 px-2 py-0.5 bg-[#1a1a1a] border border-[#2a2a2a] rounded hover:text-white hover:border-[#444444] transition-colors duration-150"
                     >
-                      {skill}
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -139,7 +135,6 @@ export default function Skills() {
             );
           })}
         </motion.div>
-
       </div>
     </section>
   );
