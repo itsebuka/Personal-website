@@ -99,6 +99,15 @@ const academicReports: AcademicReport[] = [
     units: "21",
     imageSrc: "/images/results/2025_2026_sem1.png",
   },
+  {
+    level: "300 Level",
+    semester: "2nd Semester",
+    session: "2025/2026",
+    gpa: "3.90",
+    cgpa: "3.31",
+    units: "21",
+    imageSrc: "/images/results/300L_Sem2.png",
+  },
 ];
 
 const secondaryDocs: SecondaryDoc[] = [
