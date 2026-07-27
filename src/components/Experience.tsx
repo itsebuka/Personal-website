@@ -48,7 +48,7 @@ interface Role {
   bullets: string[];
   skillsApplied: string[];
   active?: boolean;
-  type: "internship" | "secondary" | "university";
+  type: "internship" | "secondary" | "university" | "primary";
   reports?: AcademicReport[];
   secondaryDocs?: SecondaryDoc[];
 }
@@ -186,22 +186,6 @@ const professionalLog: Role[] = [
     active: true,
   },
   {
-    id: "role-mcss",
-    period: "2016 – 2023",
-    company: "Maryland Comprehensive Secondary School",
-    title: "Science Student",
-    logo: "/images/logos/mcss.png",
-    type: "secondary",
-    secondaryDocs: secondaryDocs,
-    bullets: [
-      "Graduated with a 277 in the Unified Tertiary Matriculation Examination (UTME)",
-      "Graduated with a distinction in the West African Senior School Certificate Examination (WASSCE / GCE)",
-      "Gained admission into Pan-Atlantic University to study Electrical and Electronics Engineering",
-    ],
-    skillsApplied: ["Grit", "Determination", "Perseverance", "Resilience", "Discipline"],
-    active: false,
-  },
-  {
     id: "role-pau",
     period: "2023 – PRESENT",
     company: "Pan-Atlantic University",
@@ -223,6 +207,43 @@ const professionalLog: Role[] = [
       "Control Systems",
     ],
     active: true,
+  },
+  {
+    id: "role-mcss",
+    period: "2017 – 2023",
+    company: "Maryland Comprehensive Secondary School",
+    title: "Science Student",
+    logo: "/images/logos/mcss.png",
+    type: "secondary",
+    secondaryDocs: secondaryDocs,
+    bullets: [
+      "Graduated with a 277 in the Unified Tertiary Matriculation Examination (UTME)",
+      "Graduated with a distinction in the West African Senior School Certificate Examination (WASSCE / GCE)",
+      "Gained admission into Pan-Atlantic University to study Electrical and Electronics Engineering",
+    ],
+    skillsApplied: ["Grit", "Determination", "Perseverance", "Resilience", "Discipline"],
+    active: false,
+  },
+  {
+    id: "role-holly-garden",
+    period: "2011 – 2017",
+    company: "Holly Garden School",
+    title: "Primary Education & Best Graduating Student",
+    logo: "/images/logos/holly-garden.png",
+    type: "primary",
+    bullets: [
+      "Awarded Best Graduating Student of the Class of 2017",
+      "Completed Nursery through Primary 5 education with top academic honors",
+      "Successfully passed National Common Entrance & competitive entrance exams into Wellspring College & Maryland Comprehensive Secondary School (MCSS)",
+    ],
+    skillsApplied: [
+      "Academic Excellence",
+      "Leadership",
+      "Foundational Science & Math",
+      "Curiosity",
+      "Diligence",
+    ],
+    active: false,
   },
 ];
 
@@ -252,7 +273,7 @@ export default function Experience() {
         </div>
 
         {/* Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {professionalLog.map((role) => (
             <div
               key={role.id}
@@ -600,8 +621,8 @@ export default function Experience() {
                 </div>
               )}
 
-              {/* Standard Role Details View (for Ikeja Electric) */}
-              {selectedRole.type === "internship" && (
+              {/* Standard Role Details View (for Ikeja Electric & Holly Garden School) */}
+              {(selectedRole.type === "internship" || selectedRole.type === "primary") && (
                 <div className="flex flex-col gap-4">
                   <div className="p-4 bg-[#161616] border border-[#262626] rounded-xl flex flex-col gap-3">
                     <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-zinc-400">
