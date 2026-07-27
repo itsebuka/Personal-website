@@ -1,9 +1,11 @@
+import Image from "next/image";
 import { CheckSquare } from "lucide-react";
 
 interface Role {
   period: string;
   company: string;
   title: string;
+  logo: string;
   bullets: string[];
   skillsApplied: string[];
   active?: boolean;
@@ -14,6 +16,7 @@ const professionalLog: Role[] = [
     period: "2026 – PRESENT",
     company: "Ikeja Electric Distribution Company",
     title: "Junior Electrical Engineering Intern",
+    logo: "/images/logos/ikeja-electric.png",
     bullets: [
       "Performing quality assurance on meter installations and ensuring compliance with safety standards",
       "Assisting senior engineers in fault analysis, network troubleshooting, and power quality assessments across distribution substations",
@@ -37,6 +40,7 @@ const professionalLog: Role[] = [
     period: "2016 – 2023",
     company: "Maryland Comprehensive Secondary School",
     title: "Science Student",
+    logo: "/images/logos/mcss.png",
     bullets: [
       "Graduated with a 275 in the Unified Tertiary Matriculation Examination (UTME)",
       "Graduated with a distinction in the West African Senior School Certificate Examination (WASSCE)",
@@ -49,6 +53,7 @@ const professionalLog: Role[] = [
     period: "2023 – PRESENT",
     company: "Pan-Atlantic University",
     title: "BSc in Electrical and Electronics Engineering",
+    logo: "/images/logos/pau.png",
     bullets: ["Coming soon..."],
     skillsApplied: ["N/A"],
     active: true,
@@ -66,7 +71,7 @@ export default function Experience() {
         {/* Section heading */}
         <div className="text-center mb-7">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Professional Timeline
+            My Professional Timeline
           </h2>
         </div>
 
@@ -75,7 +80,7 @@ export default function Experience() {
           {professionalLog.map((role) => (
             <div
               key={`${role.company}-${role.period}`}
-              className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
+              className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3.5 hover:border-[#444444] transition-colors duration-200"
             >
               {/* Period badge + active indicator */}
               <div className="flex items-center justify-between">
@@ -90,14 +95,25 @@ export default function Experience() {
                 )}
               </div>
 
-              {/* Title & Company */}
-              <div>
-                <h3 className="font-sans text-sm font-bold text-white leading-snug">
-                  {role.title}
-                </h3>
-                <p className="font-sans text-xs text-zinc-500 mt-0.5">
-                  @ {role.company}
-                </p>
+              {/* Logo + Title & Company */}
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 p-1.5 rounded-lg border border-[#2a2a2a] bg-[#1a1a1a] flex items-center justify-center shrink-0">
+                  <Image
+                    src={role.logo}
+                    alt={`${role.company} Logo`}
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-sans text-sm font-bold text-white leading-snug">
+                    {role.title}
+                  </h3>
+                  <p className="font-sans text-xs text-zinc-500 mt-0.5">
+                    @ {role.company}
+                  </p>
+                </div>
               </div>
 
               {/* Bullet points */}
