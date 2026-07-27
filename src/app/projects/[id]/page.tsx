@@ -143,9 +143,10 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                     <div className="relative aspect-video bg-black flex items-center justify-center">
                       <video
                         controls
+                        playsInline
                         preload="metadata"
                         className="w-full h-full object-cover"
-                        src={`/files/${project.id}/${encodeURIComponent(vid.filename)}`}
+                        src={`/files/${project.id}/${vid.filename}`}
                       >
                         Your browser does not support HTML5 video playback.
                       </video>

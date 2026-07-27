@@ -53,42 +53,42 @@ export const projects: StaticProject[] = [
     videos: [
       {
         title: "Initial Prototype & Motion Test",
-        filename: "Robotic arm 1 - CHUGBO.mp4",
+        filename: "robotic_arm_1.mp4",
         description: "Testing early arm structure and initial servo motor positioning.",
       },
       {
         title: "Arm Kinematics & Servo Control",
-        filename: "Robotic arm 2.mp4",
+        filename: "robotic_arm_2.mp4",
         description: "Checking joint deflection and multi-axis sweep movement.",
       },
       {
         title: "SIWES Hardware Engineering Team",
-        filename: "Robotic arm crew.mp4",
+        filename: "robotic_arm_crew.mp4",
         description: "Team collaboration during the physical assembly phase.",
       },
       {
         title: "Drilling & Machining Frame Components",
-        filename: "Robotic arm take 3- drilling and machining.mp4",
+        filename: "robotic_arm_drilling.mp4",
         description: "Precision drilling of bracket mounting holes and joint pivots.",
       },
       {
         title: "Frame Assembly & Joint Fitting",
-        filename: "robotic arm take 4.mp4",
+        filename: "robotic_arm_take4.mp4",
         description: "Fitting bearings, brackets, and securing servo drive horns.",
       },
       {
         title: "Multi-Axis Joint Actuation Test",
-        filename: "robotic arm testing joints.mp4",
+        filename: "robotic_arm_joint_test.mp4",
         description: "Testing joint articulation under power.",
       },
       {
         title: "Hardware Troubleshooting & Wire Routing",
-        filename: "Robotic arm troubleshooting.mp4",
+        filename: "robotic_arm_troubleshooting.mp4",
         description: "Debugging signal noise and power distribution to servos.",
       },
       {
         title: "Prototype Stress Test & Failure Analysis",
-        filename: "robotic arm test fail lmao.mp4",
+        filename: "robotic_arm_test_fail.mp4",
         description: "Real-world testing capturing torque limits and structural flex.",
       },
     ],
