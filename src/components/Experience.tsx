@@ -14,6 +14,8 @@ import {
   Minimize2,
   Calendar,
   Layers,
+  GraduationCap,
+  Clock,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -27,6 +29,16 @@ interface AcademicReport {
   imageSrc: string;
 }
 
+interface SecondaryDoc {
+  id: string;
+  title: string;
+  subtitle: string;
+  badgeText: string;
+  imageSrc?: string;
+  stats: { label: string; value: string }[];
+  status: "available" | "pending";
+}
+
 interface Role {
   id: string;
   period: string;
@@ -38,6 +50,7 @@ interface Role {
   active?: boolean;
   type: "internship" | "secondary" | "university";
   reports?: AcademicReport[];
+  secondaryDocs?: SecondaryDoc[];
 }
 
 const academicReports: AcademicReport[] = [
@@ -88,6 +101,54 @@ const academicReports: AcademicReport[] = [
   },
 ];
 
+const secondaryDocs: SecondaryDoc[] = [
+  {
+    id: "jamb-2023",
+    title: "JAMB UTME 2023 Result Slip",
+    subtitle: "Joint Admissions and Matriculation Board",
+    badgeText: "Aggregate Score: 277 / 400",
+    imageSrc: "/images/results/jamb_utme_2023.jpg",
+    status: "available",
+    stats: [
+      { label: "UTME Aggregate", value: "277 / 400" },
+      { label: "Physics", value: "75" },
+      { label: "Use of English", value: "69" },
+      { label: "Chemistry", value: "67" },
+      { label: "Mathematics", value: "66" },
+    ],
+  },
+  {
+    id: "gce-2023",
+    title: "WASSCE Private Candidates 2023 (GCE)",
+    subtitle: "West African Examinations Council (WAEC)",
+    badgeText: "Distinction Profile (2 A1s, 4 B3s)",
+    imageSrc: "/images/results/gce_2023.jpg",
+    status: "available",
+    stats: [
+      { label: "Geography", value: "A1 (Distinction)" },
+      { label: "Civic Education", value: "A1 (Distinction)" },
+      { label: "Physics", value: "B3" },
+      { label: "English Language", value: "B3" },
+      { label: "Mathematics", value: "B3" },
+      { label: "Biology", value: "B3" },
+      { label: "Chemistry", value: "C5" },
+    ],
+  },
+  {
+    id: "mcss-transcript",
+    title: "MCSS Graduation Scroll & High School Transcript",
+    subtitle: "Maryland Comprehensive Secondary School",
+    badgeText: "High School Graduation Record",
+    status: "pending",
+    stats: [
+      { label: "Graduation Set", value: "2023" },
+      { label: "UTME Score", value: "275" },
+      { label: "WASSCE Profile", value: "Distinction" },
+      { label: "Status", value: "Photo Uploading Soon" },
+    ],
+  },
+];
+
 const professionalLog: Role[] = [
   {
     id: "role-ikeja",
@@ -122,9 +183,10 @@ const professionalLog: Role[] = [
     title: "Science Student",
     logo: "/images/logos/mcss.png",
     type: "secondary",
+    secondaryDocs: secondaryDocs,
     bullets: [
-      "Graduated with a 275 in the Unified Tertiary Matriculation Examination (UTME)",
-      "Graduated with a distinction in the West African Senior School Certificate Examination (WASSCE)",
+      "Graduated with a 277 in the Unified Tertiary Matriculation Examination (UTME)",
+      "Graduated with a distinction in the West African Senior School Certificate Examination (WASSCE / GCE)",
       "Gained admission into Pan-Atlantic University to study Electrical and Electronics Engineering",
     ],
     skillsApplied: ["Grit", "Determination", "Perseverance", "Resilience", "Discipline"],
@@ -141,7 +203,7 @@ const professionalLog: Role[] = [
     bullets: [
       "Department of Electrical and Electronics Engineering (School of Science and Technology)",
       "5-Year Bachelor of Engineering (B.Eng) Degree Program",
-      "Click to view all semester academic reports, GPAs, and download full transcript",
+      "Click to view all 100L – 300L semester academic reports, GPAs, and download full transcript",
     ],
     skillsApplied: [
       "Circuit Analysis",
@@ -158,9 +220,11 @@ const professionalLog: Role[] = [
 export default function Experience() {
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [activeSemIndex, setActiveSemIndex] = useState<number>(0);
+  const [activeSecDocIndex, setActiveSecDocIndex] = useState<number>(0);
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
 
   const selectedReport = selectedRole?.reports?.[activeSemIndex];
+  const selectedSecDoc = selectedRole?.secondaryDocs?.[activeSecDocIndex];
 
   return (
     <section
@@ -186,6 +250,7 @@ export default function Experience() {
               onClick={() => {
                 setSelectedRole(role);
                 setActiveSemIndex(0);
+                setActiveSecDocIndex(0);
                 setIsZoomed(false);
               }}
               className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3.5 hover:border-[#444444] transition-all duration-200 cursor-pointer group hover:bg-[#141414]"
@@ -240,7 +305,9 @@ export default function Experience() {
               <div className="flex items-center justify-between pt-3 border-t border-[#1e1e1e] mt-auto">
                 <span className="font-sans text-[10px] text-zinc-500 group-hover:text-white transition-colors flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5" />
-                  {role.type === "university" ? "View Academic Results" : "View Experience Details"}
+                  {role.type === "university" || role.type === "secondary"
+                    ? "View Academic Results"
+                    : "View Experience Details"}
                 </span>
                 <span className="font-sans text-[10px] text-zinc-600 group-hover:text-zinc-300 transition-colors">
                   Open &rarr;
@@ -260,7 +327,9 @@ export default function Experience() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               className={`bg-[#111111] border border-[#333333] rounded-xl w-full p-5 sm:p-6 relative flex flex-col gap-6 shadow-2xl my-auto ${
-                selectedRole.type === "university" ? "max-w-5xl lg:max-w-6xl" : "max-w-xl"
+                selectedRole.type === "university" || selectedRole.type === "secondary"
+                  ? "max-w-5xl lg:max-w-6xl"
+                  : "max-w-xl"
               }`}
             >
               {/* Close button */}
@@ -302,7 +371,7 @@ export default function Experience() {
                 </div>
               </div>
 
-              {/* University / Academic Results View */}
+              {/* University Academic Results View */}
               {selectedRole.type === "university" && selectedRole.reports && (
                 <div className="flex flex-col gap-5">
                   {/* Action Header bar: Transcript Download */}
@@ -424,8 +493,106 @@ export default function Experience() {
                 </div>
               )}
 
-              {/* Standard Role Details View (for Ikeja & MCSS) */}
-              {selectedRole.type !== "university" && (
+              {/* Secondary School (MCSS / JAMB / GCE) View */}
+              {selectedRole.type === "secondary" && selectedRole.secondaryDocs && (
+                <div className="flex flex-col gap-5">
+                  {/* Document Switcher Tabs */}
+                  <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-b border-[#222222]">
+                    {selectedRole.secondaryDocs.map((doc, idx) => (
+                      <button
+                        key={doc.id}
+                        onClick={() => {
+                          setActiveSecDocIndex(idx);
+                          setIsZoomed(false);
+                        }}
+                        className={`px-3.5 py-2 rounded-t-lg font-sans text-xs font-medium whitespace-nowrap transition-colors flex items-center gap-2 border-b-2 ${
+                          activeSecDocIndex === idx
+                            ? "bg-[#1a1a1a] text-white border-white"
+                            : "text-zinc-500 border-transparent hover:text-zinc-300"
+                        }`}
+                      >
+                        <span>{doc.title}</span>
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Active Secondary Document Card */}
+                  {selectedSecDoc && (
+                    <div className="flex flex-col gap-4">
+                      {/* Header bar */}
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 p-4 bg-[#181818] border border-[#2a2a2a] rounded-xl">
+                        <div>
+                          <h4 className="font-sans text-sm font-bold text-white">
+                            {selectedSecDoc.title}
+                          </h4>
+                          <p className="font-sans text-xs text-zinc-400 mt-0.5">
+                            {selectedSecDoc.subtitle}
+                          </p>
+                        </div>
+                        <span className="font-sans text-xs font-semibold px-3 py-1 bg-white/10 text-white rounded-full border border-white/20">
+                          {selectedSecDoc.badgeText}
+                        </span>
+                      </div>
+
+                      {/* Subject Scores / Breakdown Stats */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                        {selectedSecDoc.stats.map((st) => (
+                          <div key={st.label} className="p-3 bg-[#0d0d0d] border border-[#222222] rounded-lg">
+                            <span className="font-sans text-[9px] uppercase tracking-wider text-zinc-500 block truncate">
+                              {st.label}
+                            </span>
+                            <span className="font-sans text-xs sm:text-sm font-bold text-white mt-0.5 block">
+                              {st.value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Image Viewer or Pending State */}
+                      {selectedSecDoc.status === "available" && selectedSecDoc.imageSrc ? (
+                        <div className="relative border border-[#2a2a2a] rounded-xl overflow-hidden bg-black flex flex-col group">
+                          <div className="flex items-center justify-between px-4 py-2.5 bg-[#161616] border-b border-[#222222]">
+                            <span className="font-sans text-xs font-medium text-zinc-300">
+                              {selectedSecDoc.title}
+                            </span>
+                            <button
+                              onClick={() => setIsZoomed(!isZoomed)}
+                              className="font-sans text-[11px] text-zinc-400 hover:text-white flex items-center gap-1.5 bg-[#222] px-2.5 py-1 rounded transition-colors"
+                            >
+                              {isZoomed ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                              {isZoomed ? "Standard View" : "Enlarge View / Zoom"}
+                            </button>
+                          </div>
+
+                          <div className={`overflow-auto transition-all ${isZoomed ? "max-h-[85vh]" : "max-h-[550px]"}`}>
+                            <Image
+                              src={selectedSecDoc.imageSrc}
+                              alt={selectedSecDoc.title}
+                              width={1200}
+                              height={1000}
+                              className="w-full h-auto object-contain cursor-pointer"
+                              onClick={() => setIsZoomed(!isZoomed)}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="py-12 border border-dashed border-[#2a2a2a] rounded-xl flex flex-col items-center justify-center gap-3 bg-[#0d0d0d] text-center p-6">
+                          <Clock className="w-8 h-8 text-zinc-600 animate-pulse" />
+                          <h4 className="font-sans text-sm font-bold text-zinc-300">
+                            High School Scroll &amp; Transcript Photo Coming Soon
+                          </h4>
+                          <p className="font-sans text-xs text-zinc-500 max-w-md leading-relaxed">
+                            Graduation scroll photo will be displayed here once uploaded. Your JAMB UTME (277) and WASSCE GCE distinction slips are ready to view in the tabs above!
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Standard Role Details View (for Ikeja Electric) */}
+              {selectedRole.type === "internship" && (
                 <div className="flex flex-col gap-4">
                   <div className="p-4 bg-[#161616] border border-[#262626] rounded-xl flex flex-col gap-3">
                     <h4 className="font-sans text-xs font-bold uppercase tracking-wider text-zinc-400">
