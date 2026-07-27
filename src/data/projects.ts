@@ -7,6 +7,12 @@ export interface ProjectFile {
   type: "pdf" | "doc" | "image" | "zip" | "txt" | "other";
 }
 
+export interface ProjectVideo {
+  title: string;
+  filename: string;
+  description?: string;
+}
+
 export interface ProjectLink {
   label: string;
   url: string;
@@ -22,6 +28,7 @@ export interface StaticProject {
   tech: string[];
   links: ProjectLink[];
   files: ProjectFile[];
+  videos?: ProjectVideo[];
   icon: LucideIcon;
 }
 
@@ -29,20 +36,62 @@ export const projects: StaticProject[] = [
   {
     id: "robotic-arm",
     title: "3DOF Robotic Arm",
-    tagline: "Mechanical Design & Build — From Scratch",
+    tagline: "Mechanical Design & Build — SIWES Hardware Project",
     description:
-      "Designed and built a 3-Degree-of-Freedom robotic arm from scratch as a hardware project. Covered mechanical design, joint fabrication, actuator selection, and wiring. The arm did not achieve full working functionality by the end of the project, but the process was a significant learning experience in mechanical systems and embedded hardware.",
+      "Designed and built a 3-Degree-of-Freedom robotic arm from scratch during a SIWES program. Covered mechanical frame design, joint fabrication, drilling, servo motor integration, and hardware troubleshooting.",
     summary: [
-      "This project involved designing and physically building a 3-Degree-of-Freedom (3DOF) robotic arm entirely from scratch. The scope spanned every layer of the build — from sketching the mechanical structure and sourcing materials, to fabricating joints, mounting servo actuators, and wiring the control electronics.",
-      "The arm was designed to achieve three independent axes of motion, with each degree of freedom driven by a servo motor. The frame was assembled using accessible materials and the electronics were connected through a microcontroller intended to coordinate movement across all three joints.",
-      "Despite significant effort across the design and construction phases, the arm did not achieve full working functionality by the project deadline. Issues encountered included joint rigidity, actuator torque limitations relative to the arm's weight, and calibration difficulties in coordinating multi-axis movement.",
-      "While the project did not reach a fully operational state, it delivered substantial hands-on learning: mechanical assembly and tolerancing, servo selection and torque budgeting, basic embedded control, and the reality of iterating through physical prototypes under real-world constraints.",
+      "This project involved designing and physically fabricating a 3-Degree-of-Freedom (3DOF) robotic arm entirely from scratch during my SIWES hardware internship. The scope spanned every stage of physical prototype development — from raw material cutting, drilling, and machining to joint assembly and servo integration.",
+      "The arm was designed to achieve three independent axes of motion, with each joint driven by high-torque servo motors. The frame was assembled using custom-drilled metal and acrylic brackets, wired to a central microcontroller for movement control.",
+      "While the physical prototype encountered real-world engineering constraints such as joint flex under load and servo torque budgeting, the build process provided immense practical experience in mechanical fabrication, joint alignment, and hardware debugging under real workplace conditions.",
+      "Below is the complete video archive documenting the build process — including joint testing, drilling and machining, team collaboration, and real-time hardware troubleshooting.",
     ],
-    tech: ["Arduino", "Servo Motors", "Mechanical Design", "Prototyping", "Embedded Wiring"],
+    tech: ["Arduino", "Servo Motors", "Mechanical Design", "Machining & Drilling", "Hardware Prototyping", "Embedded Wiring"],
     links: [
-      { label: "GitHub Repository", url: "https://github.com/itsebuka", kind: "github" },
+      { label: "SIWES Hardware Project", url: "https://github.com/itsebuka", kind: "github" },
     ],
     files: [],
+    videos: [
+      {
+        title: "Initial Prototype & Motion Test",
+        filename: "Robotic arm 1 - CHUGBO.mp4",
+        description: "Testing early arm structure and initial servo motor positioning.",
+      },
+      {
+        title: "Arm Kinematics & Servo Control",
+        filename: "Robotic arm 2.mp4",
+        description: "Checking joint deflection and multi-axis sweep movement.",
+      },
+      {
+        title: "SIWES Hardware Engineering Team",
+        filename: "Robotic arm crew.mp4",
+        description: "Team collaboration during the physical assembly phase.",
+      },
+      {
+        title: "Drilling & Machining Frame Components",
+        filename: "Robotic arm take 3- drilling and machining.mp4",
+        description: "Precision drilling of bracket mounting holes and joint pivots.",
+      },
+      {
+        title: "Frame Assembly & Joint Fitting",
+        filename: "robotic arm take 4.mp4",
+        description: "Fitting bearings, brackets, and securing servo drive horns.",
+      },
+      {
+        title: "Multi-Axis Joint Actuation Test",
+        filename: "robotic arm testing joints.mp4",
+        description: "Testing joint articulation under power.",
+      },
+      {
+        title: "Hardware Troubleshooting & Wire Routing",
+        filename: "Robotic arm troubleshooting.mp4",
+        description: "Debugging signal noise and power distribution to servos.",
+      },
+      {
+        title: "Prototype Stress Test & Failure Analysis",
+        filename: "robotic arm test fail lmao.mp4",
+        description: "Real-world testing capturing torque limits and structural flex.",
+      },
+    ],
     icon: Cpu,
   },
   {

@@ -7,6 +7,7 @@ import {
   Download,
   BookOpen,
   Layers,
+  Video,
 } from "lucide-react";
 import { projects } from "@/data/projects";
 
@@ -54,7 +55,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    /* scroll-area allows internal scroll while body stays overflow:hidden */
     <div className="h-full scroll-area">
       <div className="max-w-4xl mx-auto px-6 py-10">
 
@@ -126,6 +126,49 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             </div>
           </div>
 
+          {/* ── Video Showcase Gallery (if present) ───────────────────────── */}
+          {project.videos && project.videos.length > 0 && (
+            <div className="bg-[#111111] border border-[#222222] rounded-lg p-5 md:p-6">
+              <h2 className="font-sans text-[10px] tracking-widest text-zinc-500 uppercase mb-5 flex items-center gap-2">
+                <Video className="w-3.5 h-3.5 text-zinc-400" />
+                Video Archive &amp; Hardware Build Demonstrations ({project.videos.length})
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {project.videos.map((vid) => (
+                  <div
+                    key={vid.filename}
+                    className="bg-[#0d0d0d] border border-[#222222] rounded-lg overflow-hidden flex flex-col group hover:border-[#444444] transition-colors"
+                  >
+                    <div className="relative aspect-video bg-black flex items-center justify-center">
+                      <video
+                        controls
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                        src={`/files/${project.id}/${encodeURIComponent(vid.filename)}`}
+                      >
+                        Your browser does not support HTML5 video playback.
+                      </video>
+                    </div>
+                    <div className="p-4 flex flex-col gap-1.5">
+                      <h3 className="font-sans text-xs font-bold text-white group-hover:text-zinc-200 transition-colors leading-snug">
+                        {vid.title}
+                      </h3>
+                      {vid.description && (
+                        <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">
+                          {vid.description}
+                        </p>
+                      )}
+                      <span className="font-sans text-[9px] text-zinc-600 truncate mt-1">
+                        {vid.filename}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* ── Project Summary ───────────────────────────────────── */}
           <div className="bg-[#111111] border border-[#222222] rounded-lg p-5 md:p-6">
             <h2 className="font-sans text-[10px] tracking-widest text-zinc-500 uppercase mb-5 flex items-center gap-2">
@@ -145,29 +188,17 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           </div>
 
           {/* ── Files & Downloads ─────────────────────────────────── */}
-          <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
-            <h2 className="font-sans text-[10px] tracking-widest text-zinc-500 uppercase mb-4 flex items-center gap-2">
-              <FileText className="w-3.5 h-3.5" />
-              Files &amp; Downloads
-            </h2>
-            {project.files.length === 0 ? (
-              <div className="py-8 flex flex-col items-center gap-3 border border-dashed border-[#222] rounded-lg">
-                <Download className="w-8 h-8 text-zinc-700" />
-                <p className="font-sans text-xs text-zinc-600 text-center leading-relaxed">
-                  No files attached yet.
-                  <br />
-                  Drop files into{" "}
-                  <span className="text-zinc-500">public/files/{project.id}/</span>
-                  {" "}and list them in{" "}
-                  <span className="text-zinc-500">src/data/projects.ts</span>.
-                </p>
-              </div>
-            ) : (
+          {project.files.length > 0 && (
+            <div className="bg-[#111111] border border-[#222222] rounded-lg p-5">
+              <h2 className="font-sans text-[10px] tracking-widest text-zinc-500 uppercase mb-4 flex items-center gap-2">
+                <FileText className="w-3.5 h-3.5" />
+                Files &amp; Downloads
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.files.map((file) => (
                   <a
                     key={file.filename}
-                    href={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/files/${project.id}/${file.filename}`}
+                    href={`/files/${project.id}/${file.filename}`}
                     download
                     className="flex items-center gap-4 p-4 bg-[#0d0d0d] border border-[#222] rounded-lg hover:border-[#444] transition-colors duration-200 group"
                   >
@@ -184,8 +215,8 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                   </a>
                 ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
         </div>
       </div>
