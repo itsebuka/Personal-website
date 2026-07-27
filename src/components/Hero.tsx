@@ -6,9 +6,6 @@ import Link from "next/link";
 import MagneticButton from "./MagneticButton";
 import WireframeBackground from "./WireframeBackground";
 
-// ── Replace YOUR_FORM_ID with your Formspree form ID after signing up at formspree.io
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
-
 const roles = [
   "Electronics",
   "PCB Design",
@@ -26,7 +23,6 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   // Typewriter effect
   useEffect(() => {
@@ -55,29 +51,21 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, roleIndex, typingSpeed]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
     setIsSubmitting(true);
-    setIsError(false);
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ message }),
-      });
-      if (res.ok) {
-        setIsSuccess(true);
-        setMessage("");
-        setTimeout(() => setIsSuccess(false), 5000);
-      } else {
-        setIsError(true);
-      }
-    } catch {
-      setIsError(true);
-    } finally {
-      setIsSubmitting(false);
-    }
+
+    const subject = encodeURIComponent("Portfolio Inquiry / Message");
+    const body = encodeURIComponent(message);
+    const mailtoUrl = `mailto:eleogujoseph007@gmail.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoUrl;
+
+    setIsSuccess(true);
+    setMessage("");
+    setIsSubmitting(false);
+    setTimeout(() => setIsSuccess(false), 5000);
   };
 
   return (
@@ -195,14 +183,8 @@ export default function Home() {
           {isSuccess && (
             <div className="absolute inset-0 bg-[#0a0a0a]/95 rounded-lg flex items-center justify-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-white" />
-              <span className="font-sans text-sm text-white font-medium">Message sent — I&apos;ll be in touch!</span>
+              <span className="font-sans text-sm text-white font-medium">Opening mail client...</span>
             </div>
-          )}
-          {isError && (
-            <p className="mt-1.5 font-sans text-xs text-red-400 text-left">
-              Something went wrong — email me at{" "}
-              <a href="mailto:eleogujoseph007@gmail.com" className="underline">eleogujoseph007@gmail.com</a>
-            </p>
           )}
         </form>
       </div>
