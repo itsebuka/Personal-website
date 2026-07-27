@@ -106,9 +106,8 @@ export default function Home() {
           </MagneticButton>
           <MagneticButton>
             <a
-              href="/Ebuka_Eleogu_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/Ebuka_Eleogu_Resume.docx"
+              download
               className="bg-transparent text-white border border-[#333] font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-[#111] hover:border-[#555] transition-colors duration-150 flex items-center gap-2"
             >
               <FileText className="w-4 h-4" />
