@@ -156,15 +156,15 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="h-full flex flex-col items-center justify-center px-6 py-6 scroll-area"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
       <div className="w-full max-w-4xl">
         {/* Section heading */}
-        <div className="text-center mb-8">
-          <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Certifications
           </h2>
-          <p className="font-sans text-sm text-zinc-500 mt-2">
+          <p className="font-sans text-xs sm:text-sm text-zinc-500 mt-1.5">
             Verified credentials and professional qualifications.
           </p>
         </div>
@@ -174,30 +174,30 @@ export default function Certifications() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-3.5 sm:gap-4"
         >
           {certificates.map((cert) => (
             <motion.div
               key={cert.id}
               variants={itemVariants}
               onClick={() => setSelectedCert(cert)}
-              className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex items-start gap-5 hover:border-[#444444] transition-colors duration-200 cursor-pointer group"
+              className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 hover:border-[#444444] transition-colors duration-200 cursor-pointer group"
             >
               {/* Brand Logo Icon */}
-              <div className="shrink-0 p-3 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a] group-hover:border-[#444444] transition-colors">
+              <div className="shrink-0 p-2.5 sm:p-3 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a] group-hover:border-[#444444] transition-colors flex items-center justify-center">
                 {renderLogo(cert.brand)}
               </div>
 
               {/* Content */}
-              <div className="flex flex-col gap-1.5 flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2">
+              <div className="flex flex-col gap-1.5 flex-1 min-w-0 w-full">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
                       <h3 className="font-sans text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">
                         {cert.title}
                       </h3>
                       {cert.status === "in-progress" && (
-                        <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium">
+                        <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium shrink-0">
                           <Clock className="w-2.5 h-2.5" />
                           In Progress
                         </span>
@@ -207,7 +207,7 @@ export default function Certifications() {
                       {cert.issuer} · {cert.year}
                     </p>
                   </div>
-                  <span className="font-sans text-[9px] text-zinc-600 tracking-widest uppercase shrink-0 mt-0.5">
+                  <span className="font-sans text-[9px] text-zinc-600 tracking-widest uppercase shrink-0">
                     {cert.id}
                   </span>
                 </div>
@@ -217,14 +217,14 @@ export default function Certifications() {
                 </p>
 
                 {/* Footer action link */}
-                <div className="flex items-center justify-between mt-2 pt-3 border-t border-[#1e1e1e]">
+                <div className="flex flex-wrap items-center justify-between gap-2 mt-2 pt-3 border-t border-[#1e1e1e]">
                   <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-400 group-hover:text-white transition-colors">
                     <FileText className="w-3.5 h-3.5" />
                     View Certificate Details
                   </span>
                   <span className="flex items-center gap-1 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
                     {cert.status === "in-progress" ? (
-                      <span className="text-[#c073f8]">Course Coursework Active</span>
+                      <span className="text-[#c073f8]">Coursework Active</span>
                     ) : (
                       <>
                         <Layers className="w-3.5 h-3.5" />
@@ -242,12 +242,12 @@ export default function Certifications() {
       {/* Certificate Modal */}
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-[#111111] border border-[#333333] rounded-xl max-w-lg w-full p-6 relative flex flex-col gap-5 shadow-2xl"
+              className="bg-[#111111] border border-[#333333] rounded-xl max-w-lg w-full p-5 sm:p-6 relative flex flex-col gap-5 shadow-2xl my-auto"
             >
               {/* Close button */}
               <button
@@ -259,21 +259,21 @@ export default function Certifications() {
 
               {/* Header */}
               <div className="flex items-center gap-4 border-b border-[#222222] pb-4">
-                <div className="p-3 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a]">
+                <div className="p-3 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a] shrink-0">
                   {renderLogo(selectedCert.brand)}
                 </div>
-                <div>
+                <div className="min-w-0 pr-6">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="font-sans text-[9px] text-zinc-500 uppercase tracking-widest">
+                    <span className="font-sans text-[9px] text-zinc-500 uppercase tracking-widest truncate">
                       {selectedCert.id}
                     </span>
                     {selectedCert.status === "in-progress" && (
-                      <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full">
+                      <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full shrink-0">
                         In Progress
                       </span>
                     )}
                   </div>
-                  <h3 className="font-sans text-base font-bold text-white leading-snug">
+                  <h3 className="font-sans text-sm sm:text-base font-bold text-white leading-snug">
                     {selectedCert.title}
                   </h3>
                   <p className="font-sans text-xs text-zinc-400">
@@ -283,9 +283,9 @@ export default function Certifications() {
               </div>
 
               {/* Body */}
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 <h4 className="font-sans text-xs uppercase tracking-wider text-zinc-500">Overview</h4>
-                <p className="font-sans text-sm text-zinc-300 leading-relaxed">
+                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed">
                   {selectedCert.description}
                 </p>
               </div>
@@ -296,7 +296,7 @@ export default function Certifications() {
                   {selectedCert.status === "in-progress" ? "Certification Status" : `Attached Documents (${selectedCert.files.length})`}
                 </h4>
                 {selectedCert.status === "in-progress" ? (
-                  <div className="p-4 bg-[#181818] border border-[#2a2a2a] rounded-lg flex flex-col gap-2">
+                  <div className="p-3.5 bg-[#181818] border border-[#2a2a2a] rounded-lg flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-xs font-semibold text-[#c073f8]">
                       <Clock className="w-4 h-4" />
                       Currently Enrolled &amp; Completing Modules
@@ -307,9 +307,9 @@ export default function Certifications() {
                   </div>
                 ) : (
                   selectedCert.files.map((file) => (
-                    <div key={file.filename} className="flex items-center justify-between p-3 bg-[#181818] border border-[#2a2a2a] rounded-lg">
+                    <div key={file.filename} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-[#181818] border border-[#2a2a2a] rounded-lg gap-2">
                       <span className="font-sans text-xs font-medium text-white flex items-center gap-2">
-                        <FileText className="w-3.5 h-3.5 text-zinc-400" />
+                        <FileText className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                         {file.year}
                       </span>
                       <div className="flex items-center gap-2">
@@ -317,7 +317,7 @@ export default function Certifications() {
                           href={`/files/certificates/${file.filename}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="bg-white text-black font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-zinc-200 transition-colors"
+                          className="flex-1 sm:flex-none bg-white text-black font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center justify-center gap-1 hover:bg-zinc-200 transition-colors"
                         >
                           <ExternalLink className="w-3 h-3" />
                           Open PDF
@@ -325,7 +325,7 @@ export default function Certifications() {
                         <a
                           href={`/files/certificates/${file.filename}`}
                           download
-                          className="bg-[#222222] text-white border border-[#333333] font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center gap-1 hover:bg-[#333333] transition-colors"
+                          className="flex-1 sm:flex-none bg-[#222222] text-white border border-[#333333] font-sans font-semibold text-[11px] py-1.5 px-3 rounded text-center flex items-center justify-center gap-1 hover:bg-[#333333] transition-colors"
                         >
                           <Download className="w-3 h-3" />
                           Download

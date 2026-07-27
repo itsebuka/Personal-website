@@ -25,13 +25,13 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="h-full flex flex-col items-center justify-center px-6 py-6"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
       <div className="w-full max-w-6xl">
 
         {/* Section heading */}
-        <div className="text-center mb-7">
-          <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
+        <div className="text-center mb-6 sm:mb-7">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Projects Completed
           </h2>
         </div>
@@ -68,7 +68,7 @@ export default function Projects() {
                 <div className="h-24 bg-[#0d0d0d] border-b border-[#1e1e1e] flex items-center justify-center relative">
                   <IconComp className="w-10 h-10 text-zinc-700 group-hover:text-zinc-500 transition-colors duration-200" />
 
-                  {/* SYS_ID — plain white/gray, no glow */}
+                  {/* SYS_ID */}
                   <span className="absolute top-3 left-3 font-sans text-[9px] text-zinc-600">
                     SYS_ID: {project.id ? project.id.substring(0, 5).toUpperCase() : `00${index + 1}`}
                   </span>
@@ -79,7 +79,7 @@ export default function Projects() {
 
                 {/* Card body */}
                 <div className="p-4 flex flex-col flex-1 gap-2">
-                  <span className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase">
+                  <span className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase truncate">
                     {project.tagline}
                   </span>
                   <h3 className="font-sans text-sm font-bold text-white group-hover:text-zinc-200 transition-colors leading-snug">
@@ -112,7 +112,7 @@ export default function Projects() {
                     ) : (
                       <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
                         <FileText className="w-3.5 h-3.5" />
-                        View Project Details
+                        View Details
                       </span>
                     )}
 
@@ -121,7 +121,7 @@ export default function Projects() {
                         e.stopPropagation();
                         router.push(`/projects/${project.id}`);
                       }}
-                      className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 hover:text-white transition-colors ml-auto"
+                      className="flex items-center gap-1.5 font-sans text-xs text-zinc-500 hover:text-white transition-colors ml-auto shrink-0"
                     >
                       <FileText className="w-3.5 h-3.5" />
                       Details

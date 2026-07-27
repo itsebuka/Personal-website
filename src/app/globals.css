@@ -15,7 +15,6 @@
 html,
 body {
   height: 100%;
-  font-size: 125%;
   overflow: hidden;
   background-color: #0a0a0a;
   color: #ffffff;
@@ -28,11 +27,10 @@ body {
   color: #ffffff;
 }
 
-/* ─── Internal Scrollable Areas (e.g. project detail pages) ── */
+/* ─── Internal Scrollable Areas ────────────────────────────── */
 .scroll-area {
   overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scroll-area::-webkit-scrollbar {

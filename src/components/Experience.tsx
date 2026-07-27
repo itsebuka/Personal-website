@@ -59,19 +59,19 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="h-full flex flex-col items-center justify-center px-6 py-6"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
       <div className="w-full max-w-6xl">
 
         {/* Section heading */}
         <div className="text-center mb-7">
-          <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Professional Timeline
           </h2>
         </div>
 
-        {/* 3-column card grid */}
-        <div className="grid grid-cols-3 gap-4">
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {professionalLog.map((role) => (
             <div
               key={`${role.company}-${role.period}`}

@@ -114,13 +114,13 @@ export default function Achievements() {
   return (
     <section
       id="achievements"
-      className="h-full flex flex-col items-center justify-center px-6 py-6"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
       <div className="w-full max-w-5xl">
 
         {/* Section heading */}
-        <div className="text-center mb-7">
-          <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
+        <div className="text-center mb-6 sm:mb-7">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Credentials &amp; Achievements
           </h2>
         </div>
@@ -138,7 +138,7 @@ export default function Achievements() {
               <motion.div
                 variants={itemVariants}
                 key={item.id}
-                className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-4 hover:border-[#333333] transition-colors duration-200"
+                className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-4 hover:border-[#333333] transition-colors duration-200"
               >
                 {/* Icon + ID row */}
                 <div className="flex items-center justify-between">

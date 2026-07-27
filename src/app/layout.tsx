@@ -45,7 +45,7 @@ export default function RootLayout({
         <FilmGrain />
         <div className="flex flex-col h-full">
           <Navbar />
-          <main className="flex-1 min-h-0">
+          <main className="flex-1 min-h-0 overflow-y-auto scroll-area">
             {children}
           </main>
         </div>

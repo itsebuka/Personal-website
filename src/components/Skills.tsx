@@ -80,15 +80,15 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="h-full flex flex-col items-center justify-center px-6 py-6 scroll-area"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
       <div className="w-full max-w-5xl">
         {/* Section heading */}
-        <div className="text-center mb-7">
-          <h2 className="font-serif text-4xl font-bold text-white tracking-tight">
+        <div className="text-center mb-6 sm:mb-7">
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             My Skills
           </h2>
-          <p className="font-sans text-sm text-zinc-500 mt-2">
+          <p className="font-sans text-xs sm:text-sm text-zinc-500 mt-1.5">
             The disciplines I design, build, and think in.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default function Skills() {
               <motion.div
                 variants={itemVariants}
                 key={item.title}
-                className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
+                className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
               >
                 {/* Icon + Header */}
                 <div className="flex items-center gap-3">
@@ -114,7 +114,7 @@ export default function Skills() {
                     <IconComp className="w-5 h-5 text-zinc-300" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase leading-none mb-1">
+                    <p className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase leading-none mb-1 truncate">
                       {item.tagline}
                     </p>
                     <h3 className="font-sans text-sm font-semibold text-white leading-snug">

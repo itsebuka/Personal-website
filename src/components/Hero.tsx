@@ -71,35 +71,35 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="h-full flex flex-col items-center justify-between px-6 text-center relative overflow-hidden pt-10 pb-6"
+      className="min-h-full flex flex-col items-center justify-between px-4 sm:px-6 text-center relative overflow-hidden pt-6 sm:pt-10 pb-6 scroll-area"
     >
       <WireframeBackground />
 
       {/* ── Centre Content ───────────────────────────── */}
-      <div className="flex flex-col items-center justify-center flex-1 z-10">
+      <div className="flex flex-col items-center justify-center flex-1 z-10 my-auto">
         {/* Avatar circle */}
-        <div className="w-20 h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-8 select-none">
-          <span className="font-serif text-xl font-bold text-white">EE</span>
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-6 sm:mb-8 select-none">
+          <span className="font-serif text-lg sm:text-xl font-bold text-white">EE</span>
         </div>
 
         {/* Main heading */}
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight leading-none">
+        <h1 className="font-serif text-3xl sm:text-6xl md:text-7xl font-bold text-white mb-3 sm:mb-4 tracking-tight leading-tight">
           Ebuka&apos;s Portfolio
         </h1>
 
         {/* Typewriter subtitle */}
-        <p className="font-sans text-base text-zinc-400 min-h-[26px] mb-10 flex items-center gap-1.5">
+        <p className="font-sans text-sm sm:text-base text-zinc-400 min-h-[26px] mb-8 sm:mb-10 flex items-center justify-center gap-1.5">
           <span>{displayText}</span>
           <span className="inline-block w-px h-4 bg-zinc-500 animate-pulse" />
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-6 sm:mb-8 w-full sm:w-auto">
           <MagneticButton>
             <Link
               href="/projects"
               id="hero-cta"
-              className="bg-white text-black font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 block"
+              className="bg-white text-black font-sans font-semibold text-xs sm:text-sm px-6 sm:px-8 py-3 rounded hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 block w-full sm:w-auto"
             >
               Explore my projects
             </Link>
@@ -108,7 +108,7 @@ export default function Home() {
             <a
               href="/Ebuka_Eleogu_Resume.docx"
               download
-              className="bg-transparent text-white border border-[#333] font-sans font-semibold text-sm px-8 py-3 rounded hover:bg-[#111] hover:border-[#555] transition-colors duration-150 flex items-center gap-2"
+              className="bg-transparent text-white border border-[#333] font-sans font-semibold text-xs sm:text-sm px-6 sm:px-8 py-3 rounded hover:bg-[#111] hover:border-[#555] transition-colors duration-150 flex items-center justify-center gap-2 w-full sm:w-auto"
             >
               <FileText className="w-4 h-4" />
               Download CV
@@ -117,7 +117,7 @@ export default function Home() {
         </div>
 
         {/* Social icons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-6 sm:mb-0">
           <MagneticButton>
             <a href="https://github.com/itsebuka" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
               <Github className="w-4 h-4" />
@@ -136,8 +136,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Message Bar (pinned at bottom of hero) ────── */}
-      <div className="w-full max-w-xl z-10">
+      {/* ── Message Bar ─────────────────────────────── */}
+      <div className="w-full max-w-xl z-10 mt-4">
         {/* Subtle divider label */}
         <div className="flex items-center gap-3 mb-3">
           <div className="flex-1 h-px bg-[#1e1e1e]" />
@@ -159,7 +159,7 @@ export default function Home() {
               required
               rows={2}
               placeholder="Drop me a message..."
-              className="flex-1 font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded-lg px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
+              className="flex-1 font-sans text-xs sm:text-sm text-white bg-[#111111] border border-[#222222] rounded-lg px-3.5 py-2.5 sm:px-4 sm:py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
             />
             <MagneticButton>
               <button
@@ -167,12 +167,12 @@ export default function Home() {
                 id="contact-submit"
                 disabled={isSubmitting}
                 aria-label="Send message"
-                className="p-3 bg-white text-black rounded-lg hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none shrink-0"
+                className="p-2.5 sm:p-3 bg-white text-black rounded-lg hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none shrink-0"
               >
                 {isSubmitting ? (
-                  <span className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin block" />
+                  <span className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-black border-t-transparent rounded-full animate-spin block" />
                 ) : (
-                  <Send className="w-5 h-5" />
+                  <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                 )}
               </button>
             </MagneticButton>
@@ -182,7 +182,7 @@ export default function Home() {
           {isSuccess && (
             <div className="absolute inset-0 bg-[#0a0a0a]/95 rounded-lg flex items-center justify-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-white" />
-              <span className="font-sans text-sm text-white font-medium">Opening mail client...</span>
+              <span className="font-sans text-xs sm:text-sm text-white font-medium">Opening mail client...</span>
             </div>
           )}
         </form>
