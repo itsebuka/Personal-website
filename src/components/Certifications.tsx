@@ -19,12 +19,23 @@ function PauLogo({ className = "w-5 h-5" }: { className?: string }) {
   return <GraduationCap className={className} />;
 }
 
-function AutodeskLogo({ className = "w-5 h-5" }: { className?: string }) {
+function AutodeskLogo({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-      <path d="M2 17l10 5 10-5" />
-      <path d="M2 12l10 5 10-5" />
+    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Bottom dark brown background block */}
+      <rect x="15" y="25" width="80" height="70" rx="8" fill="#682A09" />
+      
+      {/* Top-left isometric fold */}
+      <path d="M5 20 L25 5 L90 5 L90 68 L25 68 L5 72 Z" fill="#FF8D36" />
+      
+      {/* Main vibrant orange front square */}
+      <rect x="18" y="5" width="72" height="63" rx="4" fill="#FF6600" />
+      
+      {/* White F */}
+      <path d="M44 16 H66 V24 H53 V31 H63 V38 H53 V52 H44 Z" fill="#FFFFFF" />
+      
+      {/* White 360 */}
+      <text x="56" y="86" textAnchor="middle" fill="#FFFFFF" fontFamily="system-ui, sans-serif" fontWeight="800" fontSize="21">360</text>
     </svg>
   );
 }
@@ -106,7 +117,7 @@ export default function Certifications() {
   const renderLogo = (brand: Certificate["brand"]) => {
     switch (brand) {
       case "autodesk":
-        return <AutodeskLogo className="w-6 h-6 text-zinc-200" />;
+        return <AutodeskLogo className="w-6 h-6" />;
       case "nvidia":
         return <NvidiaLogo className="w-6 h-6 text-[#76b900]" />;
       case "pau":
