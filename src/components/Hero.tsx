@@ -23,7 +23,6 @@ export default function Home() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  // Contact form state — message only
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -82,32 +81,32 @@ export default function Home() {
   };
 
   return (
-    <div className="h-full scroll-area">
-      {/* ── Hero Section ──────────────────────────────────── */}
-      <section
-        id="home"
-        className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center px-6 text-center relative overflow-hidden py-16"
-      >
-        <WireframeBackground />
+    <section
+      id="home"
+      className="h-full flex flex-col items-center justify-between px-6 text-center relative overflow-hidden pt-10 pb-6"
+    >
+      <WireframeBackground />
 
+      {/* ── Centre Content ───────────────────────────── */}
+      <div className="flex flex-col items-center justify-center flex-1 z-10">
         {/* Avatar circle */}
-        <div className="w-20 h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-8 select-none z-10">
+        <div className="w-20 h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-8 select-none">
           <span className="font-serif text-xl font-bold text-white">EE</span>
         </div>
 
         {/* Main heading */}
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight leading-none z-10">
+        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-4 tracking-tight leading-none">
           Ebuka&apos;s Portfolio
         </h1>
 
         {/* Typewriter subtitle */}
-        <p className="font-sans text-base text-zinc-400 min-h-[26px] mb-10 flex items-center gap-1.5 z-10">
+        <p className="font-sans text-base text-zinc-400 min-h-[26px] mb-10 flex items-center gap-1.5">
           <span>{displayText}</span>
           <span className="inline-block w-px h-4 bg-zinc-500 animate-pulse" />
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 mb-10 z-10">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
           <MagneticButton>
             <Link
               href="/projects"
@@ -131,144 +130,82 @@ export default function Home() {
         </div>
 
         {/* Social icons */}
-        <div className="flex items-center gap-3 z-10">
+        <div className="flex items-center gap-3">
           <MagneticButton>
-            <a
-              href="https://github.com/itsebuka"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
-            >
+            <a href="https://github.com/itsebuka" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
               <Github className="w-4 h-4" />
             </a>
           </MagneticButton>
           <MagneticButton>
-            <a
-              href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn Profile"
-              className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
-            >
+            <a href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
               <Linkedin className="w-4 h-4" />
             </a>
           </MagneticButton>
           <MagneticButton>
-            <a
-              href="https://x.com/eleoguuu"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter / X Profile"
-              className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block"
-            >
+            <a href="https://x.com/eleoguuu" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
               <Twitter className="w-4 h-4" />
             </a>
           </MagneticButton>
         </div>
+      </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10 opacity-40">
-          <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-widest">Scroll</span>
-          <span className="w-px h-6 bg-zinc-700 animate-pulse" />
+      {/* ── Message Bar (pinned at bottom of hero) ────── */}
+      <div className="w-full max-w-xl z-10">
+        {/* Subtle divider label */}
+        <div className="flex items-center gap-3 mb-3">
+          <div className="flex-1 h-px bg-[#1e1e1e]" />
+          <span className="font-sans text-[10px] text-zinc-600 uppercase tracking-widest flex items-center gap-1.5">
+            <Mail className="w-3 h-3" />
+            Send a message
+          </span>
+          <div className="flex-1 h-px bg-[#1e1e1e]" />
         </div>
-      </section>
 
-      {/* ── Contact Section ───────────────────────────────── */}
-      <section
-        id="contact"
-        className="flex flex-col items-center justify-center px-6 py-20 border-t border-[#1a1a1a]"
-      >
-        <div className="w-full max-w-lg">
-          {/* Section header */}
-          <div className="text-center mb-8">
-            <h2 className="font-serif text-4xl font-bold text-white mb-2 tracking-tight">
-              Get In Touch
-            </h2>
-            <p className="font-sans text-sm text-zinc-500">
-              Have a project or question? I&apos;ll get back to you.
-            </p>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3 relative">
-
-            {/* Message field */}
+        <form onSubmit={handleSubmit} className="relative">
+          {/* Inline textarea + button */}
+          <div className="flex items-end gap-2">
             <textarea
               id="contact-message"
               name="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               required
-              rows={5}
-              placeholder="Type your message..."
-              className="font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
+              rows={2}
+              placeholder="Drop me a message..."
+              className="flex-1 font-sans text-sm text-white bg-[#111111] border border-[#222222] rounded-lg px-4 py-3 focus:outline-none focus:border-[#444444] placeholder-zinc-700 transition-colors duration-150 resize-none"
             />
-
-            {/* Error notice */}
-            {isError && (
-              <p className="font-sans text-xs text-red-400">
-                Something went wrong — please try again or email me directly.
-              </p>
-            )}
-
-            {/* Submit button */}
-            <MagneticButton className="w-full">
+            <MagneticButton>
               <button
                 type="submit"
                 id="contact-submit"
                 disabled={isSubmitting}
-                className="bg-white text-black w-full font-sans font-semibold text-sm py-3 px-6 rounded flex items-center justify-center gap-2 hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none"
+                aria-label="Send message"
+                className="p-3 bg-white text-black rounded-lg hover:bg-zinc-100 active:bg-zinc-200 transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none shrink-0"
               >
                 {isSubmitting ? (
-                  <>
-                    <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                    Sending...
-                  </>
+                  <span className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin block" />
                 ) : (
-                  <>
-                    <Send className="w-4 h-4" />
-                    Send Message
-                  </>
+                  <Send className="w-5 h-5" />
                 )}
               </button>
             </MagneticButton>
-
-            {/* Success overlay */}
-            {isSuccess && (
-              <div className="absolute inset-0 bg-[#0a0a0a]/95 rounded flex flex-col items-center justify-center gap-3 text-center p-6">
-                <CheckCircle2 className="w-10 h-10 text-white" />
-                <h4 className="font-sans font-semibold text-white">Message sent!</h4>
-                <p className="font-sans text-sm text-zinc-400">
-                  Thanks for reaching out. I&apos;ll get back to you soon.
-                </p>
-              </div>
-            )}
-          </form>
-
-          {/* Contact info strip */}
-          <div className="flex items-center justify-between mt-6 pt-5 border-t border-[#1a1a1a]">
-            <a
-              href="mailto:eleogujoseph007@gmail.com"
-              className="flex items-center gap-2 font-sans text-xs text-zinc-500 hover:text-white transition-colors duration-150"
-            >
-              <Mail className="w-4 h-4" />
-              eleogujoseph007@gmail.com
-            </a>
-            <div className="flex items-center gap-3">
-              <a href="https://github.com/itsebuka" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-zinc-600 hover:text-white transition-colors duration-150">
-                <Github className="w-4 h-4" />
-              </a>
-              <a href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-zinc-600 hover:text-white transition-colors duration-150">
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a href="https://x.com/eleoguuu" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-zinc-600 hover:text-white transition-colors duration-150">
-                <Twitter className="w-4 h-4" />
-              </a>
-            </div>
           </div>
-        </div>
-      </section>
-    </div>
+
+          {/* Feedback states */}
+          {isSuccess && (
+            <div className="absolute inset-0 bg-[#0a0a0a]/95 rounded-lg flex items-center justify-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-white" />
+              <span className="font-sans text-sm text-white font-medium">Message sent — I&apos;ll be in touch!</span>
+            </div>
+          )}
+          {isError && (
+            <p className="mt-1.5 font-sans text-xs text-red-400 text-left">
+              Something went wrong — email me at{" "}
+              <a href="mailto:eleogujoseph007@gmail.com" className="underline">eleogujoseph007@gmail.com</a>
+            </p>
+          )}
+        </form>
+      </div>
+    </section>
   );
 }
