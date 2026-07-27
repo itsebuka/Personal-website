@@ -39,10 +39,10 @@ export default function About() {
                 </div>
                 <div>
                   <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-widest block">
-                    Future Conglomerate Directive
+                    Strategic Industrial Directive
                   </span>
                   <h3 className="font-sans text-lg sm:text-xl font-bold text-white leading-snug">
-                    Founder-in-Training @ Hanuman Labs
+                    Pioneering African Tech &amp; Defense Engineering
                   </h3>
                   <p className="font-sans text-xs text-zinc-400 mt-0.5">
                     Building the bedrock for Defense Systems, Autonomous Robotics &amp; High-Impact African Technologies.
@@ -98,15 +98,15 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="font-sans text-sm font-bold text-white">
-                    Conglomerate Vision &amp; Ambitions
+                    Industrial Ambitions &amp; Vision
                   </h3>
                   <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-wider">
-                    Hanuman Labs Directive
+                    Multi-Sector Engineering Directive
                   </span>
                 </div>
               </div>
               <p className="font-sans text-xs text-zinc-400 leading-relaxed">
-                Aiming to pioneer <strong className="text-white">Hanuman Labs</strong>, a multi-sector industrial conglomerate spanning defense hardware, robotics invention, and advanced electronics.
+                Aiming to pioneer a multi-sector industrial conglomerate spanning defense hardware, robotics invention, and advanced electronics.
               </p>
               <div className="p-3.5 bg-[#0d0d0d] border border-[#1e1e1e] rounded-lg flex flex-col gap-1.5 mt-auto">
                 <span className="font-sans text-[10px] uppercase tracking-wider text-zinc-500 font-semibold flex items-center gap-1.5">
@@ -189,10 +189,10 @@ export default function About() {
           </div>
 
           {/* System Specs Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 p-4 bg-[#111111] border border-[#222222] rounded-xl">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-4 bg-[#111111] border border-[#222222] rounded-xl">
             <div>
               <span className="font-sans text-[9px] uppercase tracking-wider text-zinc-500 block">
-                Operating Base
+                Current Location
               </span>
               <span className="font-sans text-xs font-semibold text-white mt-0.5 block truncate">
                 Lagos, Nigeria
@@ -204,14 +204,6 @@ export default function About() {
               </span>
               <span className="font-sans text-xs font-semibold text-white mt-0.5 block truncate">
                 BEng Elect/Elect (PAU)
-              </span>
-            </div>
-            <div>
-              <span className="font-sans text-[9px] uppercase tracking-wider text-zinc-500 block">
-                Target Conglomerate
-              </span>
-              <span className="font-sans text-xs font-semibold text-white mt-0.5 block truncate">
-                Hanuman Labs
               </span>
             </div>
             <div>
@@ -235,7 +227,7 @@ export default function About() {
                 Operating Status
               </span>
               <span className="font-sans text-xs font-semibold text-white mt-0.5 block truncate">
-                Open to Work
+                Head-down, Working
               </span>
             </div>
           </div>
