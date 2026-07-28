@@ -168,7 +168,7 @@ export const projects: StaticProject[] = [
       "Clinical AI",
     ],
     links: [
-      { label: "Project Repository (Coming Soon)", url: "https://github.com/itsebuka", kind: "github" },
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/Apollo-Triage-system", kind: "github" },
     ],
     files: [],
     icon: Stethoscope,
