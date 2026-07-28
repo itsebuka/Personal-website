@@ -23,10 +23,10 @@ body {
   font-size: 100%;
 }
 
-/* 115% zoom / font size scaling on laptops and desktops */
+/* 100% standard font size scaling on all screens */
 @media (min-width: 1024px) {
   html {
-    font-size: 115%;
+    font-size: 100%;
   }
 }
 
