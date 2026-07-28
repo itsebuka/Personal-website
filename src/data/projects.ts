@@ -1,4 +1,4 @@
-import { Cpu, Database, Network } from "lucide-react";
+import { Cpu, Database, Network, Stethoscope } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export interface ProjectFile {
@@ -23,6 +23,7 @@ export interface StaticProject {
   id: string;
   title: string;
   tagline: string;
+  badge?: string;
   description: string;
   summary: string[];
   tech: string[];
@@ -138,6 +139,39 @@ export const projects: StaticProject[] = [
       { label: "Jupyter Notebook (Model v3.0)", filename: "Voltage_Stability_Prediction_model_3_0.ipynb", type: "other" },
     ],
     icon: Database,
+  },
+  {
+    id: "apollo-clinical-ai",
+    title: "Apollo: Offline Clinical AI Assistant",
+    tagline: "Offline-First Decision Support for Nigerian Healthcare",
+    badge: "Coming Soon!",
+    description: "Apollo is a production-ready, offline-first clinical decision support system designed specifically for healthcare workers in resource-constrained environments across Nigeria and Africa. Uses advanced RAG architecture and operates under 4.5GB RAM.",
+    summary: [
+      "Apollo is a production-ready, offline-first clinical decision support system designed specifically for healthcare workers in resource-constrained environments across Nigeria and Africa. Built with advanced retrieval-augmented generation (RAG) architecture, Apollo delivers evidence-based medical guidance entirely on commodity laptops with no cloud dependencies and a memory footprint under 4.5GB RAM.",
+      "1. Retrieval-Augmented Generation (RAG): Indexes medical PDFs, textbooks, and clinical guidelines. Converts documents to searchable vectors using sentence-transformers, retrieving relevant clinical content with citation tracking and source attribution.",
+      "2. HyDE (Hypothetical Document Embedding): Generates synthetic clinical reference paragraphs for vague queries to bridge the semantic gap between patient lay language and medical terminology without additional RAM usage.",
+      "3. Async Cross-Encoder Re-Ranking: Offloads CPU-intensive relevance scoring to background threads, maintaining a responsive event loop with asyncio.run_in_executor and reducing latency spikes during high-concurrency usage.",
+      "4. Dynamic Token Budgeting: Allocates 512 / 1024 / 2048 tokens based on query complexity to optimize generation efficiency and reduce thermal CPU load.",
+      "5. Automatic Re-Query Fallback: Detects low similarity scores (<0.45), strips stop-words, and performs keyword-based fallback queries to rescue ambiguous or wordy patient prompts.",
+      "6. Web Speech API Voice Input: Browser-native speech recognition via window.SpeechRecognition with zero RAM footprint for hands-free clinician interaction.",
+      "7. Session Document Upload: Accepts PDF and TXT files via pypdf extraction to inject patient-specific documents as session-scoped clinical context.",
+    ],
+    tech: [
+      "Python",
+      "RAG Architecture",
+      "HyDE",
+      "Cross-Encoder",
+      "AsyncIO",
+      "Sentence-Transformers",
+      "Web Speech API",
+      "PyPDF",
+      "Clinical AI",
+    ],
+    links: [
+      { label: "Project Repository (Coming Soon)", url: "https://github.com/itsebuka", kind: "github" },
+    ],
+    files: [],
+    icon: Stethoscope,
   },
 ];
 

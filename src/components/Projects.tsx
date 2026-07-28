@@ -11,6 +11,7 @@ import {
   BookOpen,
   Layers,
   Cpu,
+  Sparkles,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
@@ -58,12 +59,12 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* 3-column card grid */}
+        {/* 2-column card grid for 4 projects */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4.5"
         >
           {projects.map((project: StaticProject, index: number) => {
             const IconComp = project.icon;
@@ -85,6 +86,14 @@ export default function Projects() {
                   <span className="absolute top-3 left-3 font-sans text-[9px] text-zinc-600">
                     SYS_ID: {project.id ? project.id.substring(0, 5).toUpperCase() : `00${index + 1}`}
                   </span>
+
+                  {/* Badges */}
+                  {project.badge && (
+                    <span className="absolute top-3 right-3 font-sans text-[9px] bg-amber-500/10 text-amber-400 font-semibold px-2 py-0.5 rounded-full flex items-center gap-1 border border-amber-500/30">
+                      <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                      {project.badge}
+                    </span>
+                  )}
                   {project.videos && project.videos.length > 0 && (
                     <span className="absolute top-3 right-3 font-sans text-[9px] bg-white/10 text-white px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                       <Video className="w-2.5 h-2.5" />
@@ -95,9 +104,12 @@ export default function Projects() {
 
                 {/* Card body */}
                 <div className="p-4 flex flex-col flex-1 gap-2">
-                  <span className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase truncate">
-                    {project.tagline}
-                  </span>
+                  <div className="flex items-center justify-between">
+                    <span className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase truncate">
+                      {project.tagline}
+                    </span>
+                  </div>
+
                   <h3 className="font-sans text-sm font-bold text-white group-hover:text-zinc-200 transition-colors leading-snug">
                     {project.title}
                   </h3>
@@ -115,6 +127,11 @@ export default function Projects() {
                         {t}
                       </span>
                     ))}
+                    {techList.length > 4 && (
+                      <span className="font-sans text-[9px] text-zinc-600 px-1.5 py-0.5 border border-[#222222] rounded bg-[#0d0d0d]">
+                        +{techList.length - 4} more
+                      </span>
+                    )}
                   </div>
 
                   {/* Action links footer */}
@@ -124,6 +141,11 @@ export default function Projects() {
                         <>
                           <Video className="w-3.5 h-3.5" />
                           View Video Archive ({project.videos.length})
+                        </>
+                      ) : project.badge ? (
+                        <>
+                          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                          View Architecture &amp; RAG Specs
                         </>
                       ) : (
                         <>
@@ -168,9 +190,16 @@ export default function Projects() {
                     {selectedProject.icon && <selectedProject.icon className="w-6 h-6 text-white" />}
                   </div>
                   <div>
-                    <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-widest block mb-0.5">
-                      {selectedProject.tagline}
-                    </span>
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-widest block">
+                        {selectedProject.tagline}
+                      </span>
+                      {selectedProject.badge && (
+                        <span className="font-sans text-[9px] bg-amber-500/10 text-amber-400 font-semibold px-2 py-0.5 rounded-full border border-amber-500/30">
+                          {selectedProject.badge}
+                        </span>
+                      )}
+                    </div>
                     <h3 className="font-sans text-lg sm:text-2xl font-bold text-white leading-snug">
                       {selectedProject.title}
                     </h3>
