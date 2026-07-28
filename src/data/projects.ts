@@ -1,4 +1,4 @@
-import { Cpu, Database, Network, Stethoscope } from "lucide-react";
+import { Cpu, Database, Network, Stethoscope, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export interface ProjectFile {
@@ -173,8 +173,43 @@ export const projects: StaticProject[] = [
     files: [],
     icon: Stethoscope,
   },
+  {
+    id: "poseidon-ikeja-grid-map",
+    title: "Poseidon: IKEJA-GRID-MAP",
+    tagline: "Real-Time Distributed Power Grid Monitoring & GIS Visualizer",
+    badge: "Coming Soon!",
+    description: "Poseidon (IKEJA-GRID-MAP) is a real-time, production-ready distributed power grid monitoring web application built for Ikeja Electric (Lagos, Nigeria). Visualizes 25,300+ real network assets, substations, and feeder lines on Google Earth style satellite imagery with live national grid & NESI market integration.",
+    summary: [
+      "Poseidon (IKEJA-GRID-MAP) is a real-time, production-ready distributed power grid monitoring system designed specifically for Ikeja Electric in Lagos, Nigeria. It combines multi-threaded SCADA distribution telemetry simulation, real-time animated energy flow paths, high-resolution satellite imagery, and national grid market integration into a unified operational command dashboard.",
+      "1. Multi-Threaded SCADA Telemetry Simulator: Runs a background Python daemon thread (threading.Lock protected) driving dynamic 3-second updates for voltage (kV), current load (MW), and frequency (Hz) across 30+ substations in 7 operational zones (Ikeja, Surulere, Ikoyi, Lekki, Ajah, Agege, Oshodi).",
+      "2. High-Resolution Google Earth Style Satellite View & Layer Controls: Features Esri World Satellite Aerial Imagery with real-world rooftops, facilities, and terrain, alongside a 1-click Map View Switcher (Satellite / Hybrid / Streets) and layer filter controls.",
+      "3. Complete Multi-KMZ Infrastructure Integration & Color Mirroring: Pre-parses and integrates all 12 Ikeja Electric KMZ archives (25,306 network assets including 33kV transmission lines, 11kV feeder network, ISS Injection Substations, TCN grid, and Distribution Transformers), preserving 324 authentic KML style colors.",
+      "4. Real-Time Animated Energy Flow Distribution: Animates feeder lines with moving SVG/Canvas energy pulses in their authentic KMZ colors, dynamically shifting to warning alerts (Amber/Red) during simulated overload conditions.",
+      "5. Instant GeoJSON Caching & Viewport Spatial LOD: Converts raw KMZ archives into lightweight, pre-parsed GeoJSON caches loaded in under 50ms, with a Level-of-Detail (LOD) spatial filter for 60 FPS hardware-accelerated Canvas rendering.",
+      "6. National Grid & NESI Market Integration: Aggregates real-time national generation mix (Gas/Hydro/Solar), carbon intensity (gCO2/kWh), and NESI industry metrics (All-Time Peak Generation 5,801 MW, TCN Wheeling 6,000 MW, DisCo Tariffs, and ATCC Losses) via Electricity Maps and EnergyMRC APIs.",
+    ],
+    tech: [
+      "Python",
+      "Flask",
+      "Leaflet GIS",
+      "Esri Satellite Imagery",
+      "JavaScript (ES6+)",
+      "Multi-Threading",
+      "GeoJSON Caching",
+      "SCADA Simulation",
+      "Electricity Maps API",
+      "EnergyMRC / NERC",
+      "RESTful API",
+    ],
+    links: [
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/Poseidon", kind: "github" },
+    ],
+    files: [],
+    icon: Zap,
+  },
 ];
 
 export function getProjectById(id: string): StaticProject | undefined {
   return projects.find((p) => p.id === id);
 }
+
