@@ -95,9 +95,9 @@ const certificates: Certificate[] = [
     id: "CERT-NVIDIA-RAG",
     title: "NVIDIA RAG Certification",
     issuer: "NVIDIA",
-    year: "2024",
+    year: "2026",
     status: "completed",
-    files: [{ year: "2024 Certificate", filename: "NVIDIA RAG Certification.pdf" }],
+    files: [{ year: "2026 Certificate", filename: "NVIDIA RAG Certification.pdf" }],
     brand: "nvidia",
     description:
       "Certified by NVIDIA in Retrieval-Augmented Generation (RAG), covering embedding pipelines, vector databases, and production-grade LLM integration.",
