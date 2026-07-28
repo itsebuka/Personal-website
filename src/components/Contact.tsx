@@ -156,7 +156,7 @@ export default function Contact() {
               <Github className="w-4 h-4" />
             </a>
             <a
-              href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/"
+              href="https://www.linkedin.com/in/ebuka-eleogu-39a423306?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
@@ -165,7 +165,7 @@ export default function Contact() {
               <Linkedin className="w-4 h-4" />
             </a>
             <a
-              href="https://x.com/eleoguuu"
+              href="https://x.com/jociefer"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Twitter / X Profile"

@@ -124,12 +124,12 @@ export default function Home() {
             </a>
           </MagneticButton>
           <MagneticButton>
-            <a href="https://www.linkedin.com/in/chukwuebuka-eleogu-39a423306/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
+            <a href="https://www.linkedin.com/in/ebuka-eleogu-39a423306?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
               <Linkedin className="w-4 h-4" />
             </a>
           </MagneticButton>
           <MagneticButton>
-            <a href="https://x.com/eleoguuu" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
+            <a href="https://x.com/jociefer" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X Profile" className="p-2 rounded border border-[#222] text-zinc-600 hover:text-white hover:border-[#444] transition-all duration-200 block">
               <Twitter className="w-4 h-4" />
             </a>
           </MagneticButton>
