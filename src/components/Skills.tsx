@@ -6,7 +6,6 @@ import type { LucideIcon } from "lucide-react";
 
 interface Specialty {
   title: string;
-  tagline: string;
   badge?: string;
   description: string;
   tags: string[];
@@ -16,7 +15,6 @@ interface Specialty {
 const specialties: Specialty[] = [
   {
     title: "Hardware Design & CAD",
-    tagline: "Multilayer PCB | Fusion 360 Enclosures",
     description:
       "Designing high-performance multilayer PCBs in KiCad and modeling custom hardware enclosures in Fusion 360. I cover everything from schematic capture and component specification to 3D enclosure tolerancing and thermal management.",
     tags: ["KiCad", "Fusion 360", "Schematic Capture", "Multilayer Signal Integrity", "Enclosure Tolerances", "PCB Layout"],
@@ -24,7 +22,6 @@ const specialties: Specialty[] = [
   },
   {
     title: "Electrical Power Systems",
-    tagline: "Nigeria's Grid | Equipment Maintenance | GIS",
     description:
       "Comprehensive expertise across Nigeria's electricity value chain, power distribution equipment maintenance, high and low voltage systems, electrical safety codes and compliance, and Geographic Information Systems (GIS using QGIS and Google Earth Pro).",
     tags: [
@@ -39,7 +36,6 @@ const specialties: Specialty[] = [
   },
   {
     title: "Embedded Systems",
-    tagline: "STM32 | Arduino / ESP32 | C/C++ Firmware",
     badge: "Still Improving",
     description:
       "Developing low-latency sensor interfaces and firmware drivers for STM32, Arduino, and ESP32 platforms. Writing bare-metal C/C++ code, configuring hardware interrupts, timers, and peripheral communications (SPI, I2C, UART).",
@@ -48,7 +44,6 @@ const specialties: Specialty[] = [
   },
   {
     title: "Agentic AI Coding",
-    tagline: "AI Agent Workflows | Pair Programming | Code Automation",
     description:
       "Leveraging advanced AI coding agents and LLM developer tools to accelerate software engineering, automate complex refactoring, streamline full-stack web architectures, and build robust autonomous agent workflows.",
     tags: ["AI Coding Agents", "Agentic Workflows", "LLM Code Generation", "Prompt Engineering", "Full Stack Automation", "Developer Tooling"],
@@ -56,7 +51,6 @@ const specialties: Specialty[] = [
   },
   {
     title: "PCB Design & Prototyping",
-    tagline: "Schematic Capture | Impedance Matching | Board Layout",
     description:
       "End-to-end PCB design from schematic capture through to manufactured board. I integrate impedance-matched differential pairs, analogue and digital routing rules, BOM optimization, and Proteus/MATLAB simulations to produce clean hardware layouts.",
     tags: ["Impedance Matched Differential Pairs", "BOM Optimization & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
@@ -64,7 +58,6 @@ const specialties: Specialty[] = [
   },
   {
     title: "Front End Development",
-    tagline: "React / Next.js | TypeScript | UI Engineering",
     description:
       "Building fast, polished, and accessible web interfaces with React and Next.js. I work across the full front-end stack including component architecture, animation with Framer Motion, 3D scenes with Three.js, responsive layouts, and deployment pipelines.",
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "HTML & CSS"],
@@ -117,24 +110,19 @@ export default function Skills() {
                 key={item.title}
                 className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
               >
-                {/* Icon + Header */}
-                <div className="flex items-start justify-between gap-2">
+                {/* Icon + Title Header */}
+                <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="p-2 border border-[#2a2a2a] rounded bg-[#1a1a1a] shrink-0">
                       <IconComp className="w-5 h-5 text-zinc-300" />
                     </div>
-                    <div className="min-w-0">
-                      <p className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase leading-none mb-1 truncate">
-                        {item.tagline}
-                      </p>
-                      <h3 className="font-sans text-sm font-semibold text-white leading-snug">
-                        {item.title}
-                      </h3>
-                    </div>
+                    <h3 className="font-sans text-sm font-semibold text-white leading-snug truncate">
+                      {item.title}
+                    </h3>
                   </div>
 
                   {item.badge && (
-                    <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold shrink-0">
+                    <span className="font-sans text-[8px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold shrink-0">
                       <Clock className="w-2.5 h-2.5 text-purple-400" />
                       {item.badge}
                     </span>
@@ -151,7 +139,7 @@ export default function Skills() {
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-sans text-[10px] text-zinc-400 px-2 py-0.5 bg-[#1a1a1a] border border-[#2a2a2a] rounded hover:text-white hover:border-[#444444] transition-colors duration-150"
+                      className="font-sans text-[9px] text-zinc-400 px-2 py-0.5 bg-[#161616] border border-[#262626] rounded hover:text-white hover:border-[#444444] transition-colors duration-150"
                     >
                       {tag}
                     </span>
