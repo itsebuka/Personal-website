@@ -296,8 +296,8 @@ export default function Experience() {
                   {role.period}
                 </span>
                 {role.active && (
-                  <span className="flex items-center gap-1 font-sans text-[7.5px] uppercase tracking-wider text-purple-300/90 bg-purple-500/10 border border-purple-500/20 px-1.5 py-[1px] rounded-full font-normal">
-                    <span className="w-1 h-1 rounded-full bg-purple-400/90 animate-pulse" />
+                  <span className="flex items-center gap-1 font-sans text-[9px] uppercase tracking-wider text-purple-300/90 bg-purple-500/10 border border-purple-500/20 px-1.5 py-0.5 rounded-full font-normal transform scale-75 origin-right">
+                    <span className="w-1 h-1 rounded-full bg-purple-400 animate-pulse" />
                     Active
                   </span>
                 )}

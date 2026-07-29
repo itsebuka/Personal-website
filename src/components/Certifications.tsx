@@ -198,13 +198,13 @@ export default function Certifications() {
                 </div>
 
                 {cert.status === "coming-soon" ? (
-                  <span className="font-sans text-[7.5px] uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-300/90 px-1.5 py-[1px] rounded-full flex items-center gap-1 font-normal shrink-0">
-                    <Sparkles className="w-2 h-2 text-purple-400" />
+                  <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-300/90 px-1.5 py-0.5 rounded-full flex items-center gap-1 font-normal shrink-0 transform scale-75 origin-right">
+                    <Sparkles className="w-2.5 h-2.5 text-purple-400" />
                     Coming Soon!
                   </span>
                 ) : cert.status === "in-progress" ? (
-                  <span className="font-sans text-[7.5px] uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-300/90 px-1.5 py-[1px] rounded-full flex items-center gap-1 font-normal shrink-0">
-                    <Clock className="w-2 h-2 text-purple-400" />
+                  <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-300/90 px-1.5 py-0.5 rounded-full flex items-center gap-1 font-normal shrink-0 transform scale-75 origin-right">
+                    <Clock className="w-2.5 h-2.5 text-purple-400" />
                     In Progress
                   </span>
                 ) : (
