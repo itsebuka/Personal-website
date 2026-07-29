@@ -296,8 +296,8 @@ export default function Experience() {
                   {role.period}
                 </span>
                 {role.active && (
-                  <span className="flex items-center gap-1.5 font-sans text-[9px] text-zinc-400 uppercase tracking-wider">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 animate-pulse" />
+                  <span className="flex items-center gap-1.5 font-sans text-[9px] bg-purple-500/15 text-purple-300 font-semibold px-2.5 py-0.5 rounded-full border border-purple-500/40 uppercase tracking-wider">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
                     Active
                   </span>
                 )}
@@ -405,7 +405,7 @@ export default function Experience() {
                       {selectedRole.period}
                     </span>
                     {selectedRole.active && (
-                      <span className="font-sans text-[9px] uppercase tracking-wider bg-white/10 text-white px-2 py-0.5 rounded-full">
+                      <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 text-purple-300 font-semibold px-2.5 py-0.5 rounded-full border border-purple-500/40">
                         Active
                       </span>
                     )}
