@@ -1,12 +1,12 @@
 "use client";
 
-import { Cpu, Radio, BrainCircuit, CircuitBoard, Zap, Globe, Clock } from "lucide-react";
+import { Cpu, Radio, CircuitBoard, Zap, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
 interface Specialty {
   title: string;
-  badge?: string;
+  competence: number;
   description: string;
   tags: string[];
   icon: LucideIcon;
@@ -15,6 +15,7 @@ interface Specialty {
 const specialties: Specialty[] = [
   {
     title: "Hardware Design & CAD",
+    competence: 65,
     description:
       "Designing high-performance multilayer PCBs in KiCad and modeling custom hardware enclosures in Fusion 360. I cover everything from schematic capture and component specification to 3D enclosure tolerancing and thermal management.",
     tags: ["KiCad", "Fusion 360", "Schematic Capture", "Multilayer Signal Integrity", "Enclosure Tolerances", "PCB Layout"],
@@ -22,6 +23,7 @@ const specialties: Specialty[] = [
   },
   {
     title: "Electrical Power Systems",
+    competence: 59,
     description:
       "Comprehensive expertise across Nigeria's electricity value chain, power distribution equipment maintenance, high and low voltage systems, electrical safety codes and compliance, and Geographic Information Systems (GIS using QGIS and Google Earth Pro).",
     tags: [
@@ -36,31 +38,26 @@ const specialties: Specialty[] = [
   },
   {
     title: "Embedded Systems",
-    badge: "Still Improving",
+    competence: 55,
     description:
       "Developing low-latency sensor interfaces and firmware drivers for STM32, Arduino, and ESP32 platforms. Writing bare-metal C/C++ code, configuring hardware interrupts, timers, and peripheral communications (SPI, I2C, UART).",
     tags: ["STM32", "C / C++", "Arduino / ESP32", "Bare Metal Firmware", "I2C / SPI / UART", "Sensor Interfaces"],
     icon: CircuitBoard,
   },
   {
-    title: "Agentic AI Coding",
-    description:
-      "Leveraging advanced AI coding agents and LLM developer tools to accelerate software engineering, automate complex refactoring, streamline full-stack web architectures, and build robust autonomous agent workflows.",
-    tags: ["AI Coding Agents", "Agentic Workflows", "LLM Code Generation", "Prompt Engineering", "Full Stack Automation", "Developer Tooling"],
-    icon: BrainCircuit,
-  },
-  {
     title: "PCB Design & Prototyping",
+    competence: 70,
     description:
       "End-to-end PCB design from schematic capture through to manufactured board. I integrate impedance-matched differential pairs, analogue and digital routing rules, BOM optimization, and Proteus/MATLAB simulations to produce clean hardware layouts.",
     tags: ["Impedance Matched Differential Pairs", "BOM Optimization & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
     icon: Radio,
   },
   {
-    title: "Front End Development",
+    title: "Front End & Agentic AI Web Development",
+    competence: 85,
     description:
-      "Building fast, polished, and accessible web interfaces with React and Next.js. I work across the full front-end stack including component architecture, animation with Framer Motion, 3D scenes with Three.js, responsive layouts, and deployment pipelines.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "HTML & CSS"],
+      "Building fast, polished, and accessible web interfaces with React, Next.js, and TypeScript, supercharged by AI coding agents. I utilize agentic developer workflows to accelerate UI engineering, automate component architecture, and streamline web app deployment.",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "AI Coding Agents", "Agentic Workflows", "Prompt Engineering", "HTML & CSS"],
     icon: Globe,
   },
 ];
@@ -108,25 +105,32 @@ export default function Skills() {
               <motion.div
                 variants={itemVariants}
                 key={item.title}
-                className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
+                className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-3.5 hover:border-[#333333] transition-colors duration-200"
               >
                 {/* Icon + Title Header */}
-                <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="p-2 border border-[#2a2a2a] rounded bg-[#1a1a1a] shrink-0">
-                      <IconComp className="w-5 h-5 text-zinc-300" />
-                    </div>
-                    <h3 className="font-sans text-sm font-semibold text-white leading-snug truncate">
-                      {item.title}
-                    </h3>
+                <div className="flex items-center gap-3">
+                  <div className="p-2 border border-[#2a2a2a] rounded bg-[#1a1a1a] shrink-0">
+                    <IconComp className="w-5 h-5 text-zinc-300" />
                   </div>
+                  <h3 className="font-sans text-sm font-semibold text-white leading-snug">
+                    {item.title}
+                  </h3>
+                </div>
 
-                  {item.badge && (
-                    <span className="font-sans text-[9px] uppercase tracking-wider text-purple-300/90 bg-purple-500/10 border border-purple-500/20 px-1.5 py-0.5 rounded-full flex items-center gap-1 font-normal shrink-0 transform scale-75 origin-right">
-                      <span className="w-1 h-1 rounded-full bg-purple-400 animate-pulse" />
-                      {item.badge}
-                    </span>
-                  )}
+                {/* Thin Competence Progress Bar */}
+                <div className="flex flex-col gap-1 mt-0.5">
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-sans text-zinc-500 font-medium">Competence</span>
+                    <span className="font-mono text-purple-300 font-semibold">{item.competence}%</span>
+                  </div>
+                  <div className="w-full h-1 bg-[#1a1a1a] border border-[#262626] rounded-full overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${item.competence}%` }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="h-full bg-gradient-to-r from-purple-600 to-indigo-400 rounded-full"
+                    />
+                  </div>
                 </div>
 
                 {/* Description */}
@@ -135,7 +139,7 @@ export default function Skills() {
                 </p>
 
                 {/* Skill tag badges */}
-                <div className="flex flex-wrap gap-1.5 mt-auto">
+                <div className="flex flex-wrap gap-1.5 mt-auto pt-1">
                   {item.tags.map((tag) => (
                     <span
                       key={tag}
