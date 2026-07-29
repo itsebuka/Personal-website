@@ -17,8 +17,8 @@ const specialties: Specialty[] = [
     title: "Hardware Design & CAD",
     competence: 65,
     description:
-      "Designing high-performance multilayer PCBs in KiCad and modeling custom hardware enclosures in Fusion 360. I cover everything from schematic capture and component specification to 3D enclosure tolerancing and thermal management.",
-    tags: ["KiCad", "Fusion 360", "Schematic Capture", "Multilayer Signal Integrity", "Enclosure Tolerances", "PCB Layout"],
+      "Modeling custom hardware enclosures and mechanical components in Fusion 360, focusing on 3D enclosure tolerancing, component fitment, and thermal considerations.",
+    tags: ["Fusion 360", "3D CAD Modeling", "Enclosure Tolerances", "Component Fitment", "Thermal Considerations"],
     icon: Cpu,
   },
   {
@@ -33,8 +33,8 @@ const specialties: Specialty[] = [
     title: "PCB Design & Prototyping",
     competence: 70,
     description:
-      "End-to-end PCB design from schematic capture through to manufactured board. I integrate impedance-matched differential pairs, analogue and digital routing rules, BOM optimization, and Proteus/MATLAB simulations to produce clean hardware layouts.",
-    tags: ["Impedance Matched Differential Pairs", "BOM Optimization & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
+      "End-to-end PCB design in KiCad from schematic capture to manufacturable board layout, including analogue and digital routing rules, BOM optimization, and hardware component sourcing.",
+    tags: ["KiCad", "Schematic Capture", "PCB Layout", "BOM Optimization & Sourcing", "Multilayer Routing"],
     icon: Radio,
   },
   {
@@ -73,7 +73,7 @@ export default function Skills() {
             My Skills
           </h2>
           <p className="font-sans text-xs sm:text-sm text-zinc-400 mt-2.5 leading-relaxed font-normal">
-            As an Electrical &amp; Electronics Engineering undergraduate at Pan-Atlantic University, my academic foundation equips me with rigorous principles in circuit theory, power networks, and signal analysis. Beyond the core engineering curriculum, I have dedicated myself to mastering practical, hands-on technical disciplines — bridging hardware fabrication, embedded firmware, PCB layout, and agentic AI software development.
+            As an Electrical &amp; Electronics Engineering undergraduate at Pan-Atlantic University, my academic coursework provides a strong foundation in core engineering principles. Beyond the classroom, I have developed practical hands-on technical skills across 3D CAD modeling, embedded firmware development, PCB layout, and agentic AI software engineering.
           </p>
         </div>
 
