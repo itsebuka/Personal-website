@@ -1,12 +1,13 @@
 "use client";
 
-import { Cpu, Radio, BrainCircuit, CircuitBoard, Zap, Globe } from "lucide-react";
+import { Cpu, Radio, BrainCircuit, CircuitBoard, Zap, Globe, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
 interface Specialty {
   title: string;
   tagline: string;
+  badge?: string;
   description: string;
   tags: string[];
   icon: LucideIcon;
@@ -17,40 +18,48 @@ const specialties: Specialty[] = [
     title: "Hardware Design & CAD",
     tagline: "Multilayer PCB | Fusion 360 Enclosures",
     description:
-      "Designing high-performance multilayer PCBs in KiCad and modeling rugged hardware enclosures in Fusion 360. I cover everything from schematic capture and impedance matching to enclosure tolerancing, DFM rules, and thermal management.",
-    tags: ["KiCad", "Fusion 360", "Altium Designer", "Multilayer Signal Integrity", "Enclosure Tolerances", "DFM"],
+      "Designing high-performance multilayer PCBs in KiCad and modeling custom hardware enclosures in Fusion 360. I cover everything from schematic capture and component specification to 3D enclosure tolerancing and thermal management.",
+    tags: ["KiCad", "Fusion 360", "Schematic Capture", "Multilayer Signal Integrity", "Enclosure Tolerances", "PCB Layout"],
     icon: Cpu,
   },
   {
-    title: "Power Systems & Diagnostics",
-    tagline: "Smart Grid Telemetry | Fault Analysis",
+    title: "Electrical Power Systems",
+    tagline: "Nigeria's Grid | Equipment Maintenance | GIS",
     description:
-      "Smart grid telemetry, power meter QA, network diagnostics, and fault analysis. I perform power quality assessments, field testing, and safety compliance checks across electrical infrastructure.",
-    tags: ["Power Systems", "Fault Analysis", "Power Quality Assessment", "Network Troubleshooting", "Field Testing", "Safety Compliance"],
+      "Comprehensive expertise across Nigeria's electricity value chain, power distribution equipment maintenance, high and low voltage systems, electrical safety codes and compliance, and Geographic Information Systems (GIS using QGIS and Google Earth Pro).",
+    tags: [
+      "Nigeria Electricity Value Chain",
+      "Equipment Maintenance",
+      "High & Low Voltage Systems",
+      "Electrical Safety & Compliance",
+      "GIS (QGIS & Google Earth Pro)",
+      "Grid Infrastructure",
+    ],
     icon: Zap,
   },
   {
-    title: "Embedded Code & Microcontrollers",
-    tagline: "C/C++ | Low-Latency Firmware | Sensor Interfaces",
+    title: "Embedded Systems",
+    tagline: "STM32 | Arduino / ESP32 | C/C++ Firmware",
+    badge: "Still Improving",
     description:
-      "Programming low-latency sensor interfaces and hardware drivers (SPI, I2C, UART) for Arduino and ESP32 platforms. I write bare-metal firmware, configure hardware interrupts and timers, and optimise for low-power sleep modes.",
-    tags: ["C++", "Python", "Arduino / ESP32", "Bare Metal Firmware", "I2C / SPI / UART", "Soldering & Breadboarding"],
+      "Developing low-latency sensor interfaces and firmware drivers for STM32, Arduino, and ESP32 platforms. Writing bare-metal C/C++ code, configuring hardware interrupts, timers, and peripheral communications (SPI, I2C, UART).",
+    tags: ["STM32", "C / C++", "Arduino / ESP32", "Bare Metal Firmware", "I2C / SPI / UART", "Sensor Interfaces"],
     icon: CircuitBoard,
   },
   {
-    title: "Agentic RAG & LLM Engineering",
-    tagline: "Predictive Models | Signal Processing | AI Agents",
+    title: "Agentic AI Coding",
+    tagline: "AI Agent Workflows | Pair Programming | Code Automation",
     description:
-      "Building agentic pipelines with Retrieval-Augmented Generation, fine-tuning and prompting large language models, and developing machine-learning predictive models for signal processing and smart-grid stability forecasting.",
-    tags: ["Machine Learning", "RAG Pipelines", "LLM Engineering", "Data Analytics (Python)", "Signal Processing", "OpenCV", "Predictive Modeling"],
+      "Leveraging advanced AI coding agents and LLM developer tools to accelerate software engineering, automate complex refactoring, streamline full-stack web architectures, and build robust autonomous agent workflows.",
+    tags: ["AI Coding Agents", "Agentic Workflows", "LLM Code Generation", "Prompt Engineering", "Full Stack Automation", "Developer Tooling"],
     icon: BrainCircuit,
   },
   {
     title: "PCB Design & Prototyping",
-    tagline: "Schematic Capture | Impedance Matching | DFM",
+    tagline: "Schematic Capture | Impedance Matching | Board Layout",
     description:
-      "End-to-end PCB design from schematic capture through to manufactured board. I integrate impedance-matched differential pairs, analogue/digital routing rules, BOM optimisation, and strict Design-For-Manufacture requirements to produce clean, manufacturable layouts.",
-    tags: ["Impedance Matched Differential Pairs", "BOM Optimisation & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
+      "End-to-end PCB design from schematic capture through to manufactured board. I integrate impedance-matched differential pairs, analogue and digital routing rules, BOM optimization, and Proteus/MATLAB simulations to produce clean hardware layouts.",
+    tags: ["Impedance Matched Differential Pairs", "BOM Optimization & Sourcing", "Multilayer Signal Integrity", "Proteus Simulation", "MATLAB & Simulink"],
     icon: Radio,
   },
   {
@@ -109,18 +118,27 @@ export default function Skills() {
                 className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-3 hover:border-[#333333] transition-colors duration-200"
               >
                 {/* Icon + Header */}
-                <div className="flex items-center gap-3">
-                  <div className="p-2 border border-[#2a2a2a] rounded bg-[#1a1a1a] shrink-0">
-                    <IconComp className="w-5 h-5 text-zinc-300" />
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="p-2 border border-[#2a2a2a] rounded bg-[#1a1a1a] shrink-0">
+                      <IconComp className="w-5 h-5 text-zinc-300" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase leading-none mb-1 truncate">
+                        {item.tagline}
+                      </p>
+                      <h3 className="font-sans text-sm font-semibold text-white leading-snug">
+                        {item.title}
+                      </h3>
+                    </div>
                   </div>
-                  <div className="min-w-0">
-                    <p className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase leading-none mb-1 truncate">
-                      {item.tagline}
-                    </p>
-                    <h3 className="font-sans text-sm font-semibold text-white leading-snug">
-                      {item.title}
-                    </h3>
-                  </div>
+
+                  {item.badge && (
+                    <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2 py-0.5 rounded-full flex items-center gap-1 font-semibold shrink-0">
+                      <Clock className="w-2.5 h-2.5 text-purple-400" />
+                      {item.badge}
+                    </span>
+                  )}
                 </div>
 
                 {/* Description */}
