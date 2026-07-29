@@ -48,7 +48,7 @@ export const projects: StaticProject[] = [
     ],
     tech: ["Arduino", "Servo Motors", "Mechanical Design", "Machining & Drilling", "Hardware Prototyping", "Embedded Wiring"],
     links: [
-      { label: "SIWES Hardware Project", url: "https://github.com/itsebuka", kind: "github" },
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/3-DOF-Robotic-Arm", kind: "github" },
     ],
     files: [],
     videos: [
