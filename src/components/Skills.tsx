@@ -1,6 +1,6 @@
 "use client";
 
-import { Cpu, Radio, CircuitBoard, Zap, Globe } from "lucide-react";
+import { Cpu, Radio, CircuitBoard, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
@@ -22,21 +22,6 @@ const specialties: Specialty[] = [
     icon: Cpu,
   },
   {
-    title: "Electrical Power Systems",
-    competence: 59,
-    description:
-      "Comprehensive expertise across Nigeria's electricity value chain, power distribution equipment maintenance, high and low voltage systems, electrical safety codes and compliance, and Geographic Information Systems (GIS using QGIS and Google Earth Pro).",
-    tags: [
-      "Nigeria Electricity Value Chain",
-      "Equipment Maintenance",
-      "High & Low Voltage Systems",
-      "Electrical Safety & Compliance",
-      "GIS (QGIS & Google Earth Pro)",
-      "Grid Infrastructure",
-    ],
-    icon: Zap,
-  },
-  {
     title: "Embedded Systems",
     competence: 55,
     description:
@@ -53,11 +38,11 @@ const specialties: Specialty[] = [
     icon: Radio,
   },
   {
-    title: "Front End & Agentic AI Web Development",
+    title: "Agentic AI Coding",
     competence: 85,
     description:
-      "Building fast, polished, and accessible web interfaces with React, Next.js, and TypeScript, supercharged by AI coding agents. I utilize agentic developer workflows to accelerate UI engineering, automate component architecture, and streamline web app deployment.",
-    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "AI Coding Agents", "Agentic Workflows", "Prompt Engineering", "HTML & CSS"],
+      "Building modern web applications using React, Next.js, and TypeScript, supercharged by AI coding agents. I utilize agentic developer workflows to accelerate UI engineering, automate component architecture, and streamline full-stack web builds.",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "AI Coding Agents", "Agentic Workflows", "Prompt Engineering", "HTML & CSS"],
     icon: Globe,
   },
 ];
@@ -81,23 +66,23 @@ export default function Skills() {
       id="skills"
       className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
-      <div className="w-full max-w-5xl">
-        {/* Section heading */}
-        <div className="text-center mb-6 sm:mb-7">
+      <div className="w-full max-w-4xl">
+        {/* Section Heading & Introductory Essay */}
+        <div className="text-center max-w-2xl mx-auto mb-7 sm:mb-8">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             My Skills
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-zinc-500 mt-1.5">
-            The disciplines I design, build, and think in.
+          <p className="font-sans text-xs sm:text-sm text-zinc-400 mt-2.5 leading-relaxed font-normal">
+            As an Electrical &amp; Electronics Engineering undergraduate at Pan-Atlantic University, my academic foundation equips me with rigorous principles in circuit theory, power networks, and signal analysis. Beyond the core engineering curriculum, I have dedicated myself to mastering practical, hands-on technical disciplines — bridging hardware fabrication, embedded firmware, PCB layout, and agentic AI software development.
           </p>
         </div>
 
-        {/* Card Grid */}
+        {/* 4-Card 2x2 Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5"
         >
           {specialties.map((item) => {
             const IconComp = item.icon;
