@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download, ExternalLink, X, FileText, Layers, Clock, Sparkles } from "lucide-react";
+import { Download, ExternalLink, X, FileText, Layers, Clock, Sparkles, Award } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CertificateFile {
@@ -136,7 +136,7 @@ const certificates: Certificate[] = [
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12 } },
+  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
 
 const itemVariants = {
@@ -166,7 +166,7 @@ export default function Certifications() {
       id="certifications"
       className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
     >
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-5xl">
         {/* Section heading */}
         <div className="text-center mb-6 sm:mb-7">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
@@ -177,81 +177,79 @@ export default function Certifications() {
           </p>
         </div>
 
-        {/* Certificate list */}
+        {/* 3-Column Card Grid (Matching Skills & Achievements Layout) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="flex flex-col gap-3.5 sm:gap-4"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {certificates.map((cert) => (
             <motion.div
               key={cert.id}
               variants={itemVariants}
               onClick={() => setSelectedCert(cert)}
-              className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row items-start gap-4 sm:gap-5 hover:border-[#444444] transition-colors duration-200 cursor-pointer group"
+              className="bg-[#111111] border border-[#222222] rounded-lg p-4 sm:p-5 flex flex-col gap-3.5 hover:border-[#444444] transition-colors duration-200 cursor-pointer group hover:bg-[#141414]"
             >
-              {/* Brand Logo Icon */}
-              <div className="shrink-0 p-2.5 sm:p-3 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a] group-hover:border-[#444444] transition-colors flex items-center justify-center">
-                {renderLogo(cert.brand)}
-              </div>
+              {/* Card top row: Brand Logo + Status badge */}
+              <div className="flex items-center justify-between">
+                <div className="p-2 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a] group-hover:border-[#444444] transition-colors flex items-center justify-center shrink-0">
+                  {renderLogo(cert.brand)}
+                </div>
 
-              {/* Content */}
-              <div className="flex flex-col gap-1.5 flex-1 min-w-0 w-full">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="font-sans text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">
-                        {cert.title}
-                      </h3>
-                      {cert.status === "coming-soon" && (
-                        <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shrink-0 shadow-sm">
-                          <Sparkles className="w-2.5 h-2.5 text-purple-400" />
-                          Coming Soon!
-                        </span>
-                      )}
-                      {cert.status === "in-progress" && (
-                        <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium shrink-0">
-                          <Clock className="w-2.5 h-2.5" />
-                          In Progress
-                        </span>
-                      )}
-                    </div>
-                    <p className="font-sans text-xs text-zinc-500 mt-0.5">
-                      {cert.issuer} · {cert.year}
-                    </p>
-                  </div>
-                  <span className="font-sans text-[9px] text-zinc-600 tracking-widest uppercase shrink-0">
+                {cert.status === "coming-soon" ? (
+                  <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shadow-sm">
+                    <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+                    Coming Soon!
+                  </span>
+                ) : cert.status === "in-progress" ? (
+                  <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium shrink-0">
+                    <Clock className="w-2.5 h-2.5" />
+                    In Progress
+                  </span>
+                ) : (
+                  <span className="font-sans text-[9px] text-zinc-600 tracking-widest uppercase font-mono">
                     {cert.id}
                   </span>
-                </div>
+                )}
+              </div>
 
-                <p className="font-sans text-xs text-zinc-400 leading-relaxed">
-                  {cert.description}
+              {/* Title & Issuer */}
+              <div>
+                <h3 className="font-sans text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">
+                  {cert.title}
+                </h3>
+                <p className="font-sans text-xs text-zinc-500 mt-0.5">
+                  {cert.issuer} · {cert.year}
                 </p>
+              </div>
 
-                {/* Footer action link */}
-                <div className="flex flex-wrap items-center justify-between gap-2 mt-2 pt-3 border-t border-[#1e1e1e]">
-                  <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-400 group-hover:text-white transition-colors">
-                    <FileText className="w-3.5 h-3.5" />
-                    View Certificate Details
-                  </span>
-                  <span className="flex items-center gap-1 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                    {cert.status === "coming-soon" ? (
-                      <span className="text-purple-300 font-semibold flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-purple-400" />
-                        Incoming Certification
-                      </span>
-                    ) : cert.status === "in-progress" ? (
-                      <span className="text-[#c073f8]">Coursework Active</span>
-                    ) : (
-                      <>
-                        <Layers className="w-3.5 h-3.5" />
-                        {cert.files.length === 1 ? "1 Document" : `${cert.files.length} Documents (2023–2025)`}
-                      </>
-                    )}
-                  </span>
-                </div>
+              {/* Description */}
+              <p className="font-sans text-xs text-zinc-400 leading-relaxed flex-1 line-clamp-3">
+                {cert.description}
+              </p>
+
+              {/* Card Footer action row */}
+              <div className="flex items-center justify-between pt-3 border-t border-[#1e1e1e] mt-auto">
+                <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-400 group-hover:text-white transition-colors">
+                  <FileText className="w-3.5 h-3.5" />
+                  View Details
+                </span>
+                <span className="flex items-center gap-1 font-sans text-[10px] text-zinc-500 group-hover:text-zinc-300 transition-colors">
+                  {cert.status === "coming-soon" ? (
+                    <span className="text-purple-300 font-semibold flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-purple-400" />
+                      Incoming
+                    </span>
+                  ) : cert.status === "in-progress" ? (
+                    <span className="text-[#c073f8]">Active Course</span>
+                  ) : (
+                    <>
+                      <Layers className="w-3 h-3" />
+                      {cert.files.length === 1 ? "1 Document" : `${cert.files.length} Docs`}
+                    </>
+                  )}
+                </span>
               </div>
             </motion.div>
           ))}
