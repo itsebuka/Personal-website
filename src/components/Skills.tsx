@@ -122,7 +122,7 @@ export default function Skills() {
                   </div>
 
                   {item.badge && (
-                    <span className="font-sans text-[7.5px] uppercase tracking-wider text-purple-300/80 bg-purple-500/10 border border-purple-500/20 px-1.5 py-0.5 rounded-full flex items-center gap-1 font-normal shrink-0">
+                    <span className="font-sans text-[7px] uppercase tracking-wider text-purple-300/80 bg-purple-500/10 border border-purple-500/20 px-1.5 py-[1px] rounded-full flex items-center gap-1 font-normal shrink-0">
                       <span className="w-1 h-1 rounded-full bg-purple-400/80 animate-pulse" />
                       {item.badge}
                     </span>

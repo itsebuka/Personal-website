@@ -198,13 +198,13 @@ export default function Certifications() {
                 </div>
 
                 {cert.status === "coming-soon" ? (
-                  <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shadow-sm">
-                    <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+                  <span className="font-sans text-[7.5px] uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-300/90 px-1.5 py-[1px] rounded-full flex items-center gap-1 font-normal shrink-0">
+                    <Sparkles className="w-2 h-2 text-purple-400" />
                     Coming Soon!
                   </span>
                 ) : cert.status === "in-progress" ? (
-                  <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium shrink-0">
-                    <Clock className="w-2.5 h-2.5" />
+                  <span className="font-sans text-[7.5px] uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-300/90 px-1.5 py-[1px] rounded-full flex items-center gap-1 font-normal shrink-0">
+                    <Clock className="w-2 h-2 text-purple-400" />
                     In Progress
                   </span>
                 ) : (
@@ -237,12 +237,12 @@ export default function Certifications() {
                 </span>
                 <span className="flex items-center gap-1 font-sans text-[10px] text-zinc-500 group-hover:text-zinc-300 transition-colors">
                   {cert.status === "coming-soon" ? (
-                    <span className="text-purple-300 font-semibold flex items-center gap-1">
-                      <Sparkles className="w-3 h-3 text-purple-400" />
+                    <span className="text-purple-300/80 font-normal text-[9px] flex items-center gap-1">
+                      <Sparkles className="w-2.5 h-2.5 text-purple-400" />
                       Incoming
                     </span>
                   ) : cert.status === "in-progress" ? (
-                    <span className="text-[#c073f8]">Active Course</span>
+                    <span className="text-purple-300/80 font-normal text-[9px]">Active Course</span>
                   ) : (
                     <>
                       <Layers className="w-3 h-3" />

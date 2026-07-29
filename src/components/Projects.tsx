@@ -89,8 +89,8 @@ export default function Projects() {
 
                   {/* Badges */}
                   {project.badge && (
-                    <span className="absolute top-3 right-3 font-sans text-[9px] bg-purple-500/15 text-purple-300 font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1 border border-purple-500/40 shadow-sm">
-                      <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+                    <span className="absolute top-3 right-3 font-sans text-[7.5px] uppercase tracking-wider bg-purple-500/10 text-purple-300/90 font-normal px-1.5 py-[1px] rounded-full flex items-center gap-1 border border-purple-500/20">
+                      <Sparkles className="w-2 h-2 text-purple-400" />
                       {project.badge}
                     </span>
                   )}
@@ -195,7 +195,7 @@ export default function Projects() {
                         {selectedProject.tagline}
                       </span>
                       {selectedProject.badge && (
-                        <span className="font-sans text-[9px] bg-purple-500/15 text-purple-300 font-semibold px-2.5 py-0.5 rounded-full border border-purple-500/40">
+                        <span className="font-sans text-[7.5px] uppercase tracking-wider bg-purple-500/10 text-purple-300/90 font-normal px-1.5 py-[1px] rounded-full border border-purple-500/20">
                           {selectedProject.badge}
                         </span>
                       )}
