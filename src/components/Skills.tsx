@@ -25,8 +25,8 @@ const specialties: Specialty[] = [
     title: "Embedded Systems",
     competence: 55,
     description:
-      "Developing low-latency sensor interfaces and firmware drivers for STM32, Arduino, and ESP32 platforms. Writing bare-metal C/C++ code, configuring hardware interrupts, timers, and peripheral communications (SPI, I2C, UART).",
-    tags: ["STM32", "C / C++", "Arduino / ESP32", "Bare Metal Firmware", "I2C / SPI / UART", "Sensor Interfaces"],
+      "Developing low-latency sensor interfaces and firmware drivers for STM32 and ESP32 microcontrollers. Writing bare-metal C/C++ code, configuring hardware interrupts, timers, and peripheral communications (SPI, I2C, UART).",
+    tags: ["STM32", "C / C++", "ESP32", "Bare Metal Firmware", "I2C / SPI / UART", "Sensor Interfaces"],
     icon: CircuitBoard,
   },
   {
