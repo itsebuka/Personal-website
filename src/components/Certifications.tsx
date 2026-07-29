@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Download, ExternalLink, X, FileText, Layers, Clock } from "lucide-react";
+import { Download, ExternalLink, X, FileText, Layers, Clock, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface CertificateFile {
@@ -14,7 +14,7 @@ interface Certificate {
   title: string;
   issuer: string;
   year: string;
-  status: "completed" | "in-progress";
+  status: "completed" | "in-progress" | "coming-soon";
   files: CertificateFile[];
   description: string;
   brand: "pau" | "autodesk" | "nvidia" | "udemy";
@@ -48,18 +48,15 @@ function AutodeskLogo({ className = "w-6 h-6" }: { className?: string }) {
 function NvidiaLogo({ className = "w-5 h-5" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12.784 7.64c.264.084.512.196.744.336 1.704-1.576 4.312-1.744 5.92-.128 1.6 1.608 1.48 4.24-.136 5.864a4.192 4.192 0 01-1.704.976c-.08-.344-.224-.672-.416-.968.424-.168.808-.432 1.112-.768.96-.96.944-2.528-.04-3.512-.976-.984-2.544-.992-3.528-.032a2.534 2.534 0 00-.736 1.256 5.94 5.94 0 00-1.216-3.024zM8.328 4.608c3.272-1.256 6.96-.6 9.536 1.976 2.456 2.456 3.12 6.072 1.952 9.2a8.704 8.704 0 01-2.928 3.968 1.9 1.9 0 01-.136.096c-.344-.664-.784-1.28-1.312-1.808a6.36 6.36 0 002.328-2.608c.84-1.896.536-4.144-.888-5.568-1.448-1.448-3.728-1.736-5.64-0.856.328.616.536 1.28.624 1.968 1.104-.4 2.336-.184 3.24.664.912.912.96 2.368.168 3.328-.8.952-2.256 1.096-3.216.32a3.784 3.784 0 01-.848-1.128c-.28-.008-.56-.048-.832-.12-.04.472.016.952.16 1.408.432 1.36 1.368 2.456 2.664 3.024-1.144.152-2.312-.048-3.328-.616-1.576-.88-2.648-2.4-2.952-4.168.04-.496.168-.984.376-1.44.824-1.816 2.504-3.088 4.456-3.416a9.584 9.584 0 00-3.648.752c-2.328.968-3.928 3.088-4.12 5.568-.008.08-.016.16-.016.24 0 3.32 2.336 6.16 5.544 6.776.432.08.872.12 1.312.12 2.76 0 5.304-1.296 6.896-3.496.16-.224.312-.456.448-.696.64.64 1.168 1.384 1.56 2.2a10.96 10.96 0 01-8.904 4.384c-1.888 0-3.728-.488-5.344-1.408C2.536 17.52.928 14.12 1.016 10.4c.088-3.72 1.888-7.064 4.88-9.088C7.592.176 9.424 0 11.232 0c2.512 0 4.96.864 6.944 2.456l-1.448 1.448C15.2 2.72 13.256 2.064 11.232 2.064c-3.704 0-7.08 2.12-8.688 5.432C1.488 9.904 1.768 13.04 3.264 15.6c1.072 1.832 2.72 3.192 4.672 3.88-1.992-.816-3.48-2.52-3.944-4.608-.432-1.944.08-3.968 1.384-5.464 1.36-1.56 3.408-2.4 5.488-2.224.184.016.368.04.544.072a7.712 7.712 0 01-3.08 2.352z" />
+      <path d="M12.0003 3C7.02975 3 3.00029 7.02946 3.00029 12C3.00029 16.9705 7.02975 21 12.0003 21C16.9708 21 21.0003 16.9705 21.0003 12C21.0003 7.02946 16.9708 3 12.0003 3ZM9.85197 16.2755C7.7558 15.6888 6.27137 13.7915 6.27137 11.5303C6.27137 8.87786 8.42398 6.72525 11.0764 6.72525C13.2084 6.72525 15.0211 8.11899 15.6599 10.0435C14.7397 9.54924 13.6841 9.27092 12.5645 9.27092C10.2227 9.27092 8.32439 11.1692 8.32439 13.5111C8.32439 14.6186 8.74955 15.6269 9.44474 16.3807L9.85197 16.2755Z" />
     </svg>
   );
 }
 
 function UdemyLogo({ className = "w-6 h-6" }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="5" y="5" width="90" height="90" rx="18" fill="#FFFFFF" />
-      <path d="M50 16 L72 28 L64 32 L50 24 L36 32 L28 28 Z" fill="#A435F0" />
-      <path d="M38 36 H48 V55 C48 57.5 52 57.5 52 55 V36 H62 V56 C62 64 38 64 38 56 V36 Z" fill="#1C1D1F" />
-      <text x="50" y="80" textAnchor="middle" fill="#1C1D1F" fontFamily="system-ui, sans-serif" fontWeight="800" fontSize="15">udemy</text>
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2L1 8l11 6 9-4.91V17h2V8L12 2zm0 8.47L4.23 7 12 2.77 19.77 7 12 10.47zM3 10.75v5.75L12 22l9-5.5v-5.75l-9 4.91-9-4.91z" />
     </svg>
   );
 }
@@ -101,6 +98,17 @@ const certificates: Certificate[] = [
     brand: "nvidia",
     description:
       "Certified by NVIDIA in Retrieval-Augmented Generation (RAG), covering embedding pipelines, vector databases, and production-grade LLM integration.",
+  },
+  {
+    id: "CERT-NVIDIA-DL",
+    title: "Fundamentals of Deep Learning",
+    issuer: "NVIDIA",
+    year: "2026",
+    status: "coming-soon",
+    files: [],
+    brand: "nvidia",
+    description:
+      "Certified coursework by NVIDIA in deep learning fundamentals, neural network architecture design, Computer Vision, Natural Language Processing, and GPU model optimization.",
   },
   {
     id: "CERT-UDEMY-PCB",
@@ -149,7 +157,7 @@ export default function Certifications() {
         return <UdemyLogo className="w-6 h-6" />;
       case "pau":
       default:
-        return <BridgiaLogo className="h-6 w-auto" />;
+        return <BridgiaLogo className="w-16 h-6" />;
     }
   };
 
@@ -160,7 +168,7 @@ export default function Certifications() {
     >
       <div className="w-full max-w-4xl">
         {/* Section heading */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div className="text-center mb-6 sm:mb-7">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Certifications
           </h2>
@@ -196,6 +204,12 @@ export default function Certifications() {
                       <h3 className="font-sans text-sm font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">
                         {cert.title}
                       </h3>
+                      {cert.status === "coming-soon" && (
+                        <span className="font-sans text-[9px] uppercase tracking-wider bg-purple-500/15 border border-purple-500/40 text-purple-300 px-2.5 py-0.5 rounded-full flex items-center gap-1 font-semibold shrink-0 shadow-sm">
+                          <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+                          Coming Soon!
+                        </span>
+                      )}
                       {cert.status === "in-progress" && (
                         <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full flex items-center gap-1 font-medium shrink-0">
                           <Clock className="w-2.5 h-2.5" />
@@ -223,7 +237,12 @@ export default function Certifications() {
                     View Certificate Details
                   </span>
                   <span className="flex items-center gap-1 font-sans text-xs text-zinc-500 group-hover:text-zinc-300 transition-colors">
-                    {cert.status === "in-progress" ? (
+                    {cert.status === "coming-soon" ? (
+                      <span className="text-purple-300 font-semibold flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-purple-400" />
+                        Incoming Certification
+                      </span>
+                    ) : cert.status === "in-progress" ? (
                       <span className="text-[#c073f8]">Coursework Active</span>
                     ) : (
                       <>
@@ -239,17 +258,17 @@ export default function Certifications() {
         </motion.div>
       </div>
 
-      {/* Certificate Modal */}
+      {/* Detail Modal */}
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-[#111111] border border-[#333333] rounded-xl max-w-lg w-full p-5 sm:p-6 relative flex flex-col gap-5 shadow-2xl my-auto"
+              className="bg-[#111111] border border-[#333333] rounded-xl w-full max-w-lg p-5 sm:p-6 relative flex flex-col gap-4 shadow-2xl"
             >
-              {/* Close button */}
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedCert(null)}
                 className="absolute top-4 right-4 text-zinc-500 hover:text-white p-1 rounded-lg transition-colors"
@@ -258,34 +277,29 @@ export default function Certifications() {
               </button>
 
               {/* Header */}
-              <div className="flex items-center gap-4 border-b border-[#222222] pb-4">
+              <div className="flex items-start gap-4 pr-8 border-b border-[#222222] pb-4">
                 <div className="p-3 border border-[#2a2a2a] rounded-lg bg-[#1a1a1a] shrink-0">
                   {renderLogo(selectedCert.brand)}
                 </div>
-                <div className="min-w-0 pr-6">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="font-sans text-[9px] text-zinc-500 uppercase tracking-widest truncate">
-                      {selectedCert.id}
-                    </span>
-                    {selectedCert.status === "in-progress" && (
-                      <span className="font-sans text-[9px] uppercase tracking-wider bg-[#a435f0]/15 border border-[#a435f0]/40 text-[#c073f8] px-2 py-0.5 rounded-full shrink-0">
-                        In Progress
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-sans text-sm sm:text-base font-bold text-white leading-snug">
+                <div className="min-w-0">
+                  <span className="font-sans text-[10px] text-zinc-500 uppercase tracking-widest block mb-0.5">
+                    {selectedCert.id}
+                  </span>
+                  <h3 className="font-sans text-base font-bold text-white leading-snug">
                     {selectedCert.title}
                   </h3>
-                  <p className="font-sans text-xs text-zinc-400">
+                  <p className="font-sans text-xs text-zinc-400 mt-0.5">
                     {selectedCert.issuer} · {selectedCert.year}
                   </p>
                 </div>
               </div>
 
-              {/* Body */}
-              <div className="flex flex-col gap-2">
-                <h4 className="font-sans text-xs uppercase tracking-wider text-zinc-500">Overview</h4>
-                <p className="font-sans text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              {/* Description */}
+              <div className="flex flex-col gap-1.5">
+                <h4 className="font-sans text-xs uppercase tracking-wider text-zinc-500">
+                  Qualification Overview
+                </h4>
+                <p className="font-sans text-xs text-zinc-300 leading-relaxed">
                   {selectedCert.description}
                 </p>
               </div>
@@ -293,9 +307,23 @@ export default function Certifications() {
               {/* Actions List */}
               <div className="flex flex-col gap-2.5 pt-2 border-t border-[#222222]">
                 <h4 className="font-sans text-xs uppercase tracking-wider text-zinc-500 mb-1">
-                  {selectedCert.status === "in-progress" ? "Certification Status" : `Attached Documents (${selectedCert.files.length})`}
+                  {selectedCert.status === "coming-soon"
+                    ? "Incoming Certification Status"
+                    : selectedCert.status === "in-progress"
+                    ? "Certification Status"
+                    : `Attached Documents (${selectedCert.files.length})`}
                 </h4>
-                {selectedCert.status === "in-progress" ? (
+                {selectedCert.status === "coming-soon" ? (
+                  <div className="p-3.5 bg-[#181818] border border-purple-500/30 rounded-lg flex flex-col gap-2">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-purple-300">
+                      <Sparkles className="w-4 h-4 text-purple-400" />
+                      Scheduled for Completion (2026)
+                    </div>
+                    <p className="font-sans text-xs text-zinc-400 leading-relaxed">
+                      NVIDIA Deep Learning certification is scheduled for completion in 2026. Verified credential PDF will be published upon course completion.
+                    </p>
+                  </div>
+                ) : selectedCert.status === "in-progress" ? (
                   <div className="p-3.5 bg-[#181818] border border-[#2a2a2a] rounded-lg flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-xs font-semibold text-[#c073f8]">
                       <Clock className="w-4 h-4" />
