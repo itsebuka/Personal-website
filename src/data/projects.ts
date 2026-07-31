@@ -107,7 +107,7 @@ export const projects: StaticProject[] = [
     ],
     tech: ["Fusion 360", "3D CAD Modeling", "Enclosure Design", "Mechanical Assembly", "STL / STEP Exports", "Hardware Prototyping"],
     links: [
-      { label: "GitHub Repository", url: "https://github.com/itsebuka/3D-CAD-Hardware-Archive", kind: "github" },
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/Hardware-design-portfolio", kind: "github" },
     ],
     files: [],
     icon: Layers,
