@@ -1,4 +1,4 @@
-import { Cpu, Database, Network, Stethoscope, Zap } from "lucide-react";
+import { Cpu, Database, Network, Stethoscope, Zap, Layers } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export interface ProjectFile {
@@ -94,6 +94,23 @@ export const projects: StaticProject[] = [
       },
     ],
     icon: Cpu,
+  },
+  {
+    id: "hardware-archive",
+    title: "Hardware Archive",
+    tagline: "Fusion 360 & 3D CAD Design Repository",
+    description: "Central hardware repository stashing custom 3D mechanical designs, component enclosures, physical prototype models, and CAD assemblies created in Autodesk Fusion 360.",
+    summary: [
+      "The Hardware Archive is a dedicated central repository created to document, stash, and share all my 3D CAD mechanical models, physical component enclosures, and prototype assemblies.",
+      "The archive includes Fusion 360 project files (.f3d, .step, .stl) covering mechanical frames, sensor mounting brackets, enclosure tolerancing tests, and custom hardware housings designed for physical fabrication and 3D printing.",
+      "Click the repository link below to explore the full 3D CAD design collection on GitHub."
+    ],
+    tech: ["Fusion 360", "3D CAD Modeling", "Enclosure Design", "Mechanical Assembly", "STL / STEP Exports", "Hardware Prototyping"],
+    links: [
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/3D-CAD-Hardware-Archive", kind: "github" },
+    ],
+    files: [],
+    icon: Layers,
   },
   {
     id: "voltage-comparator",
@@ -212,4 +229,3 @@ export const projects: StaticProject[] = [
 export function getProjectById(id: string): StaticProject | undefined {
   return projects.find((p) => p.id === id);
 }
-
