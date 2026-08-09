@@ -104,11 +104,11 @@ const certificates: Certificate[] = [
     title: "Fundamentals of Deep Learning",
     issuer: "NVIDIA",
     year: "2026",
-    status: "coming-soon",
-    files: [],
+    status: "completed",
+    files: [{ year: "2026 Certificate", filename: "NVIDIA Deep Learning Certificate.pdf" }],
     brand: "nvidia",
     description:
-      "Certified coursework by NVIDIA in deep learning fundamentals, neural network architecture design, Computer Vision, Natural Language Processing, and GPU model optimization.",
+      "Certified by NVIDIA in Fundamentals of Deep Learning (Certification ID: fGlm5MqzSgmxBBPSECveLw). Covered neural network architecture design, Computer Vision, Natural Language Processing, and GPU model optimization.",
   },
   {
     id: "CERT-UDEMY-PCB",
