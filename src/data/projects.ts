@@ -118,11 +118,13 @@ export const projects: StaticProject[] = [
     tagline: "Hand-Designed Printed Circuit Board Repository",
     description: "Central hardware repository stashing custom printed circuit boards designed by hand. Spans schematic capture, component footprint creation, trace routing, and board layout across KiCad and EasyEDA.",
     summary: [
-      "PCB Design Core is a dedicated central repository housing every custom printed circuit board (PCB) I have ever designed by hand.",
-      "The repository covers projects spanning schematic capture, custom footprint creation, analogue and digital trace routing, power distribution planes, and board layout optimization created across KiCad and EasyEDA.",
-      "Click the repository link below to explore the full PCB design files, schematics, and board artwork on GitHub."
+      "PCB Design Core is a central engineering portfolio repository housing PCB design files, schematic captures, and physical hardware prototypes designed entirely by hand. Projects span custom microcontroller development platforms, specialized battery power management modules, and discrete digital logic circuits built across KiCad and EasyEDA.",
+      "1. ESP32-S3 Test Board: A custom hardware evaluation platform designed around the ESP32-S3 microcontroller for IoT prototyping and wireless embedded development. Features a clean low-noise power regulation network for stable MCU operation, dedicated breakout headers for GPIO, I2C, SPI, and UART peripherals, and an optimized 2-layer PCB layout with a dedicated copper ground fill plane for RF and signal integrity.",
+      "2. LiPo Battery Charger PCB: A dedicated power management module for single-cell Lithium-Polymer (LiPo) battery charging and system safety. Integrates an embedded charge controller IC with a constant-current / constant-voltage (CC/CV) charging profile, built-in LED status indicators for charge state and fault monitoring, and input over-voltage protection in a compact surface-mount footprint.",
+      "3. 4-Bit Magnitude Comparator PCB: A discrete digital logic comparison board designed to evaluate binary number comparison (A > B, A < B, A = B). Designed from gate-level logic components up to complete KiCad schematic capture and PCB layout with clean trace routing across cascading comparator stages.",
+      "All schematic captures, PCB layouts, component footprints, and fabrication package files (.zip) are archived directly within the repository."
     ],
-    tech: ["KiCad", "EasyEDA", "PCB Layout", "Schematic Capture", "Component Footprints", "Trace Routing"],
+    tech: ["KiCad", "EasyEDA", "ESP32-S3", "Power Management (CC/CV)", "PCB Layout", "Schematic Capture", "Component Footprints", "Trace Routing"],
     links: [
       { label: "GitHub Repository", url: "https://github.com/itsebuka/PCB-Design-Core", kind: "github" },
     ],
