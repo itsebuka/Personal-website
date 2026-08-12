@@ -113,25 +113,20 @@ export const projects: StaticProject[] = [
     icon: Layers,
   },
   {
-    id: "voltage-comparator",
-    title: "4-bit Magnitude Comparator",
-    tagline: "KiCad Schematic & PCB Design",
-    description: "Designed a 4-bit magnitude comparator circuit using KiCad for schematic capture and PCB layout from scratch. The circuit compares two 4-bit binary numbers and outputs whether one is greater than, less than, or equal to the other.",
+    id: "pcb-design-core",
+    title: "PCB Design Core",
+    tagline: "Hand-Designed Printed Circuit Board Repository",
+    description: "Central hardware repository stashing custom printed circuit boards designed by hand. Spans schematic capture, component footprint creation, trace routing, and board layout across KiCad and EasyEDA.",
     summary: [
-      "A 4-bit magnitude comparator is a digital logic circuit that compares two 4-bit binary inputs (A and B) and produces three outputs indicating whether A > B, A < B, or A = B. This project involved designing the full circuit from the gate level up using KiCad.",
-      "The schematic was captured using standard logic gate components, building up the comparison logic bit by bit from the LSB to the MSB. Cascading comparator stages were used to propagate the comparison result across all four bits.",
-      "After completing the schematic, the design was moved into KiCad's PCB editor for layout. Component placement and trace routing were completed with attention to keeping signal paths clean and the board compact.",
-      "The KiCad project files (schematic, PCB layout, and project configuration) are available for download below.",
+      "PCB Design Core is a dedicated central repository housing every custom printed circuit board (PCB) I have ever designed by hand.",
+      "The repository covers projects spanning schematic capture, custom footprint creation, analogue and digital trace routing, power distribution planes, and board layout optimization created across KiCad and EasyEDA.",
+      "Click the repository link below to explore the full PCB design files, schematics, and board artwork on GitHub."
     ],
-    tech: ["KiCad", "Digital Logic", "PCB Design", "Schematic Capture", "Magnitude Comparator"],
+    tech: ["KiCad", "EasyEDA", "PCB Layout", "Schematic Capture", "Component Footprints", "Trace Routing"],
     links: [
-      { label: "GitHub Repository", url: "https://github.com/itsebuka/Magnitude-Comparator", kind: "github" },
+      { label: "GitHub Repository", url: "https://github.com/itsebuka/PCB-Design-Core", kind: "github" },
     ],
-    files: [
-      { label: "KiCad Schematic", filename: "Comparator project.kicad_sch", type: "other" },
-      { label: "PCB Layout File", filename: "Comparator project.kicad_pcb", type: "other" },
-      { label: "KiCad Project File", filename: "Comparator project.kicad_pro", type: "other" },
-    ],
+    files: [],
     icon: Network,
   },
   {
