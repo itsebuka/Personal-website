@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Layers, Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { name: "Home",         href: "/" },
@@ -20,54 +21,63 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="h-16 md:h-20 shrink-0 bg-[#0a0a0a] border-b border-[#1a1a1a] flex items-center relative z-50">
+    <header className="h-16 md:h-20 shrink-0 bg-[#0a0a0a] border-b border-[#1a1a1a] flex items-center relative z-50 nav-header">
       <div className="w-full max-w-7xl mx-auto px-6 flex items-center justify-between">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 md:gap-3 group" id="nav-logo">
-          <Layers className="w-5 h-5 md:w-6 md:h-6 text-zinc-500 group-hover:text-white transition-colors duration-200" />
-          <span className="font-serif text-lg md:text-xl font-bold text-white tracking-wide">
+          <Layers className="w-5 h-5 md:w-6 md:h-6 text-zinc-500 group-hover:text-white transition-colors duration-200 logo-icon" />
+          <span className="font-serif text-lg md:text-xl font-bold text-white tracking-wide logo-text">
             Ebuka&apos;s Portfolio
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-0.5" aria-label="Main navigation">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base font-medium tracking-wide uppercase transition-colors duration-200 rounded ${
-                  isActive ? "text-white" : "text-zinc-500 hover:text-zinc-200"
-                }`}
-              >
-                {item.name}
-                {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-px bg-white rounded-full" />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
+        {/* Desktop Navigation & Theme Toggle */}
+        <div className="hidden md:flex items-center gap-3">
+          <nav className="flex items-center gap-0.5" aria-label="Main navigation">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative px-3 py-1.5 md:px-4 md:py-2 text-sm md:text-base font-medium tracking-wide uppercase transition-colors duration-200 rounded nav-link ${
+                    isActive ? "text-white active-link" : "text-zinc-500 hover:text-zinc-200"
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-px bg-white rounded-full active-indicator" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
 
-        {/* Mobile toggle */}
-        <button
-          id="mobile-menu-toggle"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-zinc-500 hover:text-white transition-colors p-1.5"
-          aria-label="Toggle navigation menu"
-        >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+          <div className="pl-2 border-l border-[#222222] nav-divider">
+            <ThemeToggle />
+          </div>
+        </div>
+
+        {/* Mobile menu controls */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            id="mobile-menu-toggle"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-zinc-500 hover:text-white transition-colors p-1.5 mobile-menu-btn"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Dropdown */}
       {mobileOpen && (
         <div
           id="mobile-nav-panel"
-          className="absolute top-full left-0 right-0 bg-[#0d0d0d] border-b border-[#1a1a1a] md:hidden z-50 shadow-xl"
+          className="absolute top-full left-0 right-0 bg-[#0d0d0d] border-b border-[#1a1a1a] md:hidden z-50 shadow-xl mobile-dropdown"
         >
           <nav className="flex flex-col py-3 px-5 gap-0.5">
             {navItems.map((item) => {
