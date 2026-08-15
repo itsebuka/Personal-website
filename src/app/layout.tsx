@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import FilmGrain from "@/components/FilmGrain";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,15 +41,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${inter.variable} ${playfair.variable} font-sans h-full overflow-hidden bg-[#0a0a0a] text-white antialiased`}
+        className={`${inter.variable} ${playfair.variable} font-sans h-full overflow-hidden antialiased`}
       >
-        <FilmGrain />
-        <div className="flex flex-col h-full">
-          <Navbar />
-          <main className="flex-1 min-h-0 overflow-y-auto scroll-area">
-            {children}
-          </main>
-        </div>
+        <ThemeProvider>
+          <FilmGrain />
+          <div className="flex flex-col h-full">
+            <Navbar />
+            <main className="flex-1 min-h-0 overflow-y-auto scroll-area">
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
