@@ -21,6 +21,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 100%;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 100% standard font size scaling on all screens */
@@ -43,4 +44,126 @@ body {
 
 .scroll-area::-webkit-scrollbar {
   display: none;
+}
+
+/* ─── Light Mode Styles ────────────────────────────────────── */
+html.light,
+html.light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.light ::selection {
+  background-color: rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+}
+
+/* Light Mode Navbar */
+html.light .nav-header {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .logo-text {
+  color: #0f172a !important;
+}
+
+html.light .logo-icon {
+  color: #64748b !important;
+}
+
+html.light .logo-icon:hover {
+  color: #0f172a !important;
+}
+
+html.light .nav-link {
+  color: #64748b !important;
+}
+
+html.light .nav-link:hover {
+  color: #0f172a !important;
+}
+
+html.light .active-link {
+  color: #0f172a !important;
+}
+
+html.light .active-indicator {
+  background-color: #0f172a !important;
+}
+
+html.light .nav-divider {
+  border-color: #e2e8f0 !important;
+}
+
+html.light .mobile-dropdown {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Light Mode Cards, Containers & Sections */
+html.light main {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-\[\#111111\],
+html.light .bg-\[\#0a0a0a\],
+html.light .bg-\[\#0d0d0d\],
+html.light .bg-\[\#161616\],
+html.light .bg-\[\#121212\] {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .border-\[\#222222\],
+html.light .border-\[\#2a2a2a\],
+html.light .border-\[\#1a1a1a\],
+html.light .border-\[\#1e1e1e\],
+html.light .border-\[\#262626\],
+html.light .border-\[\#202020\],
+html.light .border-\[\#1f1f1f\],
+html.light .border-\[\#333\],
+html.light .border-\[\#333333\] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Light Mode Hover Effects */
+html.light .hover\:border-\[\#383838\]:hover,
+html.light .hover\:border-\[\#444444\]:hover {
+  border-color: #94a3b8 !important;
+}
+
+/* Light Mode Typography Overrides */
+html.light .text-white,
+html.light .text-zinc-200,
+html.light .text-zinc-300 {
+  color: #0f172a !important;
+}
+
+html.light .text-zinc-400,
+html.light .text-zinc-500 {
+  color: #475569 !important;
+}
+
+html.light .text-zinc-600 {
+  color: #64748b !important;
+}
+
+/* Light Mode Tags & Pills */
+html.light .bg-\[\#181818\],
+html.light .bg-\[\#1a1a1a\],
+html.light .bg-\[\#161616\],
+html.light .bg-\[\#0d0d0d\] {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .border-\[\#282828\],
+html.light .border-\[\#2a2a2a\],
+html.light .border-\[\#1e1e1e\] {
+  border-color: #cbd5e1 !important;
+}
+
+/* Light Mode Modals & Overlays */
+html.light .bg-black\/80 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
 }
