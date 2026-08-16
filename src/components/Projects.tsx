@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import {
   ExternalLink,
   Github,
@@ -12,10 +13,67 @@ import {
   Layers,
   Cpu,
   Sparkles,
+  Box,
+  CircuitBoard,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
 import type { StaticProject } from "@/data/projects";
+
+// Dynamic imports — keeps Three.js and Canvas out of SSR bundle
+const CadViewer = dynamic(() => import("@/components/CadViewer"), { ssr: false });
+const PcbViewer = dynamic(() => import("@/components/PcbViewer"), { ssr: false });
+
+// ── Hardware Archive data ─────────────────────────────────────────────────────
+const BASE_CAD = "https://raw.githubusercontent.com/itsebuka/Hardware-design-portfolio/main/";
+
+const STL_MODELS = [
+  { name: "Golden Fishtank",      file: "Golden%20Fishtank.stl",         size: "7 KB"   },
+  { name: "Shang Tsung's Throne", file: "Shang%20tsungs%20throne.stl",   size: "6.3 MB" },
+];
+
+const F3D_MODELS = [
+  { name: "Ebuka's Coffee Cup",       file: "Ebuka's%20Coffee%20cup.f3d",                   size: "278 KB" },
+  { name: "Gear Fidget Spinner",      file: "Gear%20fidget%20spinner%20thingy.f3d",         size: "667 KB" },
+  { name: "Glass Soda Bottle",        file: "Glass%20Soda%20Bottle.f3d",                    size: "471 KB" },
+  { name: "Laptop Stand Concept",     file: "Laptop%20stand%20concept.f3d",                 size: "190 KB" },
+  { name: "Bridge Structure",         file: "Nice%20looking%20bridge%20thing.f3d",          size: "148 KB" },
+  { name: "Paper Clip (Sweep)",       file: "Paper%20clip%20(sweep%20command).f3d",         size: "120 KB" },
+  { name: "Practice Problem 1",       file: "Practice%20problem%201%20(Solid%20works).f3d", size: "96 KB"  },
+  { name: "Practice Problem 2",       file: "Practice%20problem%202%20(Solid%20works).f3d", size: "117 KB" },
+  { name: "Practice Problem 3",       file: "Practice%20problem%203%20(Solid%20works).f3d", size: "86 KB"  },
+  { name: "Practice Problem 4",       file: "Practice%20problem%204%20(Solidworks).f3d",   size: "105 KB" },
+  { name: "Save My Soul",             file: "Save%20my%20soul.f3d",                         size: "289 KB" },
+  { name: "Toy Blocks",               file: "Toy%20blocks.f3d",                             size: "370 KB" },
+  { name: "Weird Bridge",             file: "Weird%20lookingbridge%20thingy.f3d",           size: "148 KB" },
+  { name: "Exhibit #31",              file: "exhibit%20%2331.f3d",                          size: "92 KB"  },
+  { name: "Some Random Stuff",        file: "some%20random%20stuff.f3d",                   size: "146 KB" },
+  { name: "Viking",                   file: "viking.f3d",                                   size: "305 KB" },
+  { name: "Weird Thingie",            file: "weird%20thingie.f3d",                          size: "135 KB" },
+  { name: "Wooden Hinge",             file: "wooden%20hinge%20thing.f3d",                   size: "171 KB" },
+  { name: "dfhjklzxv",                file: "dfhjklzxv.f3d",                                size: "286 KB" },
+];
+
+// ── PCB Design Core data ──────────────────────────────────────────────────────
+const BASE_PCB = "https://raw.githubusercontent.com/itsebuka/PCB-Design-Core/main/";
+
+const PCB_BOARDS = [
+  {
+    name: "LiPo Battery Charger PCB",
+    url:  BASE_PCB + "LiPo%20Battery%20Charger%20PCB/LiPo%20Battery%20Charger%20PCB.kicad_pcb",
+    desc: "Single-cell LiPo charger with TP4056 IC, USB-C input, LED indicators, and protection circuitry.",
+  },
+  {
+    name: "Magnitude Comparator PCB",
+    url:  BASE_PCB + "Magnitude%20Comparator/Magnitude%20Comparator.kicad_pcb",
+    desc: "4-bit magnitude comparator logic board using 74HC85 ICs with THT layout.",
+  },
+  {
+    name: "LM555 Test Board",
+    url:  BASE_PCB + "LM555%20TESTBOARD/LM555%20TESTBOARD.kicad_pcb",
+    desc: "Astable and monostable timer circuit on a compact test board for signal generation.",
+  },
+];
 
 const FILE_ICON: Record<string, string> = {
   pdf: "📄",
@@ -271,6 +329,118 @@ export default function Projects() {
                             {vid.filename}
                           </span>
                         </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* ── Interactive 3D CAD Viewer (Hardware Archive) ── */}
+              {selectedProject.id === "hardware-archive" && (
+                <div className="flex flex-col gap-5 bg-[#161616] border border-[#262626] rounded-xl p-4 sm:p-5">
+                  {/* Section header */}
+                  <div className="flex items-center gap-2 border-b border-[#222222] pb-3">
+                    <Box className="w-4 h-4 text-white" />
+                    <h4 className="font-sans text-sm font-bold text-white">
+                      Interactive 3D Model Viewer
+                    </h4>
+                    <span className="ml-auto font-sans text-[9px] text-zinc-500 uppercase tracking-wider">
+                      Three.js · WebGL
+                    </span>
+                  </div>
+
+                  {/* STL viewers */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    {STL_MODELS.map((m) => (
+                      <div key={m.name} className="flex flex-col gap-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-sans text-xs font-semibold text-white">{m.name}</span>
+                          <span className="font-sans text-[9px] text-zinc-500 bg-[#1a1a1a] px-2 py-0.5 rounded border border-[#2a2a2a]">.stl · {m.size}</span>
+                        </div>
+                        <CadViewer
+                          url={BASE_CAD + m.file}
+                          name={m.name}
+                          height={280}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* F3D catalog */}
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="font-sans text-xs font-bold text-zinc-300">Fusion 360 Design Catalog</span>
+                      <span className="font-sans text-[9px] text-zinc-600 bg-[#1a1a1a] px-2 py-0.5 rounded border border-[#2a2a2a]">
+                        {F3D_MODELS.length} models · .f3d format
+                      </span>
+                    </div>
+                    <p className="font-sans text-[11px] text-zinc-500 leading-relaxed">
+                      These designs are in Autodesk Fusion 360 native format (.f3d) which requires Fusion 360 to open.
+                      Click any card to download or open in Fusion 360 directly.
+                    </p>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {F3D_MODELS.map((m) => (
+                        <a
+                          key={m.name}
+                          href={BASE_CAD + m.file}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col gap-1 p-3 bg-[#0d0d0d] border border-[#222222] rounded-lg hover:border-[#444444] hover:bg-[#141414] transition-all group"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-sans text-[9px] font-bold text-orange-400/80 uppercase tracking-wider">Fusion 360</span>
+                            <Download className="w-3 h-3 text-zinc-600 group-hover:text-white transition-colors" />
+                          </div>
+                          <span className="font-sans text-[11px] font-semibold text-white leading-snug group-hover:text-zinc-200 transition-colors">{m.name}</span>
+                          <span className="font-sans text-[9px] text-zinc-600">{m.size}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* ── Interactive PCB Layer Viewer (PCB Design Core) ── */}
+              {selectedProject.id === "pcb-design-core" && (
+                <div className="flex flex-col gap-5 bg-[#0d1a2e] border border-[#1e3a6a] rounded-xl p-4 sm:p-5">
+                  {/* Section header */}
+                  <div className="flex items-center gap-2 border-b border-[#1e3a6a] pb-3">
+                    <CircuitBoard className="w-4 h-4 text-blue-300" />
+                    <h4 className="font-sans text-sm font-bold text-white">
+                      Interactive PCB Layer Viewer
+                    </h4>
+                    <span className="ml-auto font-sans text-[9px] text-blue-300/60 uppercase tracking-wider">
+                      KiCad · Canvas2D
+                    </span>
+                  </div>
+
+                  <p className="font-sans text-[11px] text-zinc-400 leading-relaxed -mt-2">
+                    Live render of your actual KiCad PCB files fetched directly from GitHub.
+                    Toggle layers to inspect F.Cu, B.Cu, silkscreen, board edges, and component pads.
+                  </p>
+
+                  <div className="flex flex-col gap-6">
+                    {PCB_BOARDS.map((board) => (
+                      <div key={board.name} className="flex flex-col gap-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <span className="font-sans text-xs font-bold text-white block">{board.name}</span>
+                            <span className="font-sans text-[11px] text-zinc-400 leading-relaxed">{board.desc}</span>
+                          </div>
+                          <a
+                            href={board.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="shrink-0 font-sans text-[9px] text-zinc-500 hover:text-white underline transition-colors"
+                          >
+                            Raw file
+                          </a>
+                        </div>
+                        <PcbViewer
+                          pcbUrl={board.url}
+                          boardName={board.name}
+                          height={300}
+                        />
                       </div>
                     ))}
                   </div>
