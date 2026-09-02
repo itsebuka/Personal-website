@@ -16,6 +16,7 @@ const DiscordIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 import Link from "next/link";
+import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import WireframeBackground from "./WireframeBackground";
 
@@ -91,8 +92,15 @@ export default function Home() {
       {/* ── Centre Content ───────────────────────────── */}
       <div className="flex flex-col items-center justify-center flex-1 z-10 my-auto">
         {/* Avatar circle */}
-        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#2a2a2a] bg-[#111111] flex items-center justify-center mb-6 sm:mb-8 select-none">
-          <span className="font-serif text-lg sm:text-xl font-bold text-white">EE</span>
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#2a2a2a] overflow-hidden mb-6 sm:mb-8 select-none shrink-0">
+          <Image
+            src="/avatar.png"
+            alt="Ebuka Eleogu"
+            width={80}
+            height={80}
+            className="w-full h-full object-cover object-top"
+            priority
+          />
         </div>
 
         {/* Main heading */}
