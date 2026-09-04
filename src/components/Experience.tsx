@@ -399,6 +399,12 @@ const siwesVideos = [
     duration: "2:05",
     src: "/videos/siwes/transformer-configuration-briefing.mp4",
   },
+  {
+    title: "Thumper 33kV Acoustic Fault Location",
+    category: "High-Voltage Diagnostics",
+    duration: "0:16",
+    src: "/videos/siwes/thumper-33kv-acoustic-fault-location.mp4",
+  },
 ];
 
 export default function Experience() {
@@ -860,7 +866,7 @@ export default function Experience() {
                             <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
                             <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
                             <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
-                              22 Photos
+                              27 Photos
                             </span>
                           </div>
                           <span className="font-sans text-[11px] text-zinc-500 italic hidden sm:inline">
@@ -891,6 +897,11 @@ export default function Experience() {
                             { slot: 20, src: "/images/siwes/siwes-20.png", title: "Control Room Buscoupler Panel & Digital Meters" },
                             { slot: 21, src: "/images/siwes/siwes-21.png", title: "Control Room 11kV/33kV Feeder Switchgear Lineup" },
                             { slot: 22, src: "/images/siwes/siwes-22.png", title: "Outdoor Pre-Commissioning Switchgear Assembly" },
+                            { slot: 23, src: "/images/siwes/siwes-23.jpg", title: "Power Transformers & Substation Gantry Structure" },
+                            { slot: 24, src: "/images/siwes/siwes-24.png", title: "Switchyard Overhead Busbars & Control Building" },
+                            { slot: 25, src: "/images/siwes/siwes-25.jpg", title: "Assembly of 33kV Outdoor Post Insulators" },
+                            { slot: 26, src: "/images/siwes/siwes-26.jpg", title: "Flexible Copper Earthing & Grounding Braid" },
+                            { slot: 27, src: "/images/siwes/siwes-27.jpg", title: "Fully Wired Protection Relay & MCB Control Panel" },
                           ].map(({ slot, src, title }) => (
                             <div
                               key={slot}
@@ -930,7 +941,7 @@ export default function Experience() {
                                   SIWES Field Videos
                                 </span>
                                 <span className="font-sans text-[10px] text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 px-2 py-0.5 rounded-full font-medium">
-                                  19 Videos
+                                  20 Videos
                                 </span>
                               </div>
                               <p className="font-sans text-[11px] text-zinc-500">
@@ -967,7 +978,7 @@ export default function Experience() {
                                     Substation visits, transformer yard inspections &amp; GIS geotagging
                                   </span>
                                   <span className="font-sans text-[10px] text-emerald-400 font-mono">
-                                    19 Recordings Ready
+                                    20 Recordings Ready
                                   </span>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
