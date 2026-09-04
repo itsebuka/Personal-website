@@ -842,11 +842,11 @@ export default function Experience() {
                             <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
                             <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
                             <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
-                              12 Photos
+                              17 Photos
                             </span>
                           </div>
                           <span className="font-sans text-[11px] text-zinc-500 italic hidden sm:inline">
-                            High-voltage switchgear, control racks &amp; transformers
+                            High-voltage switchgear, protection relays &amp; substation bays
                           </span>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -863,6 +863,11 @@ export default function Experience() {
                             { slot: 10, src: "/images/siwes/siwes-10.png", title: "Auxiliary DC Power & Wiring Harness" },
                             { slot: 11, src: "/images/siwes/siwes-11.jpg", title: "Medium Voltage Cable Inspection" },
                             { slot: 12, src: "/images/siwes/siwes-12.jpg", title: "Distribution Cable Quality Verification" },
+                            { slot: 13, src: "/images/siwes/siwes-13.png", title: "Control Cabinet Rewiring & Termination" },
+                            { slot: 14, src: "/images/siwes/siwes-14.png", title: "Precision Cable Stripping & Relay Wiring" },
+                            { slot: 15, src: "/images/siwes/siwes-15.png", title: "ABB Protection Relay Testing & Sylvia Feeder" },
+                            { slot: 16, src: "/images/siwes/siwes-16.jpg", title: "Substation Switchyard Breakers & Busbar Bay" },
+                            { slot: 17, src: "/images/siwes/siwes-17.png", title: "Gantry Lattice Tower & 132kV Overhead Lines" },
                           ].map(({ slot, src, title }) => (
                             <div
                               key={slot}
