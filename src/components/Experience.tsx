@@ -381,6 +381,24 @@ const siwesVideos = [
     duration: "0:45",
     src: "/videos/siwes/tcp-fault-response-2.mp4",
   },
+  {
+    title: "Maryland TCN 132kV/33kV Substation",
+    category: "Transmission & Substation",
+    duration: "0:17",
+    src: "/videos/siwes/maryland-tcn-132-to-33kv-substation.mp4",
+  },
+  {
+    title: "Hiab Crane Offloading Switchgear Panels",
+    category: "Equipment Logistics & Delivery",
+    duration: "0:37",
+    src: "/videos/siwes/hiab-offloading-switchgear-panels.mp4",
+  },
+  {
+    title: "Transformer Core & Winding Technical Briefing",
+    category: "Transformer Engineering",
+    duration: "2:05",
+    src: "/videos/siwes/transformer-configuration-briefing.mp4",
+  },
 ];
 
 export default function Experience() {
@@ -842,11 +860,11 @@ export default function Experience() {
                             <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
                             <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
                             <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
-                              17 Photos
+                              22 Photos
                             </span>
                           </div>
                           <span className="font-sans text-[11px] text-zinc-500 italic hidden sm:inline">
-                            High-voltage switchgear, protection relays &amp; substation bays
+                            High-voltage switchgear, protection relays &amp; transformer overhauls
                           </span>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -868,6 +886,11 @@ export default function Experience() {
                             { slot: 15, src: "/images/siwes/siwes-15.png", title: "ABB Protection Relay Testing & Sylvia Feeder" },
                             { slot: 16, src: "/images/siwes/siwes-16.jpg", title: "Substation Switchyard Breakers & Busbar Bay" },
                             { slot: 17, src: "/images/siwes/siwes-17.png", title: "Gantry Lattice Tower & 132kV Overhead Lines" },
+                            { slot: 18, src: "/images/siwes/siwes-18.jpg", title: "Transformer Core & Windings Workshop Overhaul" },
+                            { slot: 19, src: "/images/siwes/siwes-19.jpg", title: "Transformer Coils & Oil Radiator Tank Inspection" },
+                            { slot: 20, src: "/images/siwes/siwes-20.png", title: "Control Room Buscoupler Panel & Digital Meters" },
+                            { slot: 21, src: "/images/siwes/siwes-21.png", title: "Control Room 11kV/33kV Feeder Switchgear Lineup" },
+                            { slot: 22, src: "/images/siwes/siwes-22.png", title: "Outdoor Pre-Commissioning Switchgear Assembly" },
                           ].map(({ slot, src, title }) => (
                             <div
                               key={slot}
@@ -907,7 +930,7 @@ export default function Experience() {
                                   SIWES Field Videos
                                 </span>
                                 <span className="font-sans text-[10px] text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 px-2 py-0.5 rounded-full font-medium">
-                                  16 Videos
+                                  19 Videos
                                 </span>
                               </div>
                               <p className="font-sans text-[11px] text-zinc-500">
@@ -944,7 +967,7 @@ export default function Experience() {
                                     Substation visits, transformer yard inspections &amp; GIS geotagging
                                   </span>
                                   <span className="font-sans text-[10px] text-emerald-400 font-mono">
-                                    16 Recordings Ready
+                                    19 Recordings Ready
                                   </span>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
