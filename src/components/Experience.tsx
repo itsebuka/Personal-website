@@ -284,6 +284,57 @@ const professionalLog: Role[] = [
   },
 ];
 
+const siwesVideos = [
+  {
+    title: "Injection Substation Visit",
+    category: "Substation Infrastructure",
+    duration: "0:45",
+    src: "/videos/siwes/injection-substation-visit.mp4",
+  },
+  {
+    title: "Transformer Yard Inspection (Part 1)",
+    category: "Field Inspection",
+    duration: "0:29",
+    src: "/videos/siwes/site-inspection-1.mp4",
+  },
+  {
+    title: "Yard Walkthrough & Assessment (Part 2)",
+    category: "Field Inspection",
+    duration: "0:09",
+    src: "/videos/siwes/site-inspection-2.mp4",
+  },
+  {
+    title: "Pole Geotagging Field Trip (Part 1)",
+    category: "Distribution GIS & Asset Mapping",
+    duration: "0:35",
+    src: "/videos/siwes/pole-geotagging-1.mp4",
+  },
+  {
+    title: "Pole Geotagging Field Trip (Part 2)",
+    category: "Distribution GIS & Asset Mapping",
+    duration: "0:28",
+    src: "/videos/siwes/pole-geotagging-2.mp4",
+  },
+  {
+    title: "Pole Geotagging Note (Part 3)",
+    category: "Distribution GIS & Asset Mapping",
+    duration: "0:04",
+    src: "/videos/siwes/pole-geotagging-3.mp4",
+  },
+  {
+    title: "ISS Substation Tour (Part 1)",
+    category: "High-Voltage Apparatus",
+    duration: "0:13",
+    src: "/videos/siwes/iss-visit-1.mp4",
+  },
+  {
+    title: "ISS Substation Tour (Part 2)",
+    category: "High-Voltage Apparatus",
+    duration: "0:15",
+    src: "/videos/siwes/iss-visit-2.mp4",
+  },
+];
+
 export default function Experience() {
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [activeSemIndex, setActiveSemIndex] = useState<number>(0);
@@ -793,12 +844,12 @@ export default function Experience() {
                                 <span className="font-sans text-xs font-semibold text-zinc-200 uppercase tracking-wider">
                                   SIWES Field Videos
                                 </span>
-                                <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
-                                  Dropdown Menu
+                                <span className="font-sans text-[10px] text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 px-2 py-0.5 rounded-full font-medium">
+                                  8 Videos
                                 </span>
                               </div>
                               <p className="font-sans text-[11px] text-zinc-500">
-                                {isVideoDropdownOpen ? "Click to collapse video players" : "Click to expand field video recordings"}
+                                {isVideoDropdownOpen ? "Click to collapse video recordings" : "Click to expand field video recordings"}
                               </p>
                             </div>
                           </div>
@@ -828,41 +879,43 @@ export default function Experience() {
                               <div className="p-4 flex flex-col gap-3 bg-[#0d0d0d]">
                                 <div className="flex items-center justify-between">
                                   <span className="font-sans text-[11px] text-zinc-500 italic">
-                                    Raw field videos compressed for instant web playback
+                                    Substation visits, transformer yard inspections &amp; GIS geotagging
                                   </span>
-                                  <span className="font-sans text-[10px] text-zinc-600">4 Video Slots</span>
+                                  <span className="font-sans text-[10px] text-emerald-400 font-mono">
+                                    8 Recordings Ready
+                                  </span>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                  {[
-                                    { slot: 1, src: null },
-                                    { slot: 2, src: null },
-                                    { slot: 3, src: null },
-                                    { slot: 4, src: null },
-                                  ].map(({ slot, src }) =>
-                                    src ? (
-                                      <div key={slot} className="rounded-xl overflow-hidden border border-[#2a2a2a] bg-black aspect-video shadow-md">
+                                  {siwesVideos.map((video, idx) => (
+                                    <div
+                                      key={idx}
+                                      className="flex flex-col gap-2 bg-[#121212] border border-[#242424] rounded-xl p-2.5 overflow-hidden group hover:border-[#383838] transition-all"
+                                    >
+                                      <div className="aspect-video rounded-lg overflow-hidden border border-[#2a2a2a] bg-black relative flex items-center justify-center">
                                         <video
-                                          src={src}
+                                          src={video.src}
                                           controls
-                                          muted
                                           playsInline
-                                          className="w-full h-full object-cover"
-                                          aria-label={`SIWES Field Video ${slot}`}
+                                          preload="metadata"
+                                          className="w-full h-full object-contain"
+                                          aria-label={video.title}
                                         />
                                       </div>
-                                    ) : (
-                                      <div
-                                        key={slot}
-                                        className="aspect-video rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0a0a0a] flex flex-col items-center justify-center gap-2 group hover:border-[#3a3a3a] transition-colors"
-                                      >
-                                        <div className="w-10 h-10 rounded-full border border-[#2a2a2a] bg-[#161616] flex items-center justify-center group-hover:border-[#3a3a3a] transition-colors">
-                                          <Play className="w-4 h-4 text-zinc-700 group-hover:text-zinc-500 transition-colors ml-0.5" />
+                                      <div className="flex items-center justify-between px-0.5 pt-0.5">
+                                        <div className="flex flex-col min-w-0 pr-2">
+                                          <span className="font-sans text-xs font-semibold text-zinc-200 truncate">
+                                            {video.title}
+                                          </span>
+                                          <span className="font-sans text-[10px] text-zinc-500">
+                                            {video.category}
+                                          </span>
                                         </div>
-                                        <span className="font-sans text-[10px] text-zinc-600 font-medium">Video Slot {slot}</span>
-                                        <span className="font-sans text-[9px] text-zinc-700 italic">Awaiting video file</span>
+                                        <span className="font-mono text-[10px] text-emerald-400 bg-emerald-950/40 border border-emerald-800/40 px-1.5 py-0.5 rounded shrink-0">
+                                          {video.duration}
+                                        </span>
                                       </div>
-                                    )
-                                  )}
+                                    </div>
+                                  ))}
                                 </div>
                               </div>
                             </motion.div>
