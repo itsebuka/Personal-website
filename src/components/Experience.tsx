@@ -16,6 +16,8 @@ import {
   Layers,
   GraduationCap,
   Clock,
+  Camera,
+  ImageIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -404,6 +406,8 @@ export default function Experience() {
               className={`bg-[#111111] border border-[#333333] rounded-xl w-full p-5 sm:p-6 relative flex flex-col gap-6 shadow-2xl my-auto ${
                 selectedRole.type === "university" || selectedRole.type === "secondary"
                   ? "max-w-5xl lg:max-w-6xl"
+                  : selectedRole.id === "role-ikeja"
+                  ? "max-w-5xl lg:max-w-6xl"
                   : "max-w-xl"
               }`}
             >
@@ -711,6 +715,54 @@ export default function Experience() {
                       ))}
                     </div>
                   </div>
+
+                  {/* ── SIWES Field Journal Gallery (Ikeja Electric only) ── */}
+                  {selectedRole.id === "role-ikeja" && (
+                    <div className="flex flex-col gap-4">
+                      {/* Gallery header */}
+                      <div className="flex items-center justify-between border-t border-[#222] pt-4">
+                        <div className="flex items-center gap-2">
+                          <Camera className="w-4 h-4 text-zinc-400" />
+                          <h4 className="font-sans text-sm font-bold text-white">
+                            SIWES Field Journal
+                          </h4>
+                          <span className="font-sans text-[10px] uppercase tracking-wider text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
+                            Ikeja Electric · 2026
+                          </span>
+                        </div>
+                        <span className="font-sans text-[11px] text-zinc-600 italic">
+                          Photos from the field
+                        </span>
+                      </div>
+
+                      {/* Photo grid — 8 placeholder slots */}
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        {[
+                          { slot: 1, label: "Photo 1" },
+                          { slot: 2, label: "Photo 2" },
+                          { slot: 3, label: "Photo 3" },
+                          { slot: 4, label: "Photo 4" },
+                          { slot: 5, label: "Photo 5" },
+                          { slot: 6, label: "Photo 6" },
+                          { slot: 7, label: "Photo 7" },
+                          { slot: 8, label: "Photo 8" },
+                        ].map(({ slot, label }) => (
+                          <div
+                            key={slot}
+                            className="aspect-square rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0d0d0d] flex flex-col items-center justify-center gap-2 text-center p-3 group hover:border-[#444] transition-colors"
+                          >
+                            <ImageIcon className="w-6 h-6 text-zinc-700 group-hover:text-zinc-500 transition-colors" />
+                            <span className="font-sans text-[10px] text-zinc-600 group-hover:text-zinc-500 transition-colors">
+                              {label}
+                            </span>
+                            <span className="font-sans text-[9px] text-zinc-700 italic">
+                              Coming soon
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </motion.div>
