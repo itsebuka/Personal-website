@@ -291,15 +291,15 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-3 sm:px-4 py-5 sm:py-7 scroll-area"
     >
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-[1600px]">
         {/* Section heading */}
-        <div className="text-center mb-7">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+        <div className="text-center mb-4">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
             My Professional Timeline
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-zinc-500 mt-1.5">
+          <p className="font-sans text-xs text-zinc-500 mt-1">
             Click any tile to view full academic records, documents &amp; experience details.
           </p>
         </div>
