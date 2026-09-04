@@ -161,6 +161,33 @@ const secondaryDocs: SecondaryDoc[] = [
 
 const professionalLog: Role[] = [
   {
+    id: "role-vireon",
+    period: "2026 – PRESENT",
+    company: "Vireon Technologies",
+    title: "PCB Designer & Associate CAD & Hardware Engineer",
+    logo: "/images/logos/vireon.png",
+    type: "internship",
+    bullets: [
+      "Designing and laying out multi-layer PCBs for embedded and power electronics applications using KiCad",
+      "Creating and iterating on mechanical and electronic enclosure designs using Autodesk Fusion 360",
+      "Collaborating with the hardware team on component selection, design reviews, and prototype bring-up",
+      "Producing manufacturing-ready Gerber files, BOMs, and assembly documentation for fabrication handoff",
+    ],
+    skillsApplied: [
+      "PCB Design",
+      "KiCad",
+      "Autodesk Fusion 360",
+      "CAD Modelling",
+      "Hardware Engineering",
+      "Schematic Capture",
+      "Component Selection",
+      "Gerber Export",
+      "Prototype Testing",
+      "Design for Manufacture",
+    ],
+    active: true,
+  },
+  {
     id: "role-ikeja",
     period: "2026 – PRESENT",
     company: "Ikeja Electric Distribution Company",
