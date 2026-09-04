@@ -18,6 +18,8 @@ import {
   Clock,
   Camera,
   ImageIcon,
+  Play,
+  Video,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -718,49 +720,100 @@ export default function Experience() {
 
                   {/* ── SIWES Field Journal Gallery (Ikeja Electric only) ── */}
                   {selectedRole.id === "role-ikeja" && (
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-6 border-t border-[#222] pt-5">
+
                       {/* Gallery header */}
-                      <div className="flex items-center justify-between border-t border-[#222] pt-4">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Camera className="w-4 h-4 text-zinc-400" />
-                          <h4 className="font-sans text-sm font-bold text-white">
-                            SIWES Field Journal
-                          </h4>
+                          <h4 className="font-sans text-sm font-bold text-white">SIWES Field Journal</h4>
                           <span className="font-sans text-[10px] uppercase tracking-wider text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
                             Ikeja Electric · 2026
                           </span>
                         </div>
-                        <span className="font-sans text-[11px] text-zinc-600 italic">
-                          Photos from the field
-                        </span>
+                        <span className="font-sans text-[11px] text-zinc-600 italic">Photos &amp; videos from the field</span>
                       </div>
 
-                      {/* Photo grid — 8 placeholder slots */}
-                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        {[
-                          { slot: 1, label: "Photo 1" },
-                          { slot: 2, label: "Photo 2" },
-                          { slot: 3, label: "Photo 3" },
-                          { slot: 4, label: "Photo 4" },
-                          { slot: 5, label: "Photo 5" },
-                          { slot: 6, label: "Photo 6" },
-                          { slot: 7, label: "Photo 7" },
-                          { slot: 8, label: "Photo 8" },
-                        ].map(({ slot, label }) => (
-                          <div
-                            key={slot}
-                            className="aspect-square rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0d0d0d] flex flex-col items-center justify-center gap-2 text-center p-3 group hover:border-[#444] transition-colors"
-                          >
-                            <ImageIcon className="w-6 h-6 text-zinc-700 group-hover:text-zinc-500 transition-colors" />
-                            <span className="font-sans text-[10px] text-zinc-600 group-hover:text-zinc-500 transition-colors">
-                              {label}
-                            </span>
-                            <span className="font-sans text-[9px] text-zinc-700 italic">
-                              Coming soon
-                            </span>
-                          </div>
-                        ))}
+                      {/* ── Photo slots ── */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-2">
+                          <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
+                          <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
+                          <span className="font-sans text-[10px] text-zinc-600">(drop your photos here once ready)</span>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                          {[
+                            { slot: 1, src: null },
+                            { slot: 2, src: null },
+                            { slot: 3, src: null },
+                            { slot: 4, src: null },
+                            { slot: 5, src: null },
+                            { slot: 6, src: null },
+                            { slot: 7, src: null },
+                            { slot: 8, src: null },
+                          ].map(({ slot, src }) =>
+                            src ? (
+                              <div key={slot} className="aspect-square rounded-xl overflow-hidden border border-[#2a2a2a] bg-[#0d0d0d] relative">
+                                <Image
+                                  src={src}
+                                  alt={`SIWES Field Photo ${slot}`}
+                                  fill
+                                  className="object-cover"
+                                />
+                              </div>
+                            ) : (
+                              <div
+                                key={slot}
+                                className="aspect-square rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0d0d0d] flex flex-col items-center justify-center gap-1.5 text-center p-3 group hover:border-[#3a3a3a] transition-colors"
+                              >
+                                <ImageIcon className="w-5 h-5 text-zinc-700 group-hover:text-zinc-600 transition-colors" />
+                                <span className="font-sans text-[9px] text-zinc-700 italic">Photo {slot}</span>
+                              </div>
+                            )
+                          )}
+                        </div>
                       </div>
+
+                      {/* ── Video slots ── */}
+                      <div className="flex flex-col gap-3">
+                        <div className="flex items-center gap-2">
+                          <Video className="w-3.5 h-3.5 text-zinc-500" />
+                          <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Videos</span>
+                          <span className="font-sans text-[10px] text-zinc-600">(compressed MP4 — auto-plays muted)</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {[
+                            { slot: 1, src: null },
+                            { slot: 2, src: null },
+                            { slot: 3, src: null },
+                            { slot: 4, src: null },
+                          ].map(({ slot, src }) =>
+                            src ? (
+                              <div key={slot} className="rounded-xl overflow-hidden border border-[#2a2a2a] bg-black aspect-video">
+                                <video
+                                  src={src}
+                                  controls
+                                  muted
+                                  playsInline
+                                  className="w-full h-full object-cover"
+                                  aria-label={`SIWES Field Video ${slot}`}
+                                />
+                              </div>
+                            ) : (
+                              <div
+                                key={slot}
+                                className="aspect-video rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0d0d0d] flex flex-col items-center justify-center gap-2 group hover:border-[#3a3a3a] transition-colors"
+                              >
+                                <div className="w-10 h-10 rounded-full border border-[#2a2a2a] bg-[#161616] flex items-center justify-center group-hover:border-[#3a3a3a] transition-colors">
+                                  <Play className="w-4 h-4 text-zinc-700 group-hover:text-zinc-500 transition-colors ml-0.5" />
+                                </div>
+                                <span className="font-sans text-[9px] text-zinc-700 italic">Video {slot}</span>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+
                     </div>
                   )}
                 </div>
