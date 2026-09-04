@@ -333,6 +333,54 @@ const siwesVideos = [
     duration: "0:15",
     src: "/videos/siwes/iss-visit-2.mp4",
   },
+  {
+    title: "Underground Cable Vandalism Response",
+    category: "Emergency Maintenance",
+    duration: "0:21",
+    src: "/videos/siwes/responding-to-underground-cable-vandalism.mp4",
+  },
+  {
+    title: "Straight-Through Cable Jointing (Prep)",
+    category: "Underground Cable Jointing",
+    duration: "1:59",
+    src: "/videos/siwes/straight-through-cable-jointing-1.mp4",
+  },
+  {
+    title: "Straight-Through Cable Jointing (Splice)",
+    category: "Underground Cable Jointing",
+    duration: "1:54",
+    src: "/videos/siwes/straight-through-cable-jointing-2.mp4",
+  },
+  {
+    title: "Straight-Through Cable Jointing (Insulation)",
+    category: "Underground Cable Jointing",
+    duration: "1:41",
+    src: "/videos/siwes/straight-through-cable-jointing-3.mp4",
+  },
+  {
+    title: "Straight-Through Cable Jointing (Heat Shrink)",
+    category: "Underground Cable Jointing",
+    duration: "3:46",
+    src: "/videos/siwes/straight-through-cable-jointing-4.mp4",
+  },
+  {
+    title: "Thumper 33kV Cable Fault Testing",
+    category: "High-Voltage Diagnostics",
+    duration: "1:07",
+    src: "/videos/siwes/thumper-33kv-cable-testing.mp4",
+  },
+  {
+    title: "TCP Fault Response & Restoration (Part 1)",
+    category: "Grid Fault Restoration",
+    duration: "0:14",
+    src: "/videos/siwes/tcp-fault-response-1.mp4",
+  },
+  {
+    title: "TCP Fault Response & Restoration (Part 2)",
+    category: "Grid Fault Restoration",
+    duration: "0:45",
+    src: "/videos/siwes/tcp-fault-response-2.mp4",
+  },
 ];
 
 export default function Experience() {
@@ -789,41 +837,50 @@ export default function Experience() {
 
                       {/* ── Photo slots ── */}
                       <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-2">
-                          <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
-                          <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
-                          <span className="font-sans text-[10px] text-zinc-600">(drop your photos here once ready)</span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
+                            <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
+                            <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
+                              12 Photos
+                            </span>
+                          </div>
+                          <span className="font-sans text-[11px] text-zinc-500 italic hidden sm:inline">
+                            High-voltage switchgear, control racks &amp; transformers
+                          </span>
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                           {[
-                            { slot: 1, src: "/images/siwes/siwes-01.png" },
-                            { slot: 2, src: "/images/siwes/siwes-02.jpg" },
-                            { slot: 3, src: "/images/siwes/siwes-03.jpg" },
-                            { slot: 4, src: "/images/siwes/siwes-04.jpg" },
-                            { slot: 5, src: "/images/siwes/siwes-05.png" },
-                            { slot: 6, src: null },
-                            { slot: 7, src: null },
-                            { slot: 8, src: null },
-                          ].map(({ slot, src }) =>
-                            src ? (
-                              <div key={slot} className="aspect-square rounded-xl overflow-hidden border border-[#2a2a2a] bg-[#0d0d0d] relative">
-                                <Image
-                                  src={src}
-                                  alt={`SIWES Field Photo ${slot}`}
-                                  fill
-                                  className="object-cover"
-                                />
+                            { slot: 1, src: "/images/siwes/siwes-01.png", title: "Power Transformer Substation Bay" },
+                            { slot: 2, src: "/images/siwes/siwes-02.jpg", title: "Transformer Radiator & Conservator" },
+                            { slot: 3, src: "/images/siwes/siwes-03.jpg", title: "HV Bushings & Surge Arresters" },
+                            { slot: 4, src: "/images/siwes/siwes-04.jpg", title: "Switchyard Gravel Bed & Bunding" },
+                            { slot: 5, src: "/images/siwes/siwes-05.png", title: "Transmission Line & Gantry Tower" },
+                            { slot: 6, src: "/images/siwes/siwes-06.png", title: "Market Feeder ABB Switchgear Panel" },
+                            { slot: 7, src: "/images/siwes/siwes-07.jpg", title: "Control Cabinet Cable Trench & Rack" },
+                            { slot: 8, src: "/images/siwes/siwes-08.jpg", title: "Protection Relay & DIN Rail Assembly" },
+                            { slot: 9, src: "/images/siwes/siwes-09.jpg", title: "CDR 100 Capacitor Discharge Device" },
+                            { slot: 10, src: "/images/siwes/siwes-10.png", title: "Auxiliary DC Power & Wiring Harness" },
+                            { slot: 11, src: "/images/siwes/siwes-11.jpg", title: "Medium Voltage Cable Inspection" },
+                            { slot: 12, src: "/images/siwes/siwes-12.jpg", title: "Distribution Cable Quality Verification" },
+                          ].map(({ slot, src, title }) => (
+                            <div
+                              key={slot}
+                              className="aspect-square rounded-xl overflow-hidden border border-[#2a2a2a] bg-[#0d0d0d] relative group hover:border-[#3a3a3a] transition-all"
+                            >
+                              <Image
+                                src={src}
+                                alt={title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                              />
+                              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="font-sans text-[10px] text-zinc-200 line-clamp-1">
+                                  {title}
+                                </span>
                               </div>
-                            ) : (
-                              <div
-                                key={slot}
-                                className="aspect-square rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0d0d0d] flex flex-col items-center justify-center gap-1.5 text-center p-3 group hover:border-[#3a3a3a] transition-colors"
-                              >
-                                <ImageIcon className="w-5 h-5 text-zinc-700 group-hover:text-zinc-600 transition-colors" />
-                                <span className="font-sans text-[9px] text-zinc-700 italic">Photo {slot}</span>
-                              </div>
-                            )
-                          )}
+                            </div>
+                          ))}
                         </div>
                       </div>
 
@@ -845,7 +902,7 @@ export default function Experience() {
                                   SIWES Field Videos
                                 </span>
                                 <span className="font-sans text-[10px] text-emerald-400 bg-emerald-950/50 border border-emerald-800/50 px-2 py-0.5 rounded-full font-medium">
-                                  8 Videos
+                                  16 Videos
                                 </span>
                               </div>
                               <p className="font-sans text-[11px] text-zinc-500">
@@ -882,7 +939,7 @@ export default function Experience() {
                                     Substation visits, transformer yard inspections &amp; GIS geotagging
                                   </span>
                                   <span className="font-sans text-[10px] text-emerald-400 font-mono">
-                                    8 Recordings Ready
+                                    16 Recordings Ready
                                   </span>
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
