@@ -295,11 +295,11 @@ export default function Experience() {
     >
       <div className="w-full max-w-[1600px]">
         {/* Section heading */}
-        <div className="text-center mb-4">
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
+        <div className="text-center mb-5">
+          <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white tracking-tight">
             My Professional Timeline
           </h2>
-          <p className="font-sans text-xs text-zinc-500 mt-1">
+          <p className="font-sans text-sm sm:text-base text-zinc-500 mt-2">
             Click any tile to view full academic records, documents &amp; experience details.
           </p>
         </div>
