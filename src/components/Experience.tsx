@@ -866,7 +866,7 @@ export default function Experience() {
                             <ImageIcon className="w-3.5 h-3.5 text-zinc-500" />
                             <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Photos</span>
                             <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
-                              27 Photos
+                              28 Photos
                             </span>
                           </div>
                           <span className="font-sans text-[11px] text-zinc-500 italic hidden sm:inline">
@@ -902,6 +902,7 @@ export default function Experience() {
                             { slot: 25, src: "/images/siwes/siwes-25.jpg", title: "Assembly of 33kV Outdoor Post Insulators" },
                             { slot: 26, src: "/images/siwes/siwes-26.jpg", title: "Flexible Copper Earthing & Grounding Braid" },
                             { slot: 27, src: "/images/siwes/siwes-27.jpg", title: "Fully Wired Protection Relay & MCB Control Panel" },
+                            { slot: 28, src: "/images/siwes/siwes-28.png", title: "HV Cable Insulation Breakdown on Thumper Test Set" },
                           ].map(({ slot, src, title }) => (
                             <div
                               key={slot}
