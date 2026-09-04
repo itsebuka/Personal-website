@@ -743,11 +743,11 @@ export default function Experience() {
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                           {[
-                            { slot: 1, src: null },
-                            { slot: 2, src: null },
-                            { slot: 3, src: null },
-                            { slot: 4, src: null },
-                            { slot: 5, src: null },
+                            { slot: 1, src: "/images/siwes/siwes-01.png" },
+                            { slot: 2, src: "/images/siwes/siwes-02.jpg" },
+                            { slot: 3, src: "/images/siwes/siwes-03.jpg" },
+                            { slot: 4, src: "/images/siwes/siwes-04.jpg" },
+                            { slot: 5, src: "/images/siwes/siwes-05.png" },
                             { slot: 6, src: null },
                             { slot: 7, src: null },
                             { slot: 8, src: null },
