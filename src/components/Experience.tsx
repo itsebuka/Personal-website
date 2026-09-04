@@ -304,8 +304,8 @@ export default function Experience() {
           </p>
         </div>
 
-        {/* Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Responsive Grid — 1 col mobile → 2 col tablet → 5 col desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
           {professionalLog.map((role) => (
             <div
               key={role.id}
@@ -315,7 +315,7 @@ export default function Experience() {
                 setActiveSecDocIndex(0);
                 setIsZoomed(false);
               }}
-              className="bg-[#111111] border border-[#222222] rounded-lg p-5 flex flex-col gap-3.5 hover:border-[#444444] transition-all duration-200 cursor-pointer group hover:bg-[#141414]"
+              className="bg-[#111111] border border-[#222222] rounded-lg p-3.5 flex flex-col gap-2.5 hover:border-[#444444] transition-all duration-200 cursor-pointer group hover:bg-[#141414]"
             >
               {/* Period badge + active indicator */}
               <div className="flex items-center justify-between">
@@ -332,7 +332,7 @@ export default function Experience() {
 
               {/* Logo + Title & Company */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 p-1.5 rounded-lg border border-[#2a2a2a] bg-[#1a1a1a] flex items-center justify-center shrink-0 group-hover:border-[#555]">
+                <div className="w-8 h-8 p-1 rounded-lg border border-[#2a2a2a] bg-[#1a1a1a] flex items-center justify-center shrink-0 group-hover:border-[#555]">
                   <Image
                     src={role.logo}
                     alt={`${role.company} Logo`}
@@ -342,7 +342,7 @@ export default function Experience() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-sans text-sm font-bold text-white leading-snug group-hover:text-zinc-200 transition-colors">
+                  <h3 className="font-sans text-[11px] font-bold text-white leading-snug group-hover:text-zinc-200 transition-colors">
                     {role.title}
                   </h3>
                   {role.websiteUrl ? (
@@ -364,12 +364,12 @@ export default function Experience() {
                 </div>
               </div>
 
-              {/* Bullet points */}
-              <ul className="flex flex-col gap-2">
-                {role.bullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckSquare className="w-3.5 h-3.5 text-zinc-600 mt-0.5 shrink-0" />
-                    <span className="font-sans text-[11px] text-zinc-400 leading-relaxed">
+              {/* Bullet points — limit to 2 on desktop to keep cards short */}
+              <ul className="flex flex-col gap-1.5">
+                {role.bullets.slice(0, 2).map((bullet, i) => (
+                  <li key={i} className="flex items-start gap-1.5">
+                    <CheckSquare className="w-3 h-3 text-zinc-600 mt-0.5 shrink-0" />
+                    <span className="font-sans text-[10px] text-zinc-400 leading-relaxed">
                       {bullet}
                     </span>
                   </li>
@@ -377,14 +377,14 @@ export default function Experience() {
               </ul>
 
               {/* Footer CTA */}
-              <div className="flex items-center justify-between pt-3 border-t border-[#1e1e1e] mt-auto">
-                <span className="font-sans text-[10px] text-zinc-500 group-hover:text-white transition-colors flex items-center gap-1.5">
-                  <FileText className="w-3.5 h-3.5" />
+              <div className="flex items-center justify-between pt-2.5 border-t border-[#1e1e1e] mt-auto">
+                <span className="font-sans text-[9px] text-zinc-500 group-hover:text-white transition-colors flex items-center gap-1">
+                  <FileText className="w-3 h-3" />
                   {role.type === "university" || role.type === "secondary"
                     ? "View Academic Results"
                     : "View Experience Details"}
                 </span>
-                <span className="font-sans text-[10px] text-zinc-600 group-hover:text-zinc-300 transition-colors">
+                <span className="font-sans text-[9px] text-zinc-600 group-hover:text-zinc-300 transition-colors">
                   Open &rarr;
                 </span>
               </div>
