@@ -20,6 +20,7 @@ import {
   ImageIcon,
   Play,
   Video,
+  ChevronDown,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -288,6 +289,7 @@ export default function Experience() {
   const [activeSemIndex, setActiveSemIndex] = useState<number>(0);
   const [activeSecDocIndex, setActiveSecDocIndex] = useState<number>(0);
   const [isZoomed, setIsZoomed] = useState<boolean>(false);
+  const [isVideoDropdownOpen, setIsVideoDropdownOpen] = useState<boolean>(false);
 
   const selectedReport = selectedRole?.reports?.[activeSemIndex];
   const selectedSecDoc = selectedRole?.secondaryDocs?.[activeSecDocIndex];
@@ -774,44 +776,98 @@ export default function Experience() {
                         </div>
                       </div>
 
-                      {/* ── Video slots ── */}
-                      <div className="flex flex-col gap-3">
-                        <div className="flex items-center gap-2">
-                          <Video className="w-3.5 h-3.5 text-zinc-500" />
-                          <span className="font-sans text-xs font-semibold text-zinc-400 uppercase tracking-wider">Videos</span>
-                          <span className="font-sans text-[10px] text-zinc-600">(compressed MP4 — auto-plays muted)</span>
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {[
-                            { slot: 1, src: null },
-                            { slot: 2, src: null },
-                            { slot: 3, src: null },
-                            { slot: 4, src: null },
-                          ].map(({ slot, src }) =>
-                            src ? (
-                              <div key={slot} className="rounded-xl overflow-hidden border border-[#2a2a2a] bg-black aspect-video">
-                                <video
-                                  src={src}
-                                  controls
-                                  muted
-                                  playsInline
-                                  className="w-full h-full object-cover"
-                                  aria-label={`SIWES Field Video ${slot}`}
-                                />
+                      {/* ── Video Dropdown Menu Section ── */}
+                      <div className="flex flex-col rounded-xl border border-[#2a2a2a] bg-[#101010] overflow-hidden transition-all">
+                        <button
+                          type="button"
+                          onClick={() => setIsVideoDropdownOpen((prev) => !prev)}
+                          className="flex items-center justify-between p-3.5 bg-[#141414] hover:bg-[#181818] transition-colors text-left group cursor-pointer w-full"
+                          aria-expanded={isVideoDropdownOpen}
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-7 h-7 rounded-lg bg-[#1e1e1e] border border-[#2e2e2e] flex items-center justify-center text-zinc-400 group-hover:text-emerald-400 group-hover:border-emerald-500/30 transition-all">
+                              <Video className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-sans text-xs font-semibold text-zinc-200 uppercase tracking-wider">
+                                  SIWES Field Videos
+                                </span>
+                                <span className="font-sans text-[10px] text-zinc-500 bg-[#1a1a1a] border border-[#2a2a2a] px-2 py-0.5 rounded-full">
+                                  Dropdown Menu
+                                </span>
                               </div>
-                            ) : (
-                              <div
-                                key={slot}
-                                className="aspect-video rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0d0d0d] flex flex-col items-center justify-center gap-2 group hover:border-[#3a3a3a] transition-colors"
-                              >
-                                <div className="w-10 h-10 rounded-full border border-[#2a2a2a] bg-[#161616] flex items-center justify-center group-hover:border-[#3a3a3a] transition-colors">
-                                  <Play className="w-4 h-4 text-zinc-700 group-hover:text-zinc-500 transition-colors ml-0.5" />
+                              <p className="font-sans text-[11px] text-zinc-500">
+                                {isVideoDropdownOpen ? "Click to collapse video players" : "Click to expand field video recordings"}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-sans text-[10px] text-zinc-600 hidden sm:inline">
+                              {isVideoDropdownOpen ? "Hide Videos" : "Show Videos"}
+                            </span>
+                            <div className="w-6 h-6 rounded-full bg-[#1e1e1e] border border-[#2e2e2e] flex items-center justify-center text-zinc-400">
+                              <ChevronDown
+                                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                                  isVideoDropdownOpen ? "rotate-180 text-emerald-400" : ""
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </button>
+
+                        <AnimatePresence initial={false}>
+                          {isVideoDropdownOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25, ease: "easeInOut" }}
+                              className="overflow-hidden border-t border-[#222]"
+                            >
+                              <div className="p-4 flex flex-col gap-3 bg-[#0d0d0d]">
+                                <div className="flex items-center justify-between">
+                                  <span className="font-sans text-[11px] text-zinc-500 italic">
+                                    Raw field videos compressed for instant web playback
+                                  </span>
+                                  <span className="font-sans text-[10px] text-zinc-600">4 Video Slots</span>
                                 </div>
-                                <span className="font-sans text-[9px] text-zinc-700 italic">Video {slot}</span>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                  {[
+                                    { slot: 1, src: null },
+                                    { slot: 2, src: null },
+                                    { slot: 3, src: null },
+                                    { slot: 4, src: null },
+                                  ].map(({ slot, src }) =>
+                                    src ? (
+                                      <div key={slot} className="rounded-xl overflow-hidden border border-[#2a2a2a] bg-black aspect-video shadow-md">
+                                        <video
+                                          src={src}
+                                          controls
+                                          muted
+                                          playsInline
+                                          className="w-full h-full object-cover"
+                                          aria-label={`SIWES Field Video ${slot}`}
+                                        />
+                                      </div>
+                                    ) : (
+                                      <div
+                                        key={slot}
+                                        className="aspect-video rounded-xl border-2 border-dashed border-[#2a2a2a] bg-[#0a0a0a] flex flex-col items-center justify-center gap-2 group hover:border-[#3a3a3a] transition-colors"
+                                      >
+                                        <div className="w-10 h-10 rounded-full border border-[#2a2a2a] bg-[#161616] flex items-center justify-center group-hover:border-[#3a3a3a] transition-colors">
+                                          <Play className="w-4 h-4 text-zinc-700 group-hover:text-zinc-500 transition-colors ml-0.5" />
+                                        </div>
+                                        <span className="font-sans text-[10px] text-zinc-600 font-medium">Video Slot {slot}</span>
+                                        <span className="font-sans text-[9px] text-zinc-700 italic">Awaiting video file</span>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
                               </div>
-                            )
+                            </motion.div>
                           )}
-                        </div>
+                        </AnimatePresence>
                       </div>
 
                     </div>
