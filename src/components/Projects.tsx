@@ -104,25 +104,25 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-4 sm:px-6 py-8 sm:py-10 scroll-area"
+      className="min-h-full flex flex-col items-center justify-start sm:justify-center px-3 sm:px-6 py-4 sm:py-6 lg:py-4 scroll-area"
     >
-      <div className="w-full max-w-6xl">
+      <div className="w-full max-w-7xl">
         {/* Section heading */}
-        <div className="text-center mb-6 sm:mb-7">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white tracking-tight">
+        <div className="text-center mb-3 sm:mb-4">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white tracking-tight">
             Projects Completed
           </h2>
-          <p className="font-sans text-xs sm:text-sm text-zinc-500 mt-1.5">
+          <p className="font-sans text-xs text-zinc-500 mt-1">
             Click any project card to view hardware videos, code repositories, design schematics &amp; documents.
           </p>
         </div>
 
-        {/* 2-column card grid for 4 projects */}
+        {/* Responsive card grid: 3 columns on laptop/desktop, 2 on tablet, 1 on mobile */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 gap-4.5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-3.5"
         >
           {projects.map((project: StaticProject, index: number) => {
             const IconComp = project.icon;
@@ -137,23 +137,23 @@ export default function Projects() {
                 className="bg-[#111111] border border-[#222222] rounded-lg overflow-hidden flex flex-col cursor-pointer hover:border-[#444444] transition-all duration-200 group hover:bg-[#141414]"
               >
                 {/* Card visual header */}
-                <div className="h-24 bg-[#0d0d0d] border-b border-[#1e1e1e] flex items-center justify-center relative">
-                  <IconComp className="w-10 h-10 text-zinc-700 group-hover:text-zinc-400 transition-colors duration-200" />
+                <div className="h-16 sm:h-18 lg:h-16 bg-[#0d0d0d] border-b border-[#1e1e1e] flex items-center justify-center relative">
+                  <IconComp className="w-7 h-7 sm:w-8 sm:h-8 text-zinc-700 group-hover:text-zinc-400 transition-colors duration-200" />
 
                   {/* SYS_ID */}
-                  <span className="absolute top-3 left-3 font-sans text-[9px] text-zinc-600">
+                  <span className="absolute top-2 left-2.5 font-sans text-[8.5px] sm:text-[9px] text-zinc-600">
                     SYS_ID: {project.id ? project.id.substring(0, 5).toUpperCase() : `00${index + 1}`}
                   </span>
 
                   {/* Badges */}
                   {project.badge && (
-                    <span className="absolute top-3 right-3 font-sans text-[9px] uppercase tracking-wider bg-purple-500/10 text-purple-300/90 font-normal px-1.5 py-0.5 rounded-full flex items-center gap-1 border border-purple-500/20 transform scale-75 origin-top-right">
+                    <span className="absolute top-2 right-2.5 font-sans text-[8.5px] sm:text-[9px] uppercase tracking-wider bg-purple-500/10 text-purple-300/90 font-normal px-1.5 py-0.5 rounded-full flex items-center gap-1 border border-purple-500/20">
                       <Sparkles className="w-2.5 h-2.5 text-purple-400" />
                       {project.badge}
                     </span>
                   )}
                   {project.videos && project.videos.length > 0 && (
-                    <span className="absolute top-3 right-3 font-sans text-[9px] bg-white/10 text-white px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
+                    <span className="absolute top-2 right-2.5 font-sans text-[8.5px] sm:text-[9px] bg-white/10 text-white px-2 py-0.5 rounded-full flex items-center gap-1 border border-white/20">
                       <Video className="w-2.5 h-2.5" />
                       {project.videos.length} Videos
                     </span>
@@ -161,58 +161,58 @@ export default function Projects() {
                 </div>
 
                 {/* Card body */}
-                <div className="p-4 flex flex-col flex-1 gap-2">
+                <div className="p-3 sm:p-3.5 flex flex-col flex-1 gap-1.5">
                   <div className="flex items-center justify-between">
-                    <span className="font-sans text-[10px] text-zinc-500 tracking-widest uppercase truncate">
+                    <span className="font-sans text-[9px] sm:text-[9.5px] text-zinc-500 tracking-wider uppercase truncate">
                       {project.tagline}
                     </span>
                   </div>
 
-                  <h3 className="font-sans text-sm font-bold text-white group-hover:text-zinc-200 transition-colors leading-snug">
+                  <h3 className="font-sans text-xs sm:text-sm font-bold text-white group-hover:text-zinc-200 transition-colors leading-snug">
                     {project.title}
                   </h3>
-                  <p className="font-sans text-xs text-zinc-500 leading-relaxed line-clamp-3">
+                  <p className="font-sans text-[11px] sm:text-xs text-zinc-400 leading-relaxed line-clamp-2">
                     {project.description}
                   </p>
 
                   {/* Tech stack tags */}
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {techList.slice(0, 4).map((t) => (
+                  <div className="flex flex-wrap gap-1 mt-0.5">
+                    {techList.slice(0, 3).map((t) => (
                       <span
                         key={t}
-                        className="font-sans text-[9px] text-zinc-600 px-1.5 py-0.5 border border-[#222222] rounded bg-[#0d0d0d]"
+                        className="font-sans text-[8.5px] sm:text-[9px] text-zinc-600 px-1.5 py-0.5 border border-[#222222] rounded bg-[#0d0d0d]"
                       >
                         {t}
                       </span>
                     ))}
-                    {techList.length > 4 && (
-                      <span className="font-sans text-[9px] text-zinc-600 px-1.5 py-0.5 border border-[#222222] rounded bg-[#0d0d0d]">
-                        +{techList.length - 4} more
+                    {techList.length > 3 && (
+                      <span className="font-sans text-[8.5px] sm:text-[9px] text-zinc-600 px-1.5 py-0.5 border border-[#222222] rounded bg-[#0d0d0d]">
+                        +{techList.length - 3} more
                       </span>
                     )}
                   </div>
 
                   {/* Action links footer */}
-                  <div className="flex items-center justify-between pt-3 border-t border-[#1e1e1e] mt-auto">
-                    <span className="flex items-center gap-1.5 font-sans text-xs text-zinc-400 group-hover:text-white transition-colors">
+                  <div className="flex items-center justify-between pt-2 sm:pt-2.5 border-t border-[#1e1e1e] mt-auto">
+                    <span className="flex items-center gap-1.5 font-sans text-[11px] sm:text-xs text-zinc-400 group-hover:text-white transition-colors">
                       {project.videos && project.videos.length > 0 ? (
                         <>
-                          <Video className="w-3.5 h-3.5" />
+                          <Video className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                           View Video Archive ({project.videos.length})
                         </>
                       ) : project.badge ? (
                         <>
-                          <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                          <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-purple-400" />
                           View Architecture &amp; RAG Specs
                         </>
                       ) : (
                         <>
-                          <Github className="w-3.5 h-3.5" />
+                          <Github className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                           View Project Details &amp; Repo
                         </>
                       )}
                     </span>
-                    <span className="font-sans text-[10px] text-zinc-600 group-hover:text-zinc-300 transition-colors">
+                    <span className="font-sans text-[9px] sm:text-[10px] text-zinc-600 group-hover:text-zinc-300 transition-colors">
                       Open &rarr;
                     </span>
                   </div>
